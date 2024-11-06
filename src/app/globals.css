@@ -31,46 +31,16 @@
   .section-container {
     @apply mx-auto max-w-[88rem] px-4 py-2 md:px-6 md:py-3;
   }
-  .bg-opacity-10 {
-    position: relative;
-  }
 
-  .bg-opacity-10::before,
-  .bg-opacity-10::after {
-    border-radius: inherit;
-    content: "";
-    height: 100%;
-    left: 0px;
-    opacity: 0;
-    position: absolute;
-    top: 0px;
-    transition: opacity 500ms;
-    width: 100%;
+  @keyframes scroll {
+    0% {
+      transform: translateY(0);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
   }
-
-  .bg-opacity-10::before {
-    background: radial-gradient(
-      800px circle at var(--mouse-x) var(--mouse-y),
-      rgba(255, 255, 255, 0.09),
-      transparent 50%
-    );
-    z-index: 3;
-  }
-
-  .bg-opacity-10::after {
-    background: radial-gradient(
-      600px circle at var(--mouse-x) var(--mouse-y),
-      rgba(255, 255, 255, 0.4),
-      transparent 40%
-    );
-    z-index: 1;
-  }
-
-  .bg-opacity-10:hover::before {
-    opacity: 1;
-  }
-
-  div:hover > .bg-opacity-10::after {
-    opacity: 1;
+  .animate-scroll:hover {
+    animation-play-state: paused;
   }
 }

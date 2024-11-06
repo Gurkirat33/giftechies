@@ -1,6 +1,6 @@
-import Navbar from "@/components/ui/Navbar";
+import Footer from "@/components/UI/Footer";
 import "./globals.css";
-import Footer from "@/components/ui/Footer";
+import Navbar from "@/components/UI/Navbar/Navbar";
 
 export const metadata = {
   title: "Agency Website",
