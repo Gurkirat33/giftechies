@@ -1,15 +1,19 @@
 "use client";
 
 import React, { useState, useEffect, useRef } from "react";
+import Logo from "../../images/google-log.png";
 
 const LogoScroller = () => {
   const [direction, setDirection] = useState("right");
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
   const scrollerRef = useRef(null);
+  const animationRef = useRef(null);
 
   const logos = [
-    { id: 1, name: "Company 1", url: "/api/placeholder/150/60" },
+    {
+      id: 1,
+      name: "Company 1",
+      url: "/api/placeholder/150/60",
+    },
     { id: 2, name: "Company 2", url: "/api/placeholder/150/60" },
     { id: 3, name: "Company 3", url: "/api/placeholder/150/60" },
     { id: 4, name: "Company 4", url: "/api/placeholder/150/60" },
@@ -17,76 +21,66 @@ const LogoScroller = () => {
     { id: 6, name: "Company 6", url: "/api/placeholder/150/60" },
   ];
 
-  const duplicatedLogos = [...logos, ...logos];
+  const duplicatedLogos = [...logos, ...logos, ...logos];
 
   useEffect(() => {
-    const scroller = scrollerRef.current;
-    let animationId;
-    let speed = 1;
+    if (scrollerRef.current) {
+      scrollerRef.current.scrollLeft = scrollerRef.current.scrollWidth / 3;
+    }
 
     const animate = () => {
-      if (!isDragging && scroller) {
+      const scroller = scrollerRef.current;
+      if (scroller) {
+        const speed = 0.8;
+
         if (direction === "right") {
           scroller.scrollLeft += speed;
-          if (scroller.scrollLeft >= scroller.scrollWidth / 2) {
-            scroller.scrollLeft = 0;
+          if (scroller.scrollLeft >= (scroller.scrollWidth * 2) / 3) {
+            scroller.scrollLeft = scroller.scrollWidth / 3;
           }
         } else {
           scroller.scrollLeft -= speed;
           if (scroller.scrollLeft <= 0) {
-            scroller.scrollLeft = scroller.scrollWidth / 2;
+            scroller.scrollLeft = scroller.scrollWidth / 3;
           }
         }
       }
-      animationId = requestAnimationFrame(animate);
+      animationRef.current = requestAnimationFrame(animate);
     };
 
-    animationId = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationId);
-  }, [direction, isDragging]);
-
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setStartX(e.pageX - scrollerRef.current.offsetLeft);
-  };
+    animationRef.current = requestAnimationFrame(animate);
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [direction]);
 
   const handleMouseMove = (e) => {
-    if (!isDragging) return;
+    const container = scrollerRef.current;
+    if (!container) return;
 
-    const x = e.pageX - scrollerRef.current.offsetLeft;
-    const diff = x - startX;
+    const rect = container.getBoundingClientRect();
+    const centerX = rect.left + rect.width / 2;
 
-    if (Math.abs(diff) > 50) {
-      setDirection(diff > 0 ? "left" : "right");
-    }
-  };
-
-  const handleMouseUp = () => {
-    setIsDragging(false);
-  };
-
-  const handleMouseLeave = () => {
-    setIsDragging(false);
+    setDirection(e.clientX > centerX ? "left" : "right");
   };
 
   return (
     <div className="w-full overflow-hidden bg-primary-900 py-4">
       <div
         ref={scrollerRef}
-        className="flex overflow-x-hidden cursor-grab active:cursor-grabbing"
-        onMouseDown={handleMouseDown}
+        className="flex select-none overflow-x-hidden"
         onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseLeave}
       >
         <div className="flex gap-8 px-4">
           {duplicatedLogos.map((logo, index) => (
             <div
               key={`${logo.id}-${index}`}
-              className="flex-shrink-0 h-16 w-40 bg-[#282a2e] rounded-lg shadow-sm flex items-center justify-center select-none pointer-events-none"
+              className="flex h-16 w-40 flex-shrink-0 items-center justify-center rounded-lg bg-[#282a2e] shadow-sm"
             >
               <img
-                src="../../images/google-log.png"
+                src={Logo}
                 alt={logo.name}
                 className="max-h-12 w-auto object-contain"
                 draggable="false"

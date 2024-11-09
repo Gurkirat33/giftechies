@@ -2,18 +2,18 @@ import FeaturesSection from "@/components/ui/FeaturesSection";
 import HeroSection from "@/components/ui/HeroSection";
 import WhyChooseUs from "@/components/ui/WhyChooseUs";
 import CTASection from "@/components/ui/Cta";
-import FAQSection from "@/components/ui/Faq";
 import StatsDivider from "@/components/UI/StatsDivider";
 import TestimonialsSection from "@/components/UI/Testimonials";
-import HowItWorks from "@/components/UI/HowItWorks";
 import Services from "@/components/UI/Services";
 import LogoScroller from "@/components/UI/LogoScroller";
+import HowItWorks from "@/components/UI/HowItWorks(new)/HowItWorks";
+// import FAQ from "@/components/UI/Faq";
 
 export default function Home() {
   return (
     <div>
       <HeroSection />
-      <LogoScroller />
+      {/* <LogoScroller /> */}
       <HowItWorks />
       <Services />
       <TestimonialsSection />
@@ -23,7 +23,7 @@ export default function Home() {
       {/* <HowItWorks /> */}
       {/* <Testimonials /> */}
       {/* <CTASection /> */}
-      {/* <FAQSection /> */}
+      {/* <FAQ /> */}
     </div>
   );
 }

@@ -48,7 +48,7 @@ const FAQSection = () => {
   const filteredFAQs = faqData.filter(
     (q) =>
       q.q.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      q.a.toLowerCase().includes(searchTerm.toLowerCase())
+      q.a.toLowerCase().includes(searchTerm.toLowerCase()),
   );
 
   const containerVariants = {

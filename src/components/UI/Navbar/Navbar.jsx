@@ -44,34 +44,29 @@ const Navbar = () => {
       variants={navVariants}
       animate={hidden ? "hidden" : "visible"}
       initial="visible"
-      className={`fixed top-0 left-0 right-0 z-50 flex justify-center transition-all duration-300 ease-in-out
-        ${atTop ? "w-full" : "mt-4"}`}
+      className={`fixed left-0 right-0 top-0 z-50 flex justify-center transition-all duration-300 ease-in-out ${atTop ? "w-full" : "mt-4"}`}
     >
       <nav
-        className={`transition-all duration-300 ease-in-out
-        ${
+        className={`transition-all duration-300 ease-in-out ${
           atTop
             ? "w-full bg-white dark:bg-primary-900"
-            : "w-[90%]  xl:w-[80%] rounded-full bg-white/90 dark:bg-[#212326] shadow-lg"
+            : "w-[90%] rounded-full bg-white/90 shadow-lg dark:bg-[#212326] xl:w-[80%]"
         }`}
       >
-        <div
-          className={`mx-auto transition-all duration-300 ease-in-out px-8
-          `}
-        >
+        <div className={`mx-auto px-8 transition-all duration-300 ease-in-out`}>
           <div className="flex items-center justify-between">
             <Link
               href="/"
-              className="text-lg font-medium dark:text-gray-200 py-4 lg:py-0"
+              className="py-4 text-lg font-medium dark:text-gray-200 lg:py-0"
             >
               Giftechies
             </Link>
 
-            <div className="hidden lg:flex items-center ">
+            <div className="hidden items-center lg:flex">
               {navData.map((item) => (
                 <div
                   key={item.name}
-                  className={`group relative pr-6 text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors ${
+                  className={`group relative pr-6 text-gray-600 transition-colors hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 ${
                     atTop ? "py-6" : "py-4"
                   }`}
                 >
@@ -79,7 +74,7 @@ const Navbar = () => {
                     {item.name}
                     {item.submenu && (
                       <svg
-                        className="ml-1 w-4 h-4 group-hover:rotate-180 transition-transform"
+                        className="ml-1 h-4 w-4 transition-transform group-hover:rotate-180"
                         viewBox="0 0 24 24"
                         fill="none"
                         xmlns="http://www.w3.org/2000/svg"
@@ -96,36 +91,36 @@ const Navbar = () => {
                   </Link>
 
                   {item.submenu && (
-                    <div className="absolute top-3/4 left-0 mt-2 w-[600px] bg-white dark:bg-primary-900  rounded-2xl shadow-lg group-hover:block hidden p-8">
+                    <div className="absolute left-0 top-3/4 mt-2 hidden w-[600px] rounded-2xl bg-white p-8 shadow-lg group-hover:block dark:bg-primary-900">
                       <div className="grid grid-cols-2 gap-8">
                         <div className="space-y-6">
                           {item.submenu.items.map((subItem) => (
                             <Link
                               key={subItem.title}
                               href={subItem.href}
-                              className="block group/item"
+                              className="group/item block"
                             >
-                              <h3 className="text-xl dark:text-white font-medium mb-1">
+                              <h3 className="mb-1 text-xl font-medium dark:text-white">
                                 {subItem.title}
                               </h3>
-                              <p className="text-slate-800 dark:text-gray-400 text-sm group-hover/item:text-gray-300 transition-colors">
+                              <p className="text-sm text-slate-800 transition-colors group-hover/item:text-gray-300 dark:text-gray-400">
                                 {subItem.description}
                               </p>
                             </Link>
                           ))}
                         </div>
                         <div className="space-y-4">
-                          <h3 className="text-xl dark:text-white font-medium">
+                          <h3 className="text-xl font-medium dark:text-white">
                             {item.submenu.preview.title}
                           </h3>
                           <p className="text-slate-800 dark:text-gray-400">
                             {item.submenu.preview.description}
                           </p>
-                          <div className="mt-4 rounded-xl overflow-hidden">
+                          <div className="mt-4 overflow-hidden rounded-xl">
                             <img
                               src={item.submenu.preview.image}
                               alt={item.submenu.preview.title}
-                              className="w-full h-48 object-cover"
+                              className="h-48 w-full object-cover"
                             />
                           </div>
                         </div>
@@ -140,12 +135,12 @@ const Navbar = () => {
               <DarkModeToggle />
               <Link
                 href="/start-project"
-                className="hidden lg:block w-full text-center text-white bg-tertiary-600 px-6 py-3 rounded-full"
+                className="hidden w-full rounded-full bg-tertiary-600 px-6 py-3 text-center text-white lg:block"
               >
                 Start a project →
               </Link>
               <button
-                className="lg:hidden p-2 rounded-full"
+                className="rounded-full p-2 lg:hidden"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
                 <Menu size={20} className="dark:text-gray-200" />

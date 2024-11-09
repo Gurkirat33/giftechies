@@ -5,7 +5,7 @@ import BrowserForImages from "./Browsers/BrowserForImages";
 
 const HeroSection = () => {
   return (
-    <header className="relative flex min-h-screen items-center bg-white dark:bg-primary-900 pt-6 dark:text-white">
+    <header className="relative flex min-h-screen items-center bg-white pt-6 dark:bg-primary-900 dark:text-white">
       <BgGrid />
       <div className="section-container relative py-20">
         <div className="grid items-center gap-12 lg:grid-cols-2">
@@ -24,7 +24,7 @@ const HeroSection = () => {
               <button className="w-full rounded bg-tertiary-600 px-8 py-4 font-bold text-white sm:w-auto">
                 Get Free Consultation
               </button>
-              <button className="w-full rounded border border-black dark:border-white px-8 py-4 font-semibold dark:text-white sm:w-auto">
+              <button className="w-full rounded border border-black px-8 py-4 font-semibold dark:border-white dark:text-white sm:w-auto">
                 View All Services
               </button>
             </div>

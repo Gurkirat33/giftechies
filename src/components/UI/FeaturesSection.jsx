@@ -1,6 +1,6 @@
 import React from "react";
 import SectionHeading from "./SectionHeading";
-import { features } from "../data/Features";
+import { features } from "../data/features";
 
 function StaticGridPattern({ className }) {
   return (

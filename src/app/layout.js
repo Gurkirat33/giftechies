@@ -1,16 +1,34 @@
 import Footer from "@/components/UI/Footer";
 import "./globals.css";
 import Navbar from "@/components/UI/Navbar/Navbar";
+import Script from "next/script";
 
 export const metadata = {
   title: "Agency Website",
   description: "Created by Gurkirat Singh",
 };
 
+const themeScript = `
+  let prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  let stored = localStorage.getItem('theme');
+  
+  if (stored === 'dark' || (!stored && prefersDark)) {
+    document.documentElement.classList.add('dark');
+  } else {
+    document.documentElement.classList.remove('dark');
+  }
+`;
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
       <body>
+        <Script id="theme-switcher" strategy="beforeInteractive">
+          {themeScript}
+        </Script>
         <Navbar />
         {children}
         <Footer />

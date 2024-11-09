@@ -8,13 +8,13 @@ export default function MobileNav({
 }) {
   return (
     <div
-      className={`fixed inset-0 bg-white dark:bg-primary-900 z-50 overflow-y-auto transform transition-transform duration-300 ease-in-out  ${
+      className={`fixed inset-0 z-50 transform overflow-y-auto bg-white transition-transform duration-300 ease-in-out dark:bg-primary-900 ${
         isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
-      <div className="flex flex-col h-full justify-between p-6">
+      <div className="flex h-full flex-col justify-between p-6">
         <div>
-          <div className="flex justify-between items-center mb-8">
+          <div className="mb-8 flex items-center justify-between">
             <Link href="/" className="text-xl font-semibold dark:text-gray-200">
               Giftechies
             </Link>
@@ -31,19 +31,19 @@ export default function MobileNav({
               <div key={item.name} className="space-y-2">
                 <Link
                   href={item.href}
-                  className="text-lg dark:text-gray-200 font-medium"
+                  className="text-lg font-medium dark:text-gray-200"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
                 </Link>
 
                 {item.submenu && (
-                  <div className="pl-4 space-y-2">
+                  <div className="space-y-2 pl-4">
                     {item.submenu.items.map((subItem) => (
                       <Link
                         key={subItem.title}
                         href={subItem.href}
-                        className="dark:text-gray-400 block"
+                        className="block dark:text-gray-400"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {subItem.title}
@@ -58,7 +58,7 @@ export default function MobileNav({
 
         <Link
           href="/start-project"
-          className="block w-full text-center text-white bg-tertiary-600 px-6 py-3 rounded-full"
+          className="block w-full rounded-full bg-tertiary-600 px-6 py-3 text-center text-white"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           Start a project →

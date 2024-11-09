@@ -9,7 +9,7 @@ const BrowserForContent = ({ data }) => {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === data.length - 1 ? 0 : prevIndex + 1
+        prevIndex === data.length - 1 ? 0 : prevIndex + 1,
       );
     }, 3500);
     return () => clearInterval(timer);

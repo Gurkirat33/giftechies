@@ -10,7 +10,7 @@ export default function BrowserForImages({ projectData }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === projectData.length - 1 ? 0 : prevIndex + 1
+        prevIndex === projectData.length - 1 ? 0 : prevIndex + 1,
       );
     }, 3500);
     return () => clearInterval(timer);
