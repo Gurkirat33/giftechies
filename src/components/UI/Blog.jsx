@@ -4,7 +4,7 @@ import DemoImage from "../../../public/demo.jpeg";
 import DemoImage2 from "../../../public/demo2.avif";
 import React, { useEffect, useState, useRef } from "react";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-import { Carousel, Card } from "@/components/ui/BlogSection";
+import { Card, Carousel } from "./BlogSection";
 
 export default function BlogSection() {
   const carouselRef = useRef(null);
