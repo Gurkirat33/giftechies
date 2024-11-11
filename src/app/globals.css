@@ -6,7 +6,7 @@
 
 @layer base {
   html {
-    font-family: "Nunito", sans-serif;
+    font-family: "helvetica", sans-serif;
     scroll-behavior: smooth;
   }
 
@@ -40,7 +40,70 @@
       transform: translateY(-50%);
     }
   }
+  .customer-support-image {
+    background: url("https://bento.ui8.net/03/img/message.png");
+    background-size: cover;
+    background-position: right bottom;
+  }
+  .support-image {
+    background: url("https://bento.ui8.net/03/img/earn-rewards.png");
+    background-size: cover;
+    background-position: right bottom;
+  }
   .animate-scroll:hover {
     animation-play-state: paused;
+  }
+  .gradient-color {
+    background: linear-gradient(45deg, #d92662 0%, #e62332 100%);
+  }
+  .gradient-color-text {
+    background: linear-gradient(45deg, #d92662 0%, #e62332 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .slider-container {
+    overflow: hidden;
+    padding: 0.5rem 0;
+    position: relative;
+    width: 100%;
+  }
+
+  .slide-track-right,
+  .slide-track-left {
+    display: flex;
+    gap: 1rem;
+    width: fit-content;
+  }
+
+  .slide-track-right {
+    animation: scroll-right 30s linear infinite;
+  }
+
+  .slide-track-left {
+    animation: scroll-left 30s linear infinite;
+  }
+
+  @keyframes scroll-right {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes scroll-left {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .slide-track-right,
+  .slide-track-left {
+    will-change: transform;
   }
 }

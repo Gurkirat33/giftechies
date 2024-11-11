@@ -10,18 +10,18 @@ const HeroSection = () => {
       <div className="section-container relative py-20">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div>
+            <span className="gradient-color-text mb-5 mt-2 font-medium 2xl:block">
+              Expert Web Solutions
+            </span>
             <h1 className="mb-6 text-4xl font-bold sm:text-5xl lg:text-6xl">
               Transform Your Online Presence with{" "}
-              <span className="mt-2 text-tertiary-500 2xl:block">
-                Expert Web Solutions
-              </span>
             </h1>
             <p className="mb-8 text-lg text-slate-900 dark:text-gray-300 sm:text-xl">
               We craft stunning websites that convert visitors into customers.
               See how we can elevate your digital presence.
             </p>
             <div className="mb-12 space-y-4 sm:flex sm:space-x-4 sm:space-y-0">
-              <button className="w-full rounded bg-tertiary-600 px-8 py-4 font-bold text-white sm:w-auto">
+              <button className="gradient-color w-full rounded px-8 py-4 font-bold text-white sm:w-auto">
                 Get Free Consultation
               </button>
               <button className="w-full rounded border border-black px-8 py-4 font-semibold dark:border-white dark:text-white sm:w-auto">

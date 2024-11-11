@@ -135,7 +135,7 @@ const Navbar = () => {
               <DarkModeToggle />
               <Link
                 href="/start-project"
-                className="hidden w-full rounded-full bg-tertiary-600 px-6 py-3 text-center text-white lg:block"
+                className="gradient-color hidden w-full rounded-full px-6 py-3 text-center text-white lg:block"
               >
                 Start a project →
               </Link>
