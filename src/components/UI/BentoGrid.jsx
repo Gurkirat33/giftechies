@@ -5,7 +5,7 @@ import Globe3D from "./Globe3D";
 export default function BentoGrid() {
   return (
     <div className="relative bg-white py-12 text-black dark:bg-primary-900 dark:text-white">
-      <div className="transalent absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-900">
+      <div className="transalent absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white dark:bg-primary-900">
         <Globe3D />
       </div>
       <div className="section-container grid grid-cols-4 grid-rows-4 gap-6">

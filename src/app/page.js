@@ -1,5 +1,4 @@
-// import FeaturesSection from "@/components/ui/FeaturesSection";
-import HeroSection from "@/components/ui/HeroSection";
+import HeroSection from "@/components/UI/HeroSection";
 // import WhyChooseUs from "@/components/ui/WhyChooseUs";
 // import CTASection from "@/components/ui/Cta";
 // import StatsDivider from "@/components/UI/StatsDivider";
