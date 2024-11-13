@@ -7,13 +7,32 @@ import Link from "next/link";
 import DarkModeToggle from "../../DarkModeToggle";
 import { navData, navVariants } from "../../data/NavbarData";
 import MobileNav from "./MobileNav";
+import Logo from "@/images/Giftechies-Logo-light-mode.svg";
+import darkLogo from "@/images/Giftechies-Logo-dark-mode.svg";
+import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
+  const pathname = usePathname();
   const { scrollY } = useScroll();
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [atTop, setAtTop] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  if (pathname === "/backend") {
+    return null;
+  }
+
+  useEffect(() => {
+    const theme = localStorage.getItem("theme");
+    if (theme === "dark") {
+      setIsDarkMode(true);
+    } else {
+      setIsDarkMode(false);
+    }
+  }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     setAtTop(latest < 10);
@@ -59,7 +78,11 @@ const Navbar = () => {
               href="/"
               className="py-4 text-lg font-medium dark:text-gray-200 lg:py-0"
             >
-              Giftechies
+              {isDarkMode ? (
+                <Image src={darkLogo} alt="" width={190} />
+              ) : (
+                <Image src={Logo} alt="" width={190} />
+              )}
             </Link>
 
             <div className="hidden items-center lg:flex">

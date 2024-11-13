@@ -30,7 +30,7 @@ export default function Step1() {
             { label: "Follow-up Rate", value: "100%" },
             { label: "Solutions Proposed", value: "3-5" },
           ].map((metric, index) => (
-            <div key={index} className="rounded-lg bg-primary-700 text-center">
+            <div key={index} className="rounded-lg text-center">
               <p className="text-xl font-bold">{metric.value}</p>
               <p className="text-sm text-gray-300">{metric.label}</p>
             </div>

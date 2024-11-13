@@ -129,7 +129,7 @@ const VerticalJourneySection = () => {
               className="overflow-hidden rounded-xl bg-primary-800 shadow-xl"
             >
               <div className="flex flex-col items-stretch md:flex-row">
-                <div className="relative flex flex-col justify-between p-4 sm:p-8 md:w-2/5">
+                <div className="relative flex flex-col justify-between border-r border-border p-4 sm:p-8 md:w-2/5">
                   <div>
                     <div className="mb-6 flex size-16 items-center justify-center rounded-full bg-tertiary-600 text-white">
                       <step.icon size={32} />
@@ -137,11 +137,11 @@ const VerticalJourneySection = () => {
                     <h3 className="mb-4 text-3xl font-bold">{step.title}</h3>
                     <p className="text-lg text-gray-300">{step.description}</p>
                   </div>
-                  <div className="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-full bg-primary-700 text-2xl font-bold">
+                  <div className="absolute right-6 top-6 flex h-12 w-12 items-center justify-center rounded-full bg-primary-900 text-2xl font-bold">
                     {index + 1}
                   </div>
                 </div>
-                <div className="bg-primary-700 p-4 sm:p-8 md:w-3/5">
+                <div className="bg-primary-800 p-4 sm:p-8 md:w-3/5">
                   {step.content}
                 </div>
               </div>
