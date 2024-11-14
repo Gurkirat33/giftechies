@@ -1,14 +1,22 @@
-import { ArrowDown, Laptop, MoveDown } from "lucide-react";
+import {
+  ArrowDown,
+  ArrowRight,
+  Laptop,
+  MoveDown,
+  MoveRight,
+} from "lucide-react";
 import Globe3D from "./Globe3D";
+import Link from "next/link";
 
 export default function BentoGrid() {
   return (
     <div className="relative bg-white py-12 text-black dark:bg-primary-900 dark:text-white">
-      <div className="transalent absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-white p-12 dark:bg-primary-900">
+      <div className="transalent absolute left-1/2 top-1/2 flex size-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg dark:bg-primary-900">
         {/* <Globe3D /> */}
         <img
-          src="https://giftechies.com/frontend/assets/images/brain.png"
+          src="https://giftechies.com/frontend/assets/images/cup-man.gif"
           alt=""
+          className=""
         />
       </div>
       <div className="section-container grid grid-cols-4 grid-rows-4 gap-6">
@@ -19,6 +27,14 @@ export default function BentoGrid() {
             Build fast, scalable, and responsive websites tailored to meet your
             business needs.
           </p>
+          <div className="mt-3 flex items-center gap-2 text-[#a6abb4]">
+            <ArrowRight
+              color="red"
+              size={20}
+              className="-rotate-45 cursor-pointer transition-all duration-300 hover:rotate-0"
+            />
+            <Link href="/">View More</Link>
+          </div>
         </div>
         <div className="gradient-color col-span-2 row-span-2 flex flex-col items-center gap-4 rounded-lg p-10 text-white">
           <p className="mt-4 text-lg tracking-widest">GifTechies</p>

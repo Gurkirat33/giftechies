@@ -42,6 +42,10 @@ export const navData = [
     },
   },
   {
+    name: "Portfolio",
+    href: "/portfolio",
+  },
+  {
     name: "About",
     href: "/about",
   },

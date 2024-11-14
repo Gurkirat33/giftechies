@@ -27,7 +27,13 @@ const IconMap = {
   Megaphone,
 };
 
-export const ServiceCard = ({ title, icon, description, features, image }) => {
+export const ServiceCard = ({
+  heading,
+  icon,
+  description,
+  keyPoints,
+  imageUrl,
+}) => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [isHovering, setIsHovering] = useState(false);
 
@@ -61,14 +67,14 @@ export const ServiceCard = ({ title, icon, description, features, image }) => {
       )}
 
       <div className="relative aspect-[4/3] overflow-hidden">
-        <img src={image} alt={title} className="h-full w-full" />
+        <img src={imageUrl} alt={heading} className="h-full w-full" />
         <div className="absolute inset-0 bg-black/40" />
         <div className="absolute bottom-4 left-4 right-4">
           <div className="flex items-center">
             <div className="rounded-lg bg-white/90 p-2 dark:bg-gray-800/90">
               {/* <IconComponent className="h-6 w-6 text-blue-600 dark:text-blue-400" /> */}
             </div>
-            <h3 className="ml-3 text-xl font-semibold text-white">{title}</h3>
+            <h3 className="ml-3 text-xl font-semibold text-white">{heading}</h3>
           </div>
         </div>
       </div>
@@ -77,7 +83,7 @@ export const ServiceCard = ({ title, icon, description, features, image }) => {
         <p className="mb-4 text-gray-600 dark:text-gray-300">{description}</p>
 
         <ul className="space-y-2">
-          {features.map((feature, index) => (
+          {keyPoints.map((feature, index) => (
             <li
               key={index}
               className="flex items-center text-sm text-gray-500 dark:text-gray-400"
@@ -90,7 +96,7 @@ export const ServiceCard = ({ title, icon, description, features, image }) => {
 
         <Link
           href={""}
-          className="mt-6 flex items-center text-sm font-semibold text-blue-600 dark:text-blue-400"
+          className="gradient-color-text mt-6 flex items-center text-sm font-semibold dark:text-red-400"
         >
           Learn more
           <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />

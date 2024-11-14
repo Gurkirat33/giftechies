@@ -16,7 +16,7 @@ const HeroSection = () => {
             <h1 className="mb-6 text-4xl font-bold sm:text-5xl lg:text-6xl">
               Transform Your Online Presence with{" "}
             </h1>
-            <p className="mb-8 text-lg text-slate-900 dark:text-gray-300 sm:text-xl">
+            <p className="mb-8 text-lg text-slate-900 dark:text-[#a6abb4] sm:text-xl">
               We craft stunning websites that convert visitors into customers.
               See how we can elevate your digital presence.
             </p>

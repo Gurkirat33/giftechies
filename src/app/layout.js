@@ -29,9 +29,9 @@ export default function RootLayout({ children }) {
         <Script id="theme-switcher" strategy="beforeInteractive">
           {themeScript}
         </Script>
-        <Navbar />
+        {/* <Navbar /> */}
         {children}
-        <Footer />
+        {/* <Footer /> */}
       </body>
     </html>
   );

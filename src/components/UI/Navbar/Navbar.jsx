@@ -10,20 +10,14 @@ import MobileNav from "./MobileNav";
 import Logo from "@/images/Giftechies-Logo-light-mode.svg";
 import darkLogo from "@/images/Giftechies-Logo-dark-mode.svg";
 import Image from "next/image";
-import { usePathname } from "next/navigation";
 
 const Navbar = () => {
-  const pathname = usePathname();
   const { scrollY } = useScroll();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [atTop, setAtTop] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  if (pathname === "/backend") {
-    return null;
-  }
 
   useEffect(() => {
     const theme = localStorage.getItem("theme");
@@ -89,7 +83,7 @@ const Navbar = () => {
               {navData.map((item) => (
                 <div
                   key={item.name}
-                  className={`group relative pr-6 text-gray-600 transition-colors hover:text-gray-800 dark:text-gray-400 dark:hover:text-gray-200 ${
+                  className={`group relative pr-6 text-gray-600 transition-colors hover:text-gray-800 dark:text-[#a6abb4] dark:hover:text-gray-200 ${
                     atTop ? "py-6" : "py-4"
                   }`}
                 >

@@ -1,12 +1,11 @@
-import connectDb from "@/lib/connectDb";
+import { getDbConnection } from "@/lib/auth";
 import serviceModel from "@/models/service.model";
 import { NextResponse } from "next/server";
 
-export async function GET(request, { params }) {
-  const { slug } = params;
+export async function GET(request) {
   try {
-    connectDb();
-    const service = await serviceModel.findOne({ slug });
+    getDbConnection();
+    const service = await serviceModel.find({});
     if (!service) {
       return NextResponse.json({ error: "true" }, { status: 404 });
     }
