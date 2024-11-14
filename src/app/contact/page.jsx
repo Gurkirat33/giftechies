@@ -36,8 +36,8 @@ const ContactPage = () => {
           </div>
 
           <div className="space-y-6">
-            {contactData.map((item) => (
-              <div className="flex items-center space-x-4">
+            {contactData.map((item, index) => (
+              <div className="flex items-center space-x-4" key={index}>
                 <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-800">
                   <item.icon className="h-5 w-5" />
                 </div>
