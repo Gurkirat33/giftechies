@@ -52,7 +52,7 @@ export default function ServicesPage() {
           Add New Service
         </button>
       </div>
-      <div className="grid grid-cols-3 gap-4">
+      <div className="grid grid-cols-4 gap-4">
         {services.map((service) => (
           <div
             className="rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
