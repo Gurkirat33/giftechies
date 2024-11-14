@@ -3,7 +3,9 @@ import axios from "axios";
 
 async function getData(id) {
   try {
-    const res = await axios.get(`http://localhost:3000/api/get-services/${id}`);
+    const res = await axios.get(
+      `https://giftechies.vercel.app/api/get-services/${id}`,
+    );
     return res.data;
   } catch (error) {
     console.log(error);
