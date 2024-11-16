@@ -1,7 +1,7 @@
 "use client";
 
 import axios from "axios";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
 export const ServiceForm = ({ initialData, id }) => {
@@ -95,7 +95,6 @@ export const ServiceForm = ({ initialData, id }) => {
               required
             />
           </div>
-
           <div>
             <label className="mb-1 block text-sm font-medium">Heading</label>
             <input
@@ -107,7 +106,6 @@ export const ServiceForm = ({ initialData, id }) => {
               required
             />
           </div>
-
           <div>
             <label className="mb-1 block text-sm font-medium">
               Description
@@ -121,7 +119,7 @@ export const ServiceForm = ({ initialData, id }) => {
               required
             />
           </div>
-
+          {/* React quill */}
           <div>
             <label className="mb-1 block text-sm font-medium">
               Key Points (one per line)
@@ -135,7 +133,6 @@ export const ServiceForm = ({ initialData, id }) => {
               required
             />
           </div>
-
           <div>
             <label className="mb-1 block text-sm font-medium">Slug</label>
             <input
