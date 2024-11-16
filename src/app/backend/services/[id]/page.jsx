@@ -1,14 +1,5 @@
 import { ServiceForm } from "@/components/UI/ServiceForm";
-import axios from "axios";
-
-async function getData(id) {
-  try {
-    const res = await axios.get(`http://localhost:3000/api/get-services/${id}`);
-    return res.data;
-  } catch (error) {
-    console.log(error);
-  }
-}
+import { getService } from "../actions";
 
 const emptyService = {
   imageUrl: "",
@@ -26,13 +17,13 @@ export default async function ServiceDetails({ params }) {
   }
 
   try {
-    const data = await getData(id);
+    const service = await getService(id);
 
-    if (!data) {
-      return <div>Error loading service details</div>;
+    if (!service) {
+      return <div>Service not found</div>;
     }
 
-    return <ServiceForm initialData={data.service} id={id} />;
+    return <ServiceForm initialData={service} id={id} />;
   } catch (error) {
     return <div>Error: {error.message}</div>;
   }
