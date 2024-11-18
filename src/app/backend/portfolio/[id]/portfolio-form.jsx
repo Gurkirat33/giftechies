@@ -3,8 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createPortfolio, updatePortfolio } from "../actions";
-import { uploadImage } from "../upload-action";
-import { X, Upload } from "lucide-react";
+import { uploadToCloudinary } from "@/utils/uploadImage";
+import { X, Upload, Loader2 } from "lucide-react";
 import Image from "next/image";
 
 export default function PortfolioForm({ initialData }) {
@@ -12,29 +12,44 @@ export default function PortfolioForm({ initialData }) {
   const [formData, setFormData] = useState({
     title: initialData?.title || "",
     imageUrl: initialData?.imageUrl || "",
-    tags: initialData?.tags || [],
+    tags: initialData?.tags?.join(", ") || "",
   });
-  const [newTag, setNewTag] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [uploadingImage, setUploadingImage] = useState(false);
+  const [uploadStats, setUploadStats] = useState(null);
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
+    setError("");
 
     try {
+      // Process tags
+      const processedTags = formData.tags
+        .split(",")
+        .map(tag => tag.trim())
+        .filter(tag => tag);
+
+      const portfolioData = {
+        title: formData.title.trim(),
+        imageUrl: formData.imageUrl,
+        tags: processedTags,
+      };
+
       const result = initialData?.id
-        ? await updatePortfolio(initialData.id, formData)
-        : await createPortfolio(formData);
+        ? await updatePortfolio(initialData.id, portfolioData)
+        : await createPortfolio(portfolioData);
 
       if (result.success) {
         router.push("/backend/portfolio");
+        router.refresh();
       } else {
-        alert(result.error || "Something went wrong");
+        setError(result.error || "Failed to save portfolio item");
       }
     } catch (error) {
       console.error("Error submitting form:", error);
-      alert("Failed to save portfolio item");
+      setError(error.message || "Failed to save portfolio item");
     } finally {
       setIsSubmitting(false);
     }
@@ -42,186 +57,167 @@ export default function PortfolioForm({ initialData }) {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({ ...prev, [name]: value }));
+    setFormData(prev => ({ ...prev, [name]: value }));
   };
 
   const handleImageUpload = async (e) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    setUploadingImage(true);
-    try {
-      const formData = new FormData();
-      formData.append("file", file);
+    // Validate file type
+    if (!file.type.startsWith("image/")) {
+      setError("Please upload an image file");
+      return;
+    }
 
-      const result = await uploadImage(formData);
-      if (result.success) {
-        setFormData((prev) => ({ ...prev, imageUrl: result.filename }));
-      } else {
-        alert(result.error || "Failed to upload image");
-      }
+    // Validate file size (max 10MB)
+    const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+    if (file.size > maxSize) {
+      setError("Image size must be less than 10MB");
+      return;
+    }
+
+    try {
+      setUploadingImage(true);
+      setError("");
+
+      const result = await uploadToCloudinary(file);
+
+      setFormData(prev => ({ ...prev, imageUrl: result.url }));
+      setUploadStats({
+        originalSize: result.originalSize,
+        compressedSize: result.compressedSize,
+        compressionRatio: result.compressionRatio,
+        dimensions: result.report?.dimensions,
+      });
     } catch (error) {
       console.error("Error uploading image:", error);
-      alert("Failed to upload image");
+      setError(error.message || "Failed to upload image");
     } finally {
       setUploadingImage(false);
     }
   };
 
-  const addTag = (e) => {
-    e.preventDefault();
-    if (newTag.trim() && !formData.tags.includes(newTag.trim())) {
-      setFormData((prev) => ({
-        ...prev,
-        tags: [...prev.tags, newTag.trim()],
-      }));
-      setNewTag("");
-    }
-  };
-
-  const removeTag = (tagToRemove) => {
-    setFormData((prev) => ({
-      ...prev,
-      tags: prev.tags.filter((tag) => tag !== tagToRemove),
-    }));
+  const handleRemoveImage = () => {
+    setFormData(prev => ({ ...prev, imageUrl: "" }));
+    setUploadStats(null);
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 px-4 py-10">
-      <div className="max-w-2xl">
-        <div className="mb-8">
-          <h2 className="text-3xl font-semibold text-gray-900">
-            {initialData ? "Edit Portfolio Item" : "Add New Portfolio Item"}
-          </h2>
-          <p className="mt-1 text-sm text-gray-500">
-            Fill in the details for your portfolio item
-          </p>
+    <form onSubmit={handleSubmit} className="mx-auto max-w-3xl space-y-8 p-6">
+      {error && (
+        <div className="rounded-lg bg-red-50 p-4">
+          <p className="text-sm text-red-600">{error}</p>
+        </div>
+      )}
+
+      <div className="space-y-6">
+        {/* Title Input */}
+        <div>
+          <label className="block text-sm font-medium text-secondary">
+            Project Title
+          </label>
+          <input
+            type="text"
+            name="title"
+            value={formData.title}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-lg border border-border bg-primary p-2.5 text-secondary placeholder-secondary-light/50 focus:border-blue-500 focus:ring-blue-500"
+            placeholder="Enter project title"
+            required
+          />
         </div>
 
-        <form onSubmit={handleSubmit} className="space-y-6">
-          <div className="rounded-xl bg-white p-6 shadow">
-            <div className="space-y-4">
-              {/* Title */}
-              <div>
-                <label
-                  htmlFor="title"
-                  className="block text-sm font-medium text-gray-700"
-                >
-                  Title
-                </label>
-                <input
-                  type="text"
-                  id="title"
-                  name="title"
-                  value={formData.title}
-                  onChange={handleChange}
-                  required
-                  className="mt-1 block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
+        {/* Image Upload */}
+        <div>
+          <label className="block text-sm font-medium text-secondary">
+            Project Image
+          </label>
+          <div className="mt-2">
+            {formData.imageUrl ? (
+              <div className="relative aspect-video w-full overflow-hidden rounded-lg border border-border">
+                <Image
+                  src={formData.imageUrl}
+                  alt="Preview"
+                  fill
+                  className="object-cover"
                 />
+                <button
+                  type="button"
+                  onClick={handleRemoveImage}
+                  className="absolute right-2 top-2 rounded-full bg-secondary/80 p-1 text-white hover:bg-secondary"
+                >
+                  <X className="h-4 w-4" />
+                </button>
+                {uploadStats && (
+                  <div className="absolute bottom-2 left-2 rounded bg-black/70 px-2 py-1 text-xs text-white">
+                    {uploadStats.dimensions} • {uploadStats.originalSize} → {uploadStats.compressedSize} ({uploadStats.compressionRatio} reduction)
+                  </div>
+                )}
               </div>
-
-              {/* Image Upload */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Project Image
-                </label>
-                <div className="mt-2 flex flex-col items-center gap-4">
-                  {formData.imageUrl && (
-                    <div className="relative h-48 w-full overflow-hidden rounded-lg">
-                      <Image
-                        src={formData.imageUrl}
-                        alt={formData.title}
-                        fill
-                        className="object-cover"
+            ) : (
+              <div className="flex items-center justify-center rounded-lg border border-dashed border-border bg-primary-light p-12">
+                <div className="text-center">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-secondary/10">
+                    {uploadingImage ? (
+                      <Loader2 className="h-6 w-6 animate-spin text-secondary" />
+                    ) : (
+                      <Upload className="h-6 w-6 text-secondary" />
+                    )}
+                  </div>
+                  <div className="mt-4 flex text-sm leading-6 text-secondary">
+                    <label className="relative cursor-pointer rounded-md font-semibold text-blue-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2 hover:text-blue-500">
+                      <span>Upload a file</span>
+                      <input
+                        type="file"
+                        className="sr-only"
+                        accept="image/*"
+                        onChange={handleImageUpload}
+                        disabled={uploadingImage}
                       />
-                    </div>
-                  )}
-                  <label className="flex w-full cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-gray-300 p-6 hover:border-gray-400">
-                    <div className="space-y-1 text-center">
-                      <Upload className="mx-auto h-12 w-12 text-gray-400" />
-                      <div className="text-sm text-gray-600">
-                        {uploadingImage ? (
-                          "Uploading..."
-                        ) : (
-                          <>
-                            <span className="text-blue-600">Upload an image</span>
-                            <span> or drag and drop</span>
-                          </>
-                        )}
-                      </div>
-                    </div>
-                    <input
-                      type="file"
-                      className="hidden"
-                      accept="image/*"
-                      onChange={handleImageUpload}
-                      disabled={uploadingImage}
-                    />
-                  </label>
+                    </label>
+                    <p className="pl-1">or drag and drop</p>
+                  </div>
+                  <p className="text-xs leading-5 text-secondary-light">
+                    PNG, JPG, GIF up to 10MB
+                  </p>
                 </div>
               </div>
-
-              {/* Tags */}
-              <div>
-                <label className="block text-sm font-medium text-gray-700">
-                  Tags
-                </label>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {formData.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-sm font-medium text-blue-700"
-                    >
-                      {tag}
-                      <button
-                        type="button"
-                        onClick={() => removeTag(tag)}
-                        className="ml-1.5 inline-flex h-4 w-4 items-center justify-center rounded-full text-blue-400 hover:bg-blue-200 hover:text-blue-600"
-                      >
-                        <X className="h-3 w-3" />
-                      </button>
-                    </span>
-                  ))}
-                </div>
-                <div className="mt-2 flex gap-2">
-                  <input
-                    type="text"
-                    value={newTag}
-                    onChange={(e) => setNewTag(e.target.value)}
-                    placeholder="Add a tag"
-                    className="block w-full rounded-lg border border-gray-300 px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
-                  />
-                  <button
-                    type="button"
-                    onClick={addTag}
-                    className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
-                  >
-                    Add
-                  </button>
-                </div>
-              </div>
-            </div>
+            )}
           </div>
+        </div>
 
-          {/* Form Actions */}
-          <div className="flex items-center justify-end gap-4">
-            <button
-              type="button"
-              onClick={() => router.push("/backend/portfolio")}
-              className="rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50"
-            >
-              Cancel
-            </button>
-            <button
-              type="submit"
-              disabled={isSubmitting || uploadingImage}
-              className="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-blue-700 disabled:opacity-50"
-            >
-              {isSubmitting ? "Saving..." : "Save"}
-            </button>
-          </div>
-        </form>
+        {/* Tags Input */}
+        <div>
+          <label className="block text-sm font-medium text-secondary">
+            Tags
+          </label>
+          <input
+            type="text"
+            name="tags"
+            value={formData.tags}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-lg border border-border bg-primary p-2.5 text-secondary placeholder-secondary-light/50 focus:border-blue-500 focus:ring-blue-500"
+            placeholder="Enter tags separated by commas"
+            required
+          />
+          <p className="mt-1 text-sm text-secondary-light">
+            Separate tags with commas (e.g., Web Design, UI/UX, Branding)
+          </p>
+        </div>
       </div>
-    </div>
+
+      {/* Submit Button */}
+      <div className="flex justify-end">
+        <button
+          type="submit"
+          disabled={isSubmitting || uploadingImage}
+          className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+        >
+          {isSubmitting && <Loader2 className="h-4 w-4 animate-spin" />}
+          {isSubmitting ? "Saving..." : "Save Project"}
+        </button>
+      </div>
+    </form>
   );
 }

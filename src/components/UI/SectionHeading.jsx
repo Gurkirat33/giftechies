@@ -1,22 +1,12 @@
-import React from "react";
-
-const SectionHeader = ({ heading, description, className }) => {
+export const SectionHeading = ({ title, description }) => {
   return (
-    <div className={`relative w-full py-8 ${className}`}>
-      <h2 className="pointer-events-none absolute inset-0 hidden -translate-y-8 transform items-center justify-center text-4xl font-bold text-gray-800/10 dark:text-gray-700/25 md:flex md:text-6xl">
-        {heading}
-      </h2>
-
-      <div className="relative text-center">
-        <h2 className="text-3xl font-bold md:text-5xl">
-          {heading}
-        </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-secondary-light md:text-lg">
-          {description}
-        </p>
-      </div>
-    </div>
-  );
-};
-
-export default SectionHeader;
+    <div className="mb-16 text-center">
+    <h2 className="text-6xl font-medium leading-[1.03] tracking-wide text-secondary md:text-[76px]">
+      Where Creativity <br /> Meets Results
+    </h2>
+    <p className="mt-6 text-xl text-secondary-light">
+      Discover how we turn ideas into impactful digital solutions with
+      innovation and quality
+    </p>
+  </div>
+  )}

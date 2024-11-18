@@ -1,5 +1,6 @@
 "use client";
 
+import { SectionHeading } from "@/components/UI/SectionHeading";
 import { MoveRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -96,16 +97,7 @@ export default function PortfolioClient({ portfolioData }) {
     <>
       <div className="bg-primary py-32">
         <div className="section-container px-4">
-          <div className="mb-16 text-center">
-            <h2 className="text-6xl font-medium leading-[1.03] tracking-wide text-secondary md:text-[84px]">
-              Where Creativity <br /> Meets Results
-            </h2>
-            <p className="mt-6 text-xl text-secondary-light">
-              Discover how we turn ideas into impactful digital solutions with
-              innovation and quality
-            </p>
-          </div>
-
+          <SectionHeading title={"Where Creativity Meets Results"} description={"Discover how we turn ideas into impactful digital solutions with innovation and quality."}/>
           <div className="flex flex-col gap-8 md:flex-row">
             <div className="flex flex-col gap-8 md:w-1/3">
               {portfolioData

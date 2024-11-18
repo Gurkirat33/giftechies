@@ -44,7 +44,7 @@ const Footer = () => {
                   type="text"
                   id="email"
                   placeholder="Email"
-                  className="rounded-lg border border-border bg-primary p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-light"
+                  className="rounded-lg border border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
                 />
               </div>
               <div className="mt-5 flex flex-col gap-3">
@@ -52,7 +52,7 @@ const Footer = () => {
                   type="number"
                   id="number"
                   placeholder="Phone Number"
-                  className="rounded-lg border border-border bg-primary p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-light"
+                  className="rounded-lg border border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
                 />
               </div>
               <div className="mt-5 flex flex-col gap-3">
@@ -61,7 +61,7 @@ const Footer = () => {
                   type="text"
                   rows={2}
                   id="message"
-                  className="rounded-lg border border-border bg-primary p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-light"
+                  className="rounded-lg border border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
                 />
               </div>
 

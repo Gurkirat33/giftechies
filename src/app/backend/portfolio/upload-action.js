@@ -1,25 +1,37 @@
 "use server";
 
-import { writeFile } from "fs/promises";
-import { join } from "path";
+import { v2 as cloudinary } from "cloudinary";
 
-export async function uploadImage(formData) {
+cloudinary.config({
+  cloud_name: process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
+});
+
+export async function uploadImage({ file }) {
   try {
-    const file = formData.get("file");
     if (!file) {
-      throw new Error("No file uploaded");
+      throw new Error("No file provided");
     }
 
-    const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    // Upload to Cloudinary with optimization settings
+    const result = await cloudinary.uploader.upload(file, {
+      folder: "portfolio",
+      transformation: [
+        { quality: "auto:best" },
+        { fetch_format: "auto" },
+        { width: 1200, crop: "limit" },
+      ],
+    });
 
-    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1E9)}`;
-    const filename = `portfolio-${uniqueSuffix}.${file.type.split("/")[1]}`;
-    
-    const path = join(process.cwd(), "public", "uploads", filename);
-    await writeFile(path, buffer);
-    
-    return { success: true, filename: `/uploads/${filename}` };
+    return {
+      success: true,
+      url: result.secure_url,
+      originalSize: result.bytes,
+      width: result.width,
+      height: result.height,
+      format: result.format,
+    };
   } catch (error) {
     console.error("Error uploading file:", error);
     return { success: false, error: error.message };

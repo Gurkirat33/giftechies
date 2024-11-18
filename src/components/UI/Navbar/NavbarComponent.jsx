@@ -7,5 +7,6 @@ export default function NavbarComponent() {
   const pathname = usePathname();
   const backend = pathname.startsWith("/backend");
 
-  return !backend && <Navbar />;
+  // return !backend && <Navbar />;
+  return <Navbar />;
 }

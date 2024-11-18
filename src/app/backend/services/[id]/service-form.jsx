@@ -1,20 +1,40 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { X, Upload } from "lucide-react";
 import { uploadToCloudinary } from "@/utils/uploadImage";
+import { useRouter } from "next/navigation";
+import { createService, updateService } from "../actions";
 
 export default function ServiceForm({ initialData, id }) {
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [imageError, setImageError] = useState("");
+  const [formError, setFormError] = useState("");
   const [uploadStats, setUploadStats] = useState(null);
   const [formData, setFormData] = useState({
-    id,
-    title: initialData?.title || "",
+    heading: initialData?.heading || "",
     description: initialData?.description || "",
-    imageUrl: initialData?.image?.url || "",
-    imagePublicId: initialData?.image?.public_id || "",
+    imageUrl: initialData?.imageUrl || "",
+    keyPoints: Array.isArray(initialData?.keyPoints) 
+      ? initialData.keyPoints.join("\n") 
+      : "",
+    slug: initialData?.slug || "",
   });
+
+  useEffect(() => {
+    console.log("Initial data:", initialData);
+    console.log("Current form data:", formData);
+  }, [initialData, formData]);
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    console.log("Field changed:", name, value);
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }));
+  };
 
   const handleImageChange = async (e) => {
     const file = e.target.files[0];
@@ -35,34 +55,17 @@ export default function ServiceForm({ initialData, id }) {
     try {
       setLoading(true);
       setImageError("");
-
-      // Log original file details
-      console.log("Original file details:", {
-        name: file.name,
-        type: file.type,
-        size: `${(file.size / (1024 * 1024)).toFixed(2)}MB`,
-      });
-
       const result = await uploadToCloudinary(file);
-
-      // Log compression results
-      console.log("Compression results:", {
-        originalSize: result.originalSize,
-        compressedSize: result.compressedSize,
-        reduction: result.compressionRatio,
-      });
 
       setFormData((prev) => ({
         ...prev,
         imageUrl: result.url,
-        imagePublicId: result.public_id,
       }));
 
       setUploadStats({
         originalSize: result.originalSize,
         compressedSize: result.compressedSize,
         compressionRatio: result.compressionRatio,
-        status: result.compressionStatus,
         dimensions: result.report?.dimensions,
       });
     } catch (error) {
@@ -78,14 +81,63 @@ export default function ServiceForm({ initialData, id }) {
     setFormData((prev) => ({
       ...prev,
       imageUrl: "",
-      imagePublicId: "",
     }));
     setUploadStats(null);
     setImageError("");
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setFormError("");
+    console.log("Submitting................................................................................................................................")
+    try {
+      console.log("Form data before submission:", formData);
+
+      const serviceData = {
+        heading: formData.heading.trim(),
+        description: formData.description.trim(),
+        imageUrl: formData.imageUrl.trim(),
+        keyPoints: formData.keyPoints
+          .split("\n")
+          .map(point => point.trim())
+          .filter(point => point),
+        slug: formData.slug.trim(),
+      };
+
+      console.log("Processed service data:", serviceData);
+
+      let response;
+      if (id === "new") {
+        response = await createService(serviceData);
+      } else {
+        response = await updateService(id, serviceData);
+      }
+
+      console.log("Server response:", response);
+
+      if (response.success) {
+        router.push("/backend/services");
+        router.refresh();
+      } else {
+        throw new Error("Failed to save service");
+      }
+    } catch (error) {
+      console.error("Error saving service:", error);
+      setFormError(error.message || "Failed to save service. Please try again.");
+    } finally {
+      setLoading(false);
+    }
+  };
+
   return (
-    <div className="space-y-6">
+    <form onSubmit={handleSubmit} className="mx-auto max-w-3xl space-y-8 p-6">
+      {formError && (
+        <div className="rounded-lg bg-red-50 p-4">
+          <p className="text-sm text-red-600">{formError}</p>
+        </div>
+      )}
+
       <div className="space-y-4">
         <label className="block text-sm font-medium text-secondary">
           Service Image
@@ -101,69 +153,125 @@ export default function ServiceForm({ initialData, id }) {
                   className="h-full w-full object-cover"
                 />
                 <button
+                  type="button"
                   onClick={handleRemoveImage}
-                  className="absolute right-1 top-1 rounded-full bg-primary/80 p-1"
+                  className="absolute right-1 top-1 rounded-full bg-secondary/80 p-1 text-white hover:bg-secondary"
                 >
-                  <X className="h-4 w-4 text-secondary" />
+                  <X className="h-4 w-4" />
                 </button>
               </div>
             ) : (
-              <label className="flex h-full w-full cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-border bg-primary-light">
+              <div className="flex h-full w-full items-center justify-center rounded-lg border border-dashed border-border bg-primary-light">
                 <div className="text-center">
-                  <Upload className="mx-auto h-6 w-6 text-secondary-light" />
-                  <span className="mt-1 block text-xs text-secondary-light">
-                    {loading ? "Uploading..." : "Upload Image"}
+                  <Upload className="mx-auto h-8 w-8 text-secondary-light" />
+                  <span className="mt-2 block text-sm text-secondary-light">
+                    Upload Image
                   </span>
                 </div>
                 <input
                   type="file"
-                  onChange={handleImageChange}
                   accept="image/*"
-                  className="hidden"
-                  disabled={loading}
+                  onChange={handleImageChange}
+                  className="absolute inset-0 cursor-pointer opacity-0"
                 />
-              </label>
-            )}
-          </div>
-
-          <div className="flex-grow">
-            {uploadStats && (
-              <div className="space-y-1 text-sm">
-                <p className="text-secondary-light">
-                  Original: {uploadStats.originalSize} MB
-                </p>
-                <p className="text-secondary-light">
-                  Compressed: {uploadStats.compressedSize} MB
-                </p>
-                <p
-                  className={`font-medium ${
-                    parseFloat(uploadStats.compressionRatio) >= 70
-                      ? "text-green-600"
-                      : "text-yellow-600"
-                  }`}
-                >
-                  Reduced by: {uploadStats.compressionRatio}%
-                </p>
-                {uploadStats.status && (
-                  <p className="text-secondary-light">
-                    Status: {uploadStats.status}
-                  </p>
-                )}
-                {uploadStats.dimensions && (
-                  <p className="text-secondary-light">
-                    Size: {uploadStats.dimensions}
-                  </p>
-                )}
               </div>
             )}
-            {imageError && (
-              <p className="mt-2 text-sm text-red-500">{imageError}</p>
-            )}
           </div>
+          {uploadStats && (
+            <div className="text-sm text-secondary-light">
+              <p>Original size: {uploadStats.originalSize}</p>
+              <p>Compressed size: {uploadStats.compressedSize}</p>
+              <p>Reduction: {uploadStats.compressionRatio}%</p>
+              {uploadStats.dimensions && (
+                <p>
+                  Dimensions: {uploadStats.dimensions.width}x
+                  {uploadStats.dimensions.height}
+                </p>
+              )}
+            </div>
+          )}
+        </div>
+        {imageError && (
+          <p className="mt-2 text-sm text-red-500">{imageError}</p>
+        )}
+      </div>
+
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium text-secondary">
+            Service Title
+          </label>
+          <input
+            type="text"
+            name="heading"
+            value={formData.heading}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-lg border border-border bg-primary-light px-4 py-2 text-secondary focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-secondary">
+            Description
+          </label>
+          <textarea
+            name="description"
+            value={formData.description}
+            onChange={handleChange}
+            rows={4}
+            className="mt-1 block w-full rounded-lg border border-border bg-primary-light px-4 py-2 text-secondary focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-secondary">
+            Key Points (one per line)
+          </label>
+          <textarea
+            name="keyPoints"
+            value={formData.keyPoints}
+            onChange={handleChange}
+            rows={4}
+            className="mt-1 block w-full rounded-lg border border-border bg-primary-light px-4 py-2 text-secondary focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+            placeholder="Enter key points, one per line"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium text-secondary">
+            URL Slug
+          </label>
+          <input
+            type="text"
+            name="slug"
+            value={formData.slug}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-lg border border-border bg-primary-light px-4 py-2 text-secondary focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+            required
+          />
         </div>
       </div>
 
-      {/* Rest of your form */}
-    </div>
+      <div className="flex justify-end space-x-4">
+        <button
+          type="button"
+          onClick={() => router.push("/backend/services")}
+          className="rounded-lg border border-border px-4 py-2 text-secondary hover:bg-primary-light"
+          disabled={loading}
+        >
+          Cancel
+        </button>
+        <button
+          type="submit"
+          disabled={loading}
+          className="gradient-color rounded-lg px-4 py-2 text-white disabled:opacity-50"
+        >
+          {loading ? "Saving..." : "Save Changes"}
+        </button>
+      </div>
+    </form>
   );
 }

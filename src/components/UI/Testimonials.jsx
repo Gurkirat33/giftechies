@@ -1,11 +1,10 @@
 import React from "react";
 import { Quote, Twitter } from "lucide-react";
 import { testimonials } from "../data/TestimonialsData";
-import SectionHeader from "./SectionHeading";
 
 const TestimonialCard = ({ testimonial }) => (
   <div className="group relative w-full rounded-xl shadow-md  bg-primary-light p-6 md:p-8">
-    <Quote className="mb-4 h-10 w-10 text-secondary-light" />
+    {/* <Quote className="mb-4 h-10 w-10 text-secondary-light" /> */}
 
     <p className="relative z-10 mb-8 text-base leading-relaxed text-text-secondary-light md:text-lg">
       {testimonial.content}
@@ -48,10 +47,10 @@ const TestimonialsSection = () => {
   return (
     <div className="relative min-h-screen overflow-hidden py-20">
       <div className="relative z-10 mb-8 text-center">
-        <SectionHeader
-          heading={"Loved by thousands"}
-          description={"Here's what our amazing community has to say"}
-        />
+        <div className="mb-4">
+          <h2 className="text-5xl mb-3 font-semibold">Loved by thousands</h2>
+          <p className="text-lg text-secondary-light">Here's what our amazing community has to say</p>
+        </div>
       </div>
 
       <div className="absolute bottom-0 left-0 right-0 z-20 h-40" />
