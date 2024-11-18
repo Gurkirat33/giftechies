@@ -46,7 +46,7 @@ export default function BlogSection() {
   return (
     <div className="h-full w-full py-20 dark:bg-primary-900">
       <div className="mx-auto flex max-w-7xl items-center justify-between">
-        <h2 className="pl-4 font-sans text-xl font-bold text-neutral-800 dark:text-neutral-200 md:text-5xl">
+        <h2 className="pl-4 font-sans text-xl font-bold  md:text-5xl">
           Blog Section
         </h2>
         <div className="mr-10 flex justify-end gap-2">

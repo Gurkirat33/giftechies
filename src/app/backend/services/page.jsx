@@ -2,18 +2,17 @@ import { getDbConnection } from "@/lib/auth";
 import serviceModel from "@/models/service.model";
 import ServicesClient from "./services-client";
 
-// Opt into background revalidation
-export const dynamic = 'force-dynamic';
-export const revalidate = 3600; // revalidate every hour
+export const dynamic = "force-dynamic";
+export const revalidate = 3600;
 
 const serializeService = (service) => {
   return {
     id: service._id.toString(),
-    imageUrl: service.imageUrl || '',
-    heading: service.heading || '',
-    description: service.description || '',
+    imageUrl: service.imageUrl || "",
+    heading: service.heading || "",
+    description: service.description || "",
     keyPoints: Array.isArray(service.keyPoints) ? service.keyPoints : [],
-    slug: service.slug || '',
+    slug: service.slug || "",
   };
 };
 
@@ -30,5 +29,9 @@ async function getServices() {
 
 export default async function ServicesPage() {
   const services = await getServices();
-  return <ServicesClient initialServices={services} />;
+  return (
+    <div className="bg-primary">
+      <ServicesClient initialServices={services} />
+    </div>
+  );
 }

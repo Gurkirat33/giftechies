@@ -2,7 +2,6 @@
 
 import { ArrowRight } from "lucide-react";
 import BgGrid from "../BgGrid";
-import BrowserForContent from "./BrowserForContent";
 import BrowserForImages from "./BrowserForImages";
 import Link from "next/link";
 
@@ -14,7 +13,6 @@ const BrowserMockup = ({
   buttonLink,
   sectionElement,
   Browserdata,
-  images,
 }) => {
   return (
     <header className="relative min-h-screen bg-primary-900 text-white">
@@ -40,11 +38,7 @@ const BrowserMockup = ({
             </div>
             {sectionElement}
           </div>
-          {images ? (
-            <BrowserForImages projectData={Browserdata} />
-          ) : (
-            <BrowserForContent data={Browserdata} />
-          )}
+            <BrowserForImages projectData={Browserdata} /> 
         </div>
       </div>
     </header>

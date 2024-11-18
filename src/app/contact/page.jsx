@@ -21,15 +21,15 @@ const contactData = [
 
 const ContactPage = () => {
   return (
-    <div className="flex min-h-screen items-center bg-white p-8 py-32 text-black dark:bg-primary-900 dark:text-white">
+    <div className="flex min-h-screen items-center bg-primary p-8 py-32 text-secondary">
       <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 lg:grid-cols-2">
         <div className="my-auto space-y-8">
           <div>
-            <h1 className="mb-4 text-4xl font-medium dark:text-white md:text-5xl lg:leading-[1.1]">
+            <h1 className="mb-4 text-4xl font-medium text-secondary md:text-5xl lg:leading-[1.1]">
               It&apos;s time to talk about your{" "}
-              <span className="gradient-color-text"> project.</span>
+              <span className="gradient-color-text">project.</span>
             </h1>
-            <p className="text-gray-400">
+            <p className="text-secondary-light">
               Let&apos;s embark on creative journey together by shaping a visual
               narrative of your brand in the crowded digital space.
             </p>
@@ -38,21 +38,23 @@ const ContactPage = () => {
           <div className="space-y-6">
             {contactData.map((item, index) => (
               <div className="flex items-center space-x-4" key={index}>
-                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-800">
-                  <item.icon className="h-5 w-5" />
+                <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary-light">
+                  <item.icon className="h-5 w-5 text-secondary" />
                 </div>
                 <div>
-                  <div className="text-sm text-gray-500">{item.text}</div>
-                  <div>{item.description}</div>
+                  <div className="text-sm text-secondary-light">
+                    {item.text}
+                  </div>
+                  <div className="text-secondary">{item.description}</div>
                 </div>
               </div>
             ))}
           </div>
         </div>
 
-        <div className="rounded-lg bg-primary-800 p-8">
+        <div className="rounded-lg bg-primary-light p-8">
           <form>
-            <h3 className="mb-3 text-2xl font-semibold lg:text-3xl">
+            <h3 className="mb-3 text-2xl font-semibold text-secondary lg:text-3xl">
               Get in touch
             </h3>
             <div className="mt-5 flex flex-col gap-3">
@@ -60,7 +62,7 @@ const ContactPage = () => {
                 type="text"
                 id="name"
                 placeholder="Full Name"
-                className="rounded-lg bg-[#181B1F] p-3 focus:outline-none"
+                className="rounded-lg border border-border bg-primary p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-light"
               />
             </div>
             <div className="mt-5 flex flex-col gap-3">
@@ -68,7 +70,7 @@ const ContactPage = () => {
                 type="text"
                 id="email"
                 placeholder="Email"
-                className="rounded-lg bg-[#181B1F] p-3 focus:outline-none"
+                className="rounded-lg border border-border bg-primary p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-light"
               />
             </div>
             <div className="mt-5 flex flex-col gap-3">
@@ -76,7 +78,7 @@ const ContactPage = () => {
                 type="number"
                 id="number"
                 placeholder="Phone Number"
-                className="rounded-lg bg-[#181B1F] p-3 focus:outline-none"
+                className="rounded-lg border border-border bg-primary p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-light"
               />
             </div>
             <div className="mt-5 flex flex-col gap-3">
@@ -85,11 +87,11 @@ const ContactPage = () => {
                 type="text"
                 rows={4}
                 id="message"
-                className="rounded-lg bg-[#181B1F] p-3 focus:outline-none"
+                className="rounded-lg border border-border bg-primary p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-secondary-light"
               />
             </div>
 
-            <button className="gradient-color mt-6 w-fit rounded-lg px-4 py-2 text-white">
+            <button className="gradient-color mt-6 w-fit rounded-lg px-4 py-2 text-tertiary-text">
               Submit
             </button>
           </form>

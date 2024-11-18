@@ -8,10 +8,10 @@ const SectionHeader = ({ heading, description, className }) => {
       </h2>
 
       <div className="relative text-center">
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white md:text-5xl">
+        <h2 className="text-3xl font-bold md:text-5xl">
           {heading}
         </h2>
-        <p className="mx-auto mt-4 max-w-2xl text-gray-600 dark:text-gray-300 md:text-lg">
+        <p className="mx-auto mt-4 max-w-2xl text-secondary-light md:text-lg">
           {description}
         </p>
       </div>

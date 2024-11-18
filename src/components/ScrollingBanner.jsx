@@ -13,12 +13,12 @@ const ScrollingBanner = () => {
   const doubledItems = [...contactItems, ...contactItems];
 
   return (
-    <div className="w-full overflow-hidden bg-primary-800 py-4 text-white">
+    <div className="w-full overflow-hidden bg-primary-light py-4 text-secondary">
       <div className="relative flex">
         <div className="slide-track-left flex space-x-8 whitespace-nowrap">
           {doubledItems.map((item, index) => (
             <div key={index} className="flex items-center space-x-2 px-4">
-              <item.icon className="size-6 text-blue-400" />
+              <item.icon className="gradient-color-text size-6" />
               <span className="text-lg font-medium">{item.text}</span>
             </div>
           ))}

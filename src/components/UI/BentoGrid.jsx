@@ -1,18 +1,21 @@
-import {
-  ArrowDown,
-  ArrowRight,
-  Laptop,
-  MoveDown,
-  MoveRight,
-} from "lucide-react";
-import Globe3D from "./Globe3D";
+import { ArrowRight, Laptop, MoveDown } from "lucide-react";
 import Link from "next/link";
+import gridData from "../data/gridData";
+import BgGrid from "./BgGrid";
+
+const getGridClasses = (index) => {
+  if (index === 1)
+    return "col-span-2 row-span-2 gradient-color flex flex-col items-center gap-4";
+  if (index === 6 || index === 7)
+    return "col-span-1 row-span-2 flex flex-col justify-end gap-2";
+  return "col-span-1 row-span-1";
+};
 
 export default function BentoGrid() {
   return (
-    <div className="relative bg-white py-12 text-black dark:bg-primary-900 dark:text-white">
-      <div className="transalent absolute left-1/2 top-1/2 flex size-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white shadow-lg dark:bg-primary-900">
-        {/* <Globe3D /> */}
+    <div className="relative py-12">
+      <BgGrid />
+      <div className="transalent absolute left-1/2 top-1/2 z-10 flex size-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary shadow-lg">
         <img
           src="https://giftechies.com/frontend/assets/images/cup-man.gif"
           alt=""
@@ -20,106 +23,46 @@ export default function BentoGrid() {
         />
       </div>
       <div className="section-container grid grid-cols-4 grid-rows-4 gap-6">
-        <div className="col-span-1 row-span-1 rounded-lg p-10 shadow-xl dark:bg-primary-800">
-          <Laptop size={26} className="text-red-500" />
-          <h3 className="my-3 text-xl font-medium">Web Development</h3>
-          <p className="text-sm tracking-wider text-gray-400">
-            Build fast, scalable, and responsive websites tailored to meet your
-            business needs.
-          </p>
-          <div className="mt-3 flex items-center gap-2 text-[#a6abb4]">
-            <ArrowRight
-              color="red"
-              size={20}
-              className="-rotate-45 cursor-pointer transition-all duration-300 hover:rotate-0"
-            />
-            <Link href="/">View More</Link>
-          </div>
-        </div>
-        <div className="gradient-color col-span-2 row-span-2 flex flex-col items-center gap-4 rounded-lg p-10 text-white">
-          <p className="mt-4 text-lg tracking-widest">GifTechies</p>
-          <p className="text-center text-4xl font-semibold tracking-wide">
-            Your Digital Success Starts with Our Expertise
-          </p>
-          <MoveDown className="animate-bounce" />
-          <button className="rounded-full border-2 px-4 py-2">
-            View All Services
-          </button>
-        </div>
-        <div className="col-span-1 row-span-1 rounded-lg p-10 shadow-xl dark:bg-primary-800">
-          <Laptop size={26} className="text-red-500" />
-          <h3 className="my-3 text-xl font-medium">Web Development</h3>
-          <p className="text-sm tracking-wider text-gray-400">
-            Build fast, scalable, and responsive websites tailored to meet your
-            business needs.
-          </p>
-        </div>
-        <div className="col-span-1 row-span-1 space-y-2 rounded-lg p-10 shadow-xl dark:bg-primary-800">
-          <Laptop size={26} className="text-red-500" />
-          <h3 className="my-3 text-xl font-medium">Web Development</h3>
-          <p className="text-sm tracking-wider text-gray-400">
-            Build fast, scalable, and responsive websites tailored to meet your
-            business needs.
-          </p>
-        </div>
-        <div className="col-span-1 row-span-1 rounded-lg p-10 shadow-xl dark:bg-primary-800">
-          <Laptop size={26} className="text-red-500" />
-          <h3 className="my-3 text-xl font-medium">Web Development</h3>
-          <p className="text-sm tracking-wider text-gray-400">
-            Build fast, scalable, and responsive websites tailored to meet your
-            business needs.
-          </p>
-        </div>
-        <div className="col-span-1 row-span-1 flex flex-col justify-end gap-2 rounded-lg p-10 shadow-xl dark:bg-primary-800">
-          <Laptop size={26} className="text-red-500" />
-          <h3 className="my-3 text-xl font-medium">Web Development</h3>
-          <p className="text-sm tracking-wider text-gray-400">
-            Build fast, scalable, and responsive websites tailored to meet your
-            business needs.
-          </p>
-        </div>
-        <div className="col-span-1 row-span-2 flex flex-col justify-end gap-2 rounded-lg p-10 shadow-xl dark:bg-primary-800">
-          <Laptop size={26} className="text-red-500" />
-          <h3 className="my-3 text-xl font-medium">Web Development</h3>
-          <p className="text-sm tracking-wider text-gray-400">
-            Build fast, scalable, and responsive websites tailored to meet your
-            business needs. Build fast, scalable, and responsive websites
-            tailored to meet your business needs.
-          </p>
-        </div>
-        <div className="col-span-1 row-span-2 flex flex-col justify-end overflow-hidden rounded-lg p-10 shadow-xl dark:bg-primary-800">
-          <Laptop size={26} className="text-red-500" />
-          <h3 className="my-3 text-xl font-medium">Web Development</h3>
-          <p className="text-sm tracking-wider text-gray-400">
-            Build fast, scalable, and responsive websites tailored to meet your
-            business needs. Build fast, scalable, and responsive websites
-            tailored to meet your business needs.
-          </p>
-        </div>
-        <div className="col-span-1 row-span-1 rounded-lg p-10 shadow-xl dark:bg-primary-800">
-          <Laptop size={26} className="text-red-500" />
-          <h3 className="my-3 text-xl font-medium">Web Development</h3>
-          <p className="text-sm tracking-wider text-gray-400">
-            Build fast, scalable, and responsive websites tailored to meet your
-            business needs.
-          </p>
-        </div>
-        <div className="col-span-1 row-span-1 rounded-lg p-10 shadow-xl dark:bg-primary-800">
-          <Laptop size={26} className="text-red-500" />
-          <h3 className="my-3 text-xl font-medium">Web Development</h3>
-          <p className="text-sm tracking-wider text-gray-400">
-            Build fast, scalable, and responsive websites tailored to meet your
-            business needs.
-          </p>
-        </div>
-        <div className="col-span-1 row-span-1 rounded-lg p-10 shadow-xl dark:bg-primary-800">
-          <Laptop size={26} className="text-red-500" />
-          <h3 className="my-3 text-xl font-medium">Web Development</h3>
-          <p className="text-sm tracking-wider text-gray-400">
-            Build fast, scalable, and responsive websites tailored to meet your
-            business needs.
-          </p>
-        </div>
+        {gridData.map((item, index) => {
+          if (item.isSpecial) {
+            return (
+              <div
+                key={index}
+                className={`${getGridClasses(index)} rounded-lg p-10 text-tertiary-text`}
+              >
+                <p className="mt-4 text-lg tracking-widest">{item.title}</p>
+                <p className="text-center text-4xl font-semibold tracking-wide">
+                  {item.description}
+                </p>
+                <MoveDown className="animate-bounce" />
+                <button className="mt-4 rounded-lg border border-white px-6 py-3">
+                  View All Services
+                </button>
+              </div>
+            );
+          }
+
+          return (
+            <div
+              key={index}
+              className={`${getGridClasses(index)} relative rounded-lg bg-primary-light px-8 py-7 shadow-xl`}
+            >
+              {item.icon && <item.icon size={26} className="text-red-500" />}
+              <h3 className="my-3 text-xl font-medium">{item.title}</h3>
+              <p className="text-sm tracking-wider text-secondary-light">
+                {item.description}
+              </p>
+              <Link href={"/"} className="group mt-4 flex items-center gap-2">
+                <ArrowRight
+                  color="red"
+                  size={20}
+                  className="-rotate-45 cursor-pointer transition-all duration-300 group-hover:rotate-0"
+                />
+                <span className="">View More</span>
+              </Link>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

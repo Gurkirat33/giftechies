@@ -8,19 +8,19 @@ export default function MobileNav({
 }) {
   return (
     <div
-      className={`fixed inset-0 z-50 transform overflow-y-auto bg-white transition-transform duration-300 ease-in-out dark:bg-primary-900 ${
+      className={`fixed inset-0 z-50 transform overflow-y-auto bg-primary transition-transform duration-300 ease-in-out ${
         isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
       }`}
     >
       <div className="flex h-full flex-col justify-between p-6">
         <div>
           <div className="mb-8 flex items-center justify-between">
-            <Link href="/" className="text-xl font-semibold dark:text-gray-200">
+            <Link href="/" className="text-xl font-semibold text-secondary">
               Giftechies
             </Link>
             <button
               onClick={() => setIsMobileMenuOpen(false)}
-              className="dark:text-gray-200"
+              className="text-secondary"
             >
               <X size={24} />
             </button>
@@ -31,7 +31,7 @@ export default function MobileNav({
               <div key={item.name} className="space-y-2">
                 <Link
                   href={item.href}
-                  className="text-lg font-medium dark:text-gray-200"
+                  className="text-lg font-medium text-secondary"
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {item.name}
@@ -43,7 +43,7 @@ export default function MobileNav({
                       <Link
                         key={subItem.title}
                         href={subItem.href}
-                        className="block dark:text-gray-400"
+                        className="block text-secondary-light"
                         onClick={() => setIsMobileMenuOpen(false)}
                       >
                         {subItem.title}
@@ -58,7 +58,7 @@ export default function MobileNav({
 
         <Link
           href="/start-project"
-          className="gradient-color block w-full rounded-full px-6 py-3 text-center text-white"
+          className="gradient-color block w-full rounded-full px-6 py-3 text-center text-tertiary-text"
           onClick={() => setIsMobileMenuOpen(false)}
         >
           Start a project →

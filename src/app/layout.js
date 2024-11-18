@@ -26,9 +26,6 @@ export default function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
-        <Script id="theme-switcher" strategy="beforeInteractive">
-          {themeScript}
-        </Script>
         <Navbar />
         {children}
         <Footer />

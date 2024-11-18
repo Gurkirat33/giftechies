@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { Menu } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import DarkModeToggle from "../../DarkModeToggle";
 import { navData, navVariants } from "../../data/NavbarData";
 import MobileNav from "./MobileNav";
@@ -12,6 +13,12 @@ import darkLogo from "@/images/Giftechies-Logo-dark-mode.svg";
 import Image from "next/image";
 
 const Navbar = () => {
+  const pathname = usePathname();
+
+  if (pathname?.startsWith("/backend")) {
+    return null;
+  }
+
   const { scrollY } = useScroll();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [hidden, setHidden] = useState(false);
@@ -20,12 +27,12 @@ const Navbar = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
-    const theme = localStorage.getItem("theme");
-    if (theme === "dark") {
-      setIsDarkMode(true);
-    } else {
-      setIsDarkMode(false);
-    }
+    const theme =
+      localStorage.getItem("theme") ||
+      (window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? "dark"
+        : "light");
+    setIsDarkMode(theme === "dark");
   }, []);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
@@ -62,15 +69,15 @@ const Navbar = () => {
       <nav
         className={`transition-all duration-300 ease-in-out ${
           atTop
-            ? "w-full bg-white dark:bg-primary-900"
-            : "w-[90%] rounded-full bg-white/90 shadow-lg dark:bg-[#212326] xl:w-[80%]"
+            ? "w-full bg-primary"
+            : "w-[90%] rounded-full bg-primary/90 shadow-lg xl:w-[80%]"
         }`}
       >
         <div className={`mx-auto px-8 transition-all duration-300 ease-in-out`}>
           <div className="flex items-center justify-between">
             <Link
               href="/"
-              className="py-4 text-lg font-medium dark:text-gray-200 lg:py-0"
+              className="py-4 text-lg font-medium text-secondary lg:py-0"
             >
               {isDarkMode ? (
                 <Image src={darkLogo} alt="" width={190} />
@@ -83,7 +90,7 @@ const Navbar = () => {
               {navData.map((item) => (
                 <div
                   key={item.name}
-                  className={`group relative pr-6 text-gray-600 transition-colors hover:text-gray-800 dark:text-[#a6abb4] dark:hover:text-gray-200 ${
+                  className={`group relative pr-6 text-secondary-light transition-colors hover:text-secondary ${
                     atTop ? "py-6" : "py-4"
                   }`}
                 >
@@ -108,7 +115,7 @@ const Navbar = () => {
                   </Link>
 
                   {item.submenu && (
-                    <div className="absolute left-0 top-3/4 mt-2 hidden w-[600px] rounded-2xl bg-white p-8 shadow-lg group-hover:block dark:bg-primary-900">
+                    <div className="absolute left-0 top-3/4 mt-2 hidden w-[600px] rounded-2xl bg-primary p-8 shadow-lg group-hover:block">
                       <div className="grid grid-cols-2 gap-8">
                         <div className="space-y-6">
                           {item.submenu.items.map((subItem) => (
@@ -117,20 +124,20 @@ const Navbar = () => {
                               href={subItem.href}
                               className="group/item block"
                             >
-                              <h3 className="mb-1 text-xl font-medium dark:text-white">
+                              <h3 className="mb-1 text-xl font-medium text-secondary">
                                 {subItem.title}
                               </h3>
-                              <p className="text-sm text-slate-800 transition-colors group-hover/item:text-gray-300 dark:text-gray-400">
+                              <p className="text-sm text-secondary-light transition-colors group-hover/item:text-secondary">
                                 {subItem.description}
                               </p>
                             </Link>
                           ))}
                         </div>
                         <div className="space-y-4">
-                          <h3 className="text-xl font-medium dark:text-white">
+                          <h3 className="text-xl font-medium text-secondary">
                             {item.submenu.preview.title}
                           </h3>
-                          <p className="text-slate-800 dark:text-gray-400">
+                          <p className="text-secondary-light">
                             {item.submenu.preview.description}
                           </p>
                           <div className="mt-4 overflow-hidden rounded-xl">
@@ -149,18 +156,21 @@ const Navbar = () => {
             </div>
 
             <div className="flex items-center space-x-4">
-              <DarkModeToggle />
+              <DarkModeToggle
+                isDarkMode={isDarkMode}
+                setIsDarkMode={setIsDarkMode}
+              />
               <Link
                 href="/start-project"
-                className="gradient-color hidden w-full rounded-full px-6 py-3 text-center text-white lg:block"
+                className="gradient-color hidden w-full rounded-full px-6 py-3 text-center text-tertiary-text lg:block"
               >
                 Start a project →
               </Link>
               <button
-                className="rounded-full p-2 lg:hidden"
+                className="rounded-full p-2 text-secondary lg:hidden"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                <Menu size={20} className="dark:text-gray-200" />
+                <Menu size={20} />
               </button>
             </div>
           </div>

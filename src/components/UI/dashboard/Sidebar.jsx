@@ -6,7 +6,8 @@ export default function Sidebar() {
   const menuItems = [
     { name: "Dashboard", icon: Home, path: "/backend" },
     { name: "Services", icon: BarChart2, path: "/backend/services" },
-    { name: "Users", icon: Users, path: "/backend/users" },
+    { name: "Portfolio", icon: Users, path: "/backend/portfolio" },
+    { name: "Team Section", icon: Users, path: "/backend/team" },
     { name: "Settings", icon: Settings, path: "/backend/settings" },
   ];
 
