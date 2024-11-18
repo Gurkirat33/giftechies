@@ -13,12 +13,6 @@ import darkLogo from "@/images/Giftechies-Logo-dark-mode.svg";
 import Image from "next/image";
 
 const Navbar = () => {
-  const pathname = usePathname();
-
-  if (pathname?.startsWith("/backend")) {
-    return null;
-  }
-
   const { scrollY } = useScroll();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [hidden, setHidden] = useState(false);
