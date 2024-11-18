@@ -1,7 +1,6 @@
 import Footer from "@/components/UI/Footer";
 import "./globals.css";
-import Navbar from "@/components/UI/Navbar/Navbar";
-import Script from "next/script";
+import NavbarComponent from "@/components/UI/Navbar/NavbarComponent";
 
 export const metadata = {
   title: "Agency Website",
@@ -26,7 +25,7 @@ export default function RootLayout({ children }) {
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body>
-        <Navbar />
+        <NavbarComponent />
         {children}
         <Footer />
       </body>
