@@ -1,5 +1,5 @@
-import { ServiceForm } from "@/components/UI/ServiceForm";
 import { getService } from "../actions";
+import ServiceForm from "./service-form";
 
 const emptyService = {
   imageUrl: "",
