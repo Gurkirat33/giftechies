@@ -1,11 +1,11 @@
 import Image from "next/image";
-import Person1 from "@/images/person1.jpeg";
 
 export default function TeamSection() {
   const teamMembers = [
     {
       name: "Prabh",
-      image: Person1,
+      image:
+        "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=2576&auto=format&fit=crop",
       bio: "Visionary leader driving innovation in digital solutions",
     },
     {
