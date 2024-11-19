@@ -3,15 +3,25 @@
 import { SectionHeading } from "@/components/UI/SectionHeading";
 import { MoveRight, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
+import { Suspense } from "react";
 
 function PortfolioCard({ item, onClick }) {
   return (
     <div
-      className="group relative cursor-pointer overflow-hidden rounded-3xl"
+      className="group relative cursor-pointer overflow-hidden rounded-3xl aspect-[4/3]"
       onClick={() => onClick(item)}
     >
       <div className="absolute inset-0 z-10 bg-gradient-to-b from-transparent via-transparent to-black/90" />
-      <img src={item.imageUrl} alt="" className="w-full object-cover" />
+      <Image 
+        src={item.imageUrl} 
+        alt={item.title}
+        fill
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+        className="object-cover"
+        priority={false}
+        loading="lazy"
+      />
       <div className="absolute bottom-0 left-0 right-0 z-20 flex items-center justify-between p-6">
         <h3 className="text-2xl font-medium text-tertiary-text">
           {item.title}
@@ -65,11 +75,16 @@ function Modal({ isOpen, onClose, item }) {
         >
           <X size={24} />
         </button>
-        <img
-          src={item.imageUrl}
-          alt={item.title}
-          className="h-[90vh] w-full rounded-lg shadow-2xl"
-        />
+        <div className="relative h-[90vh] w-full">
+          <Image
+            src={item.imageUrl}
+            alt={item.title}
+            fill
+            className="rounded-lg shadow-2xl object-contain"
+            sizes="(max-width: 1200px) 100vw, 1200px"
+            quality={85}
+          />
+        </div>
         <div className="absolute bottom-0 left-0 right-0 rounded-b-lg bg-gradient-to-t from-black/90 to-transparent p-6">
           <h3 className="text-2xl font-medium text-tertiary-text">
             {item.title}
@@ -90,52 +105,29 @@ function Modal({ isOpen, onClose, item }) {
   );
 }
 
-export default function PortfolioClient({ portfolioData }) {
+function PortfolioGrid({ portfolioData }) {
   const [selectedItem, setSelectedItem] = useState(null);
+
+  const renderColumn = (startIndex) => (
+    <div className="flex flex-col gap-8 md:w-1/3">
+      {portfolioData
+        .filter((_, i) => i % 3 === startIndex)
+        .map((item) => (
+          <PortfolioCard
+            key={item.id}
+            item={item}
+            onClick={setSelectedItem}
+          />
+        ))}
+    </div>
+  );
 
   return (
     <>
-      <div className="bg-primary py-28">
-        <div className="section-container px-4">
-          <SectionHeading title={"Where Creativity Meets Results"} description={"Discover how we turn ideas into impactful digital solutions with innovation and quality."}/>
-          <div className="flex flex-col gap-8 md:flex-row">
-            <div className="flex flex-col gap-8 md:w-1/3">
-              {portfolioData
-                .filter((_, i) => i % 3 === 0)
-                .map((item) => (
-                  <PortfolioCard
-                    key={item.id}
-                    item={item}
-                    onClick={setSelectedItem}
-                  />
-                ))}
-            </div>
-
-            <div className="flex flex-col gap-8 md:w-1/3">
-              {portfolioData
-                .filter((_, i) => i % 3 === 1)
-                .map((item) => (
-                  <PortfolioCard
-                    key={item.id}
-                    item={item}
-                    onClick={setSelectedItem}
-                  />
-                ))}
-            </div>
-
-            <div className="flex flex-col gap-8 md:w-1/3">
-              {portfolioData
-                .filter((_, i) => i % 3 === 2)
-                .map((item) => (
-                  <PortfolioCard
-                    key={item.id}
-                    item={item}
-                    onClick={setSelectedItem}
-                  />
-                ))}
-            </div>
-          </div>
-        </div>
+      <div className="flex flex-col gap-8 md:flex-row">
+        {renderColumn(0)}
+        {renderColumn(1)}
+        {renderColumn(2)}
       </div>
 
       <Modal
@@ -144,5 +136,21 @@ export default function PortfolioClient({ portfolioData }) {
         item={selectedItem || {}}
       />
     </>
+  );
+}
+
+export default function PortfolioClient({ portfolioData }) {
+  return (
+    <div className="bg-primary py-28">
+      <div className="section-container px-4">
+        <SectionHeading 
+          title={"Where Creativity Meets Results"} 
+          description={"Discover how we turn ideas into impactful digital solutions with innovation and quality."}
+        />
+        <Suspense fallback={<div className="animate-pulse h-96 bg-gray-200 rounded-3xl" />}>
+          <PortfolioGrid portfolioData={portfolioData} />
+        </Suspense>
+      </div>
+    </div>
   );
 }

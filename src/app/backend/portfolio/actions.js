@@ -9,6 +9,7 @@ export async function deletePortfolio(id) {
     await getDbConnection();
     await portfolioModel.findByIdAndDelete(id);
     revalidatePath("/backend/portfolio");
+    revalidatePath("/portfolio");
     return { success: true };
   } catch (error) {
     console.error("Error deleting portfolio:", error);
