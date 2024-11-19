@@ -1,3 +1,4 @@
+import { SectionHeading } from "@/components/UI/SectionHeading";
 import TeamSection from "@/components/UI/TeamSection";
 
 import Image from "next/image";
@@ -41,20 +42,10 @@ export default function AboutPage() {
 
   return (
     <div className="bg-primary text-secondary">
-      <div className="section-container pt-32">
-        <div>
-          <div className="text-center">
-            <h2 className="text-[72px] leading-none text-secondary">
-              Where Innovation <br /> Meets Excellence
-            </h2>
-            <p className="mt-6 text-xl text-secondary-light">
-              Transforming visions into exceptional digital experiences with
-              precision and creativity
-            </p>
-          </div>
-        </div>
+      <div className="section-container pt-28">
+        <SectionHeading title={"Where Innovation Meets Excellence"} description={"Transforming visions into exceptional digital experiences with precision and creativity."}/> 
 
-        <section className="w-full py-20">
+        <section className="w-full py-12">
           <div className="grid gap-12 lg:grid-cols-2">
             <div className="relative grid grid-cols-2 grid-rows-2 gap-4">
               <div className="absolute right-0 z-40 rounded-lg bg-primary-light p-6 text-center">
@@ -132,7 +123,7 @@ export default function AboutPage() {
           </div>
         </section>
 
-        <section className="w-full py-32">
+        <section className="w-full py-24">
           <div className="section-container">
             <div className="grid grid-cols-12 gap-8">
               <div className="relative col-span-4">

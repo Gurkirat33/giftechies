@@ -95,7 +95,7 @@ export default function PortfolioClient({ portfolioData }) {
 
   return (
     <>
-      <div className="bg-primary py-32">
+      <div className="bg-primary py-28">
         <div className="section-container px-4">
           <SectionHeading title={"Where Creativity Meets Results"} description={"Discover how we turn ideas into impactful digital solutions with innovation and quality."}/>
           <div className="flex flex-col gap-8 md:flex-row">

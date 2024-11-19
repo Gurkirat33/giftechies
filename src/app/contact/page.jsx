@@ -22,7 +22,7 @@ const contactData = [
 const ContactPage = () => {
   return (
     <div className="flex min-h-screen items-center bg-primary p-8 py-32 text-secondary">
-      <div className="mx-auto grid w-full max-w-7xl grid-cols-1 gap-12 lg:grid-cols-2">
+      <div className="grid w-full section-container grid-cols-1 gap-12 lg:grid-cols-2">
         <div className="my-auto space-y-8">
           <div>
             <h1 className="mb-4 text-4xl font-medium text-secondary md:text-5xl lg:leading-[1.1]">

@@ -34,33 +34,29 @@ export default async function ServicesPage() {
   const services = await getServices();
 
   return (
-    <div className="relative min-h-screen bg-primary">
-      {/* Hero Section */}
-      <div className="px-4 pt-24">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-20 text-center">
-            <SectionHeading title="Services that drive growth" description="We deliver cutting-edge solutions that transform businesses. Our expertise spans across digital landscapes, ensuring your success in the modern market." />
-          </div>
-        </div>
+    <div className="relative bg-primary py-28">
+      <div className="section-container">
+        <SectionHeading 
+          title="Services that drive growth" 
+          description="We deliver cutting-edge solutions that transform businesses. Our expertise spans across digital landscapes, ensuring your success in the modern market." 
+        />
       </div>
 
       {/* Services Section */}
-      <div className="relative">
+      <div className="relative mt-10">
         {services.map((service, index) => (
           <div
             key={service.id}
-            className={`relative overflow-hidden ${
-              index !== services.length - 1 ? "mb-32" : ""
-            }`}
+            className={`relative ${index !== services.length - 1 ? "mb-20" : ""}`}
           >
-            <div className="mx-auto max-w-7xl px-4">
+            <div className="section-container">
               <div
-                className={`flex flex-col items-center gap-16 lg:flex-row ${
-                  index % 2 === 1 ? "lg:flex-row-reverse" : ""
+                className={`group grid items-center gap-12 lg:grid-cols-2 ${
+                  index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
                 {/* Image Section */}
-                <div className="relative aspect-[4/3] w-full overflow-hidden rounded-3xl lg:w-1/2">
+                <div className="relative isolate aspect-[4/3] w-full overflow-hidden rounded-3xl bg-secondary/5">
                   <Image
                     src={service.imageUrl}
                     alt={service.heading}
@@ -70,9 +66,9 @@ export default async function ServicesPage() {
                 </div>
 
                 {/* Content Section */}
-                <div className="w-full lg:w-1/2">
+                <div className="relative">
                   <div className="max-w-xl">
-                    <h3 className="mb-6 text-4xl font-medium tracking-tight text-secondary">
+                    <h3 className="mb-6 text-3xl font-medium tracking-tight text-secondary lg:text-4xl">
                       {service.heading}
                     </h3>
                     <p className="mb-8 text-lg leading-relaxed text-secondary-light">
@@ -81,14 +77,14 @@ export default async function ServicesPage() {
                     <div className="mb-8 space-y-4">
                       {service.keyPoints.map((point, idx) => (
                         <div key={idx} className="flex items-start gap-4">
-                          <div className="mt-2 h-1.5 w-1.5 rounded-full bg-secondary" />
+                          <ArrowUpRight className="mt-1 size-4 text-secondary" />
                           <p className="flex-1 text-secondary-light">{point}</p>
                         </div>
                       ))}
                     </div>
                     <Link
                       href={`/services/${service.slug}`}
-                      className="group inline-flex items-center gap-2 text-lg font-medium text-secondary"
+                      className="group inline-flex items-center gap-2 rounded-lg bg-primary-light px-6 py-3 text-lg font-medium text-secondary transition-colors hover:bg-secondary hover:text-primary"
                     >
                       Learn more
                       <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
