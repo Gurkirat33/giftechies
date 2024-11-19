@@ -5,15 +5,29 @@ import portfolioModel from "@/models/portfolio.model";
 import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function deletePortfolio(id) {
+  if (!id) {
+    return { success: false, error: "Portfolio ID is required" };
+  }
+
   try {
     await getDbConnection();
+    const portfolio = await portfolioModel.findById(id);
+    
+    if (!portfolio) {
+      return { success: false, error: "Portfolio not found" };
+    }
+
     await portfolioModel.findByIdAndDelete(id);
     revalidatePath("/backend/portfolio");
     revalidateTag('portfolio-items');
+    
     return { success: true };
   } catch (error) {
     console.error("Error deleting portfolio:", error);
-    return { success: false, error: error.message };
+    return { 
+      success: false, 
+      error: error?.message || "Failed to delete portfolio" 
+    };
   }
 }
 
