@@ -28,16 +28,16 @@ export default function BentoGrid() {
             return (
               <div
                 key={index}
-                className={`${getGridClasses(index)} rounded-lg p-10 text-tertiary-text`}
+                className={`${getGridClasses(index)} rounded-lg p-10 text-tertiary-text relative`}
               >
                 <p className="mt-4 text-lg tracking-widest">{item.title}</p>
                 <p className="text-center text-4xl font-semibold tracking-wide">
                   {item.description}
                 </p>
                 <MoveDown className="animate-bounce" />
-                <button className="mt-4 rounded-lg border border-white px-6 py-3">
+                <Link href="/services" className="mt-4 rounded-lg border border-white px-6 py-3">
                   View All Services
-                </button>
+                </Link>
               </div>
             );
           }

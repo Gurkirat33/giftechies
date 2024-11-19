@@ -66,7 +66,7 @@ const DarkModeToggle = ({ isDarkMode, setIsDarkMode }) => {
       </Script>
       <button
         onClick={toggleTheme}
-        className="dark:bg-primary-500 relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-slate-200 focus:outline-none"
+        className="dark:bg-primary-500 relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary-light focus:outline-none"
         aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
       >
         {isDarkMode ? (

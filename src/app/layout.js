@@ -1,6 +1,7 @@
 import Footer from "@/components/UI/Footer";
 import "./globals.css";
 import NavbarComponent from "@/components/UI/Navbar/NavbarComponent";
+import FooterComponent from "@/components/UI/FooterComponent";
 
 export const metadata = {
   title: "Agency Website",
@@ -29,7 +30,7 @@ export default function RootLayout({ children }) {
       <body>
         <NavbarComponent />
         {children}
-        <Footer />
+        <FooterComponent />
       </body>
     </html>
   );
