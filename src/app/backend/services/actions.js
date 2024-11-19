@@ -2,7 +2,7 @@
 
 import { getDbConnection } from "@/lib/auth";
 import serviceModel from "@/models/service.model";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 const serializeService = (service) => {
   const serialized = {
@@ -68,7 +68,7 @@ export async function deleteService(id) {
       throw new Error("Service not found");
     }
     revalidatePath("/backend/services");
-    revalidatePath("/services");
+    revalidateTag('services-data');
     return { success: true };
   } catch (error) {
     console.error("Error deleting service:", error);
@@ -127,7 +127,7 @@ export async function updateService(id, data) {
     console.log("Updated service:", service);
 
     revalidatePath("/backend/services");
-    revalidatePath("/services");
+    revalidateTag('services-data');
     
     const serializedService = serializeService(service);
     console.log("Returning serialized service:", serializedService);
@@ -166,7 +166,7 @@ export async function createService(data) {
 
     const service = await serviceModel.create(createData);
     revalidatePath("/backend/services");
-    revalidatePath("/services");
+    revalidateTag('services-data');
     return { success: true, service: serializeService(service.toObject()) };
   } catch (error) {
     console.error("Error creating service:", error);
