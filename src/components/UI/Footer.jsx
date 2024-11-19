@@ -2,15 +2,17 @@ import React from "react";
 import Link from "next/link";
 import {
   IndiaFlagSvg,
-  links,
+  links1,
+  links2,
   socialLinks,
   UsaFlagSvg,
 } from "../data/FooterData";
-import { Mail, PhoneCall } from "lucide-react";
+import { Heart, Mail, PhoneCall } from "lucide-react";
 
 const Footer = () => {
+  const date = new Date().getFullYear();
   return (
-    <footer className="relative bg-primary px-4 pb-8 pt-24 text-secondary sm:px-8">
+    <footer className="relative bg-primary px-4 pb-8 pt-28 text-secondary sm:px-8">
       <div className="section-container relative rounded-2xl bg-primary-light pb-12 pt-16">
         <div className="absolute left-0 top-0 z-50 flex flex-col gap-1 bg-primary pb-4 pr-4">
           {socialLinks.map((social, index) => (
@@ -39,29 +41,37 @@ const Footer = () => {
               <h3 className="mb-3 text-2xl font-semibold lg:text-3xl">
                 Get in touch
               </h3>
-              <div className="mt-5 flex flex-col gap-3">
+              <div className="mt-2 flex flex-col gap-3">
+                <input
+                  type="text"
+                  id="name"
+                  placeholder="Full Name"
+                  className="border-b border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
+                />
+              </div>
+              <div className="mt-2 flex flex-col gap-3">
                 <input
                   type="text"
                   id="email"
                   placeholder="Email"
-                  className="rounded-lg border border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
+                  className="border-b border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
                 />
               </div>
-              <div className="mt-5 flex flex-col gap-3">
+              <div className="mt-2 flex flex-col gap-3">
                 <input
                   type="number"
                   id="number"
                   placeholder="Phone Number"
-                  className="rounded-lg border border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
+                  className="border-b border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
                 />
               </div>
-              <div className="mt-5 flex flex-col gap-3">
+              <div className="mt-2 flex flex-col gap-3">
                 <textarea
                   placeholder="Message"
                   type="text"
                   rows={2}
                   id="message"
-                  className="rounded-lg border border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
+                  className="border-b border-secondary-light bg-primary p-3 shadow-sm focus:outline-none"
                 />
               </div>
 
@@ -71,9 +81,9 @@ const Footer = () => {
             </form>
           </div>
           <div className="col-span-6 text-center sm:text-start lg:order-2 lg:col-span-2">
-            <h3 className="mb-3 text-base font-semibold">Learn</h3>
+            <h3 className="mb-3 text-base font-semibold">Services</h3>
             <ul className="space-y-2 text-secondary-light">
-              {links.map((link) => (
+              {links1.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href}>{link.name}</Link>
                 </li>
@@ -82,9 +92,9 @@ const Footer = () => {
           </div>
 
           <div className="col-span-6 text-center sm:text-start lg:order-3 lg:col-span-2">
-            <h3 className="mb-3 text-base font-semibold">Explore</h3>
+            <h3 className="mb-3 text-base font-semibold">Quick Links</h3>
             <ul className="space-y-2 text-secondary-light">
-              {links.map((link) => (
+              {links2.map((link) => (
                 <li key={link.name}>
                   <Link href={link.href}>{link.name}</Link>
                 </li>
@@ -101,7 +111,7 @@ const Footer = () => {
                 alt="img"
                 className="size-36 lg:mx-0 lg:h-full lg:w-full"
               />
-              <p className="max-w-52 text-sm lg:text-base">
+              <p className="max-w-52 text-sm lg:text-base text-secondary-light">
                 PC Tower 2nd Floor, Gill Rd, Opposite GNE College, Ludhiana
                 141006 - INDIA
               </p>
@@ -112,13 +122,13 @@ const Footer = () => {
                 alt="img"
                 className="size-36 lg:mx-0 lg:h-full lg:w-full"
               />
-              <p className="max-w-52 text-sm lg:text-base">
+              <p className="max-w-52 text-sm lg:text-base text-secondary-light">
                 1111 Charlene Lane, Schaumburg, IL 60193, United States
               </p>
             </div>
           </div>
-          <div className="mt-8 flex w-full flex-1 flex-col gap-3 sm:flex-row sm:pl-14 lg:mt-0 lg:w-fit lg:flex-none lg:pl-4 xl:gap-12">
-            <div className="flex flex-1 flex-col items-center gap-2 sm:items-start lg:items-center">
+          <div className="mt-8 flex w-full flex-1 flex-col gap-3 sm:flex-row sm:pl-14 lg:mt-0 lg:w-fit lg:flex-none lg:pl-4 xl:gap-12 text-secondary-light">
+            <div className="flex flex-1 flex-col items-center gap-2 sm:items-start lg:items-start">
               <div className="flex items-center gap-3">
                 <IndiaFlagSvg />
                 <p>+91 95920 00818</p>
@@ -142,14 +152,8 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col items-center justify-between gap-2 text-xs sm:flex-row sm:px-12">
-          <p className="text-lg font-semibold">Webteckies</p>
-          <div className="flex items-center space-x-4 text-secondary-light">
-            <Link href="/web-design-manchester">Web Design Manchester</Link>
-            <span>|</span>
-            <Link href="/privacy">Privacy Policy</Link>
-            <span>|</span>
-            <Link href="/privacy">Privacy Policy</Link>
-          </div>
+          <p className="text-base font-medium flex items-center gap-1">Made with  <Heart className="text-red-500" fill="red" size={18} /> in India.</p>
+          <p className="text-sm text-secondary-light">&copy; {date} Giftechies. All rights reserved.</p>
         </div>
       </div>
     </footer>

@@ -56,26 +56,65 @@ export const socialLinks = [
   },
 ];
 
-export const links = [
+export const links1 = [
   {
-    name: "About",
+    name: "Mobile Development",
     href: "#",
+  },
+  {
+    name: "UX/UI/ Web Design",
+    href: "#",
+  },
+  {
+    name: "Web Development",
+    href: "#",
+  },
+  {
+    name: "Front End & Responsive HTML",
+    href: "#",
+  },
+  {
+    name: "WordPress Development",
+    href: "#",
+  },
+  {
+    name: "E-Commerce Development",
+    href: "#",
+  },
+  {
+    name: "Print / Graphic Design",
+    href: "#",
+  },
+  {
+    name: "Logo Design",
+    href: "#",
+  },
+  {
+    name: "Branding",
+    href: "#",
+  },
+];
+
+export const links2 = [
+  {
+    name: "Home",
+    href: "/",
   },
   {
     name: "Services",
-    href: "#",
+    href: "/services",
   },
   {
-    name: "Work",
-    href: "#",
+    name: "Portfolio",
+    href: "/portfolio",
   },
   {
-    name: "Blog",
-    href: "#",
+    name: "About",
+    href: "/about",
   },
   {
     name: "Contact",
-    href: "#",
+    href: "/contact",
   },
 ];
 

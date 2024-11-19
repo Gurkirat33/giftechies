@@ -11,7 +11,7 @@ const FAQItem = ({ question, answer, isOpen, toggleOpen }) => {
         onClick={toggleOpen}
         className="flex w-full items-center justify-between py-6 text-left"
       >
-        <span className="text-xl font-medium">{question}</span>
+        <span className="text-lgmd:text-xl font-medium">{question}</span>
         <div className="relative h-6 w-6 scale-[0.6]">
           <span
             className={`absolute left-1/2 top-1/2 h-0.5 w-6 -translate-x-1/2 -translate-y-1/2 bg-current transition-transform duration-300 ${
@@ -49,10 +49,10 @@ const FAQ = () => {
   const [openId, setOpenId] = useState("services-offered");
 
   return (
-      <div className="section-container py-24">
-        <div className="flex flex-col gap-16 lg:flex-row lg:gap-24">
+      <div className="section-container py-16 md:py-24">
+        <div className="flex flex-col gap-12 lg:flex-row lg:gap-24">
           <div className="lg:w-1/3">
-            <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">
+            <h1 className="text-3xl font-bold tracking-tight md:text-5xl">
               Frequently Asked Question
             </h1>
             <p className="mt-6 text-lg leading-8 text-secondary-light">

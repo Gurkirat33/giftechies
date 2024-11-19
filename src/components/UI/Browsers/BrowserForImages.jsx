@@ -12,7 +12,7 @@ export default function BrowserForImages({ projectData }) {
       setCurrentIndex((prevIndex) =>
         prevIndex === projectData.length - 1 ? 0 : prevIndex + 1,
       );
-    }, 3500);
+    }, 5000);
     return () => clearInterval(timer);
   }, []);
 
@@ -26,7 +26,7 @@ export default function BrowserForImages({ projectData }) {
             <div className="h-2.5 w-2.5 rounded-full bg-green-500"></div>
           </div>
           <div className="mx-auto w-4/5 max-w-md rounded-md bg-white px-4 py-1 text-center text-xs text-gray-500">
-            www.amazingwebsite.com
+            www.giftechies.com
           </div>
         </div>
 

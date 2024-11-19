@@ -36,3 +36,41 @@ export const projectData = [
     ],
   },
 ];
+
+export const projectData2 = [
+  {
+    subHeading:"E-Commerce Redesign",
+    heading: "Transform Your Online Presence with Our Expertise",
+    description:
+      "We craft stunning websites that convert visitors into customers. See how we can elevate your digital presence.",
+    serviceUrl: "/services",
+    keypoints: [
+      "User-Friendly Interface",
+      "Responsive Design",
+      "Seamless Checkout",]
+  },
+  {
+    subHeading:"SaaS Platform",
+    heading: "Transform Your Online Presence with Our Expertise",
+    description:
+      "We craft stunning websites that convert visitors into customers. See how we can elevate your digital presence.",
+    serviceUrl: "/services",
+    keypoints: [
+      "User-Friendly Interface",
+      "Responsive Design",
+      "Seamless Checkout",
+    ],
+  },
+  {
+    subHeading:"Portfolio Website",
+    heading: "Transform Your Online Presence with Our Expertise",
+    description:
+      "We craft stunning websites that convert visitors into customers. See how we can elevate your digital presence.",
+    serviceUrl: "/services",
+    keypoints: [
+      "User-Friendly Interface",
+      "Responsive Design",
+      "Seamless Checkout",
+    ],
+  }
+]

@@ -58,14 +58,17 @@ const Navbar = () => {
       variants={navVariants}
       animate={hidden ? "hidden" : "visible"}
       initial="visible"
-      className={`fixed left-0 right-0 top-0 z-50 flex justify-center transition-all duration-300 ease-in-out ${atTop ? "w-full" : "mt-4"}`}
+      className={`fixed left-0 right-0 top-0 z-50 flex justify-center transition-all duration-300 ease-in-out ${atTop ? "w-full" : "mt-0"}`}
     >
-      <nav
-        className={`transition-all duration-300 ease-in-out ${
+      {/*   ${
           atTop
             ? "w-full bg-primary"
             : "w-[90%] rounded-full bg-primary/90 shadow-lg xl:w-[80%]"
-        }`}
+        } */}
+      <nav
+        className={`transition-all duration-300 ease-in-out w-full bg-primary
+        
+        `}
       >
         <div className={`mx-auto px-8 transition-all duration-300 ease-in-out`}>
           <div className="flex items-center justify-between">
@@ -74,9 +77,9 @@ const Navbar = () => {
               className="py-4 text-lg font-medium text-secondary lg:py-0"
             >
               {isDarkMode ? (
-                <Image src={darkLogo} alt="" width={190} />
+                <Image src={darkLogo} alt="" width={180} />
               ) : (
-                <Image src={Logo} alt="" width={190} />
+                <Image src={Logo} alt="" width={180} />
               )}
             </Link>
 
@@ -156,7 +159,7 @@ const Navbar = () => {
               />
               <Link
                 href="/start-project"
-                className="gradient-color hidden w-full rounded-full px-6 py-3 text-center text-tertiary-text lg:block"
+                className="gradient-color hidden w-full rounded px-6 py-3 text-center text-tertiary-text lg:block"
               >
                 Start a project →
               </Link>

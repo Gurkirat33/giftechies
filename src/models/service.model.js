@@ -12,6 +12,11 @@ const serviceSchema = new mongoose.Schema(
       required: [true, "Description is required"],
       trim: true,
     },
+    longDescription: {
+      type: String,
+      required: [true, "Long description is required"],
+      trim: true,
+    },
     imageUrl: {
       type: String,
       required: [true, "Image URL is required"],
@@ -56,6 +61,7 @@ serviceSchema.pre('save', function(next) {
     // Trim all string fields
     this.heading = this.heading.trim();
     this.description = this.description.trim();
+    this.longDescription = this.longDescription.trim();
     this.imageUrl = this.imageUrl.trim();
     this.slug = this.slug.trim();
     

@@ -5,6 +5,15 @@ import { X, Upload } from "lucide-react";
 import { uploadToCloudinary } from "@/utils/uploadImage";
 import { useRouter } from "next/navigation";
 import { createService, updateService } from "../actions";
+import dynamic from "next/dynamic";
+
+const Editor = dynamic(
+  () => import("@tinymce/tinymce-react").then((mod) => mod.Editor),
+  { 
+    ssr: false,
+    loading: () => <p className="h-48 w-full animate-pulse rounded-lg bg-primary"></p>
+  }
+);
 
 export default function ServiceForm({ initialData, id }) {
   const router = useRouter();
@@ -15,6 +24,7 @@ export default function ServiceForm({ initialData, id }) {
   const [formData, setFormData] = useState({
     heading: initialData?.heading || "",
     description: initialData?.description || "",
+    longDescription: initialData?.longDescription || "",
     imageUrl: initialData?.imageUrl || "",
     keyPoints: Array.isArray(initialData?.keyPoints) 
       ? initialData.keyPoints.join("\n") 
@@ -33,6 +43,13 @@ export default function ServiceForm({ initialData, id }) {
     setFormData((prev) => ({
       ...prev,
       [name]: value
+    }));
+  };
+
+  const handleLongDescriptionChange = (content) => {
+    setFormData((prev) => ({
+      ...prev,
+      longDescription: content
     }));
   };
 
@@ -90,13 +107,14 @@ export default function ServiceForm({ initialData, id }) {
     e.preventDefault();
     setLoading(true);
     setFormError("");
-    console.log("Submitting................................................................................................................................")
+    
     try {
       console.log("Form data before submission:", formData);
 
       const serviceData = {
         heading: formData.heading.trim(),
         description: formData.description.trim(),
+        longDescription: formData.longDescription.trim(),
         imageUrl: formData.imageUrl.trim(),
         keyPoints: formData.keyPoints
           .split("\n")
@@ -237,10 +255,41 @@ export default function ServiceForm({ initialData, id }) {
             name="description"
             value={formData.description}
             onChange={handleChange}
-            rows={4}
+            rows={3}
             className="mt-1 block w-full rounded-lg border border-border bg-primary-light px-4 py-2 text-secondary focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
             required
+            placeholder="Brief overview of the service"
           />
+        </div>
+
+        {/* Long Description Editor */}
+        <div>
+          <label className="block text-sm font-medium text-secondary mb-2">
+            Long Description
+          </label>
+          <div className="rounded-lg border border-border overflow-hidden">
+            <Editor
+              apiKey={process.env.NEXT_PUBLIC_TINYMCE_API_KEY}
+              value={formData.longDescription}
+              onEditorChange={handleLongDescriptionChange}
+              init={{
+                height: 400,
+                menubar: false,
+                plugins: [
+                  'advlist', 'autolink', 'lists', 'link', 'image', 'charmap', 'preview',
+                  'searchreplace', 'visualblocks', 'code', 'fullscreen',
+                  'insertdatetime', 'media', 'table', 'code', 'help', 'wordcount'
+                ],
+                toolbar: 'undo redo | blocks | ' +
+                  'bold italic forecolor | alignleft aligncenter ' +
+                  'alignright alignjustify | bullist numlist outdent indent | ' +
+                  'removeformat | help',
+                content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }',
+                skin: (typeof window !== 'undefined' && document.documentElement.classList.contains('dark')) ? 'oxide-dark' : 'oxide',
+                content_css: (typeof window !== 'undefined' && document.documentElement.classList.contains('dark')) ? 'dark' : 'default'
+              }}
+            />
+          </div>
         </div>
 
         {/* Key Points */}

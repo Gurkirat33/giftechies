@@ -9,6 +9,7 @@ const serializeService = (service) => {
     id: service._id.toString(),
     heading: service.heading || "",
     description: service.description || "",
+    longDescription: service.longDescription || "",
     imageUrl: service.imageUrl || "",
     keyPoints: Array.isArray(service.keyPoints) ? service.keyPoints : [],
     slug: service.slug || "",
@@ -26,6 +27,10 @@ const validateService = (data) => {
   
   if (!data.description?.trim()) {
     errors.push("Description is required");
+  }
+
+  if (!data.longDescription?.trim()) {
+    errors.push("Long description is required");
   }
   
   if (!data.imageUrl?.trim()) {
@@ -98,6 +103,7 @@ export async function updateService(id, data) {
       $set: {
         heading: data.heading,
         description: data.description,
+        longDescription: data.longDescription,
         imageUrl: data.imageUrl,
         keyPoints: data.keyPoints,
         slug: data.slug,
@@ -152,6 +158,7 @@ export async function createService(data) {
     const createData = {
       heading: data.heading,
       description: data.description,
+      longDescription: data.longDescription,
       imageUrl: data.imageUrl,
       keyPoints: data.keyPoints,
       slug: data.slug,

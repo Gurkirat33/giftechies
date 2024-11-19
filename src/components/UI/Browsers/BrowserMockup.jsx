@@ -1,7 +1,6 @@
 "use client";
 
 import { ArrowRight } from "lucide-react";
-import BgGrid from "../BgGrid";
 import BrowserForImages from "./BrowserForImages";
 import Link from "next/link";
 
@@ -16,7 +15,6 @@ const BrowserMockup = ({
 }) => {
   return (
     <header className="relative min-h-screen bg-primary-900 text-white">
-      <BgGrid />
       <div className="section-container relative pt-28 sm:pt-32">
         <div className="grid items-center gap-12 lg:grid-cols-2">
           <div className="text-center lg:text-left">
