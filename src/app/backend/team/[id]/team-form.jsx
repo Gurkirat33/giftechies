@@ -46,14 +46,13 @@ export default function TeamForm({ initialData, id }) {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate file type
     if (!file.type.startsWith("image/")) {
       setError("Please upload an image file");
       return;
     }
 
-    // Validate file size (max 10MB)
-    const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+
+    const maxSize = 10 * 1024 * 1024;
     if (file.size > maxSize) {
       setError("Image size must be less than 10MB");
       return;

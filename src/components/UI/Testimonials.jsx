@@ -1,19 +1,20 @@
 import React from "react";
-import { Quote, Twitter } from "lucide-react";
 import { testimonials } from "../data/TestimonialsData";
+import Image from "next/image";
 
 const TestimonialCard = ({ testimonial }) => (
   <div className="group relative w-full rounded-xl shadow-md  bg-primary-light p-6 md:p-8">
-    {/* <Quote className="mb-4 h-10 w-10 text-secondary-light" /> */}
 
     <p className="relative z-10 mb-8 text-base leading-relaxed text-text-secondary-light md:text-lg">
       {testimonial.content}
     </p>
 
     <div className="relative z-10 flex items-start gap-4">
-      <img
+      <Image
         src={testimonial.image}
         alt={testimonial.name}
+        width={100}
+        height={100}
         className="h-12 w-12 rounded-full object-cover"
       />
       <div className="flex-1">

@@ -77,9 +77,9 @@ const Navbar = () => {
               className="py-4 text-lg font-medium text-secondary lg:py-0 h-[72px] bg-white inline-flex items-center justify-center"
             >
               {isDarkMode ? (
-                <Image src={darkLogo} alt="" width={180} />
+                <Image src={darkLogo} alt="" width={180} className="p-3" />
               ) : (
-                <Image src={Logo} alt="" width={180} />
+                <Image src={Logo} alt="" width={180} className="p-3" />
               )}
             </Link>
 

@@ -1,6 +1,5 @@
 export async function uploadToCloudinary(file) {
   try {
-    // First, create a separate formData for the initial upload
     const formData = new FormData();
     formData.append("file", file);
     formData.append(
@@ -8,7 +7,6 @@ export async function uploadToCloudinary(file) {
       process.env.NEXT_PUBLIC_CLOUDINARY_UPLOAD_PRESET,
     );
 
-    // Initial upload without transformations
     const uploadUrl = `https://api.cloudinary.com/v1_1/${
       process.env.NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME
     }/image/upload`;
@@ -24,25 +22,21 @@ export async function uploadToCloudinary(file) {
       throw new Error(data.error?.message || "Upload failed");
     }
 
-    // Now create a transformed version with compression
     const transformations = [
-      "w_1600", // max width of 1600px
-      "h_1600", // max height of 1600px
-      "c_limit", // maintain aspect ratio
-      "q_auto:low", // low quality
-      "f_auto", // automatic format selection
+      "w_1600", 
+      "h_1600", 
+      "c_limit",
+      "q_auto:low",
+      "f_auto", 
     ].join(",");
 
-    // Construct the compressed URL
     const baseUrl = data.secure_url.split("/upload/")[0];
     const publicId = data.secure_url.split("/upload/")[1];
     const compressedUrl = `${baseUrl}/upload/${transformations}/${publicId}`;
 
-    // Fetch the transformed version to get its size
     const transformedResponse = await fetch(compressedUrl);
     const transformedBlob = await transformedResponse.blob();
 
-    // Calculate sizes
     const originalSize = (file.size / (1024 * 1024)).toFixed(2);
     const compressedSize = (transformedBlob.size / (1024 * 1024)).toFixed(2);
     const compressionRatio = (
@@ -60,8 +54,6 @@ export async function uploadToCloudinary(file) {
       transformedUrl: compressedUrl,
     };
 
-    console.log("Upload and Compression Report:", compressionReport);
-
     const compressionStatus =
       parseFloat(compressionRatio) >= 70
         ? "Target reduction achieved"
@@ -69,7 +61,7 @@ export async function uploadToCloudinary(file) {
 
     return {
       public_id: data.public_id,
-      url: compressedUrl, // Using the transformed URL
+      url: compressedUrl,
       compressedSize,
       originalSize,
       compressionRatio,

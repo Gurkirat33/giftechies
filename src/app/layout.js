@@ -1,7 +1,7 @@
-import Footer from "@/components/UI/Footer";
 import "./globals.css";
 import NavbarComponent from "@/components/UI/Navbar/NavbarComponent";
 import FooterComponent from "@/components/UI/FooterComponent";
+import { Poppins } from 'next/font/google'
 
 export const metadata = {
   title: "Agency Website",
@@ -21,9 +21,17 @@ const themeScript = `
   }
 `;
 
+const poppins = Poppins({
+  subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+  variable: '--font-poppins',
+})
+
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" className={`${poppins.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>

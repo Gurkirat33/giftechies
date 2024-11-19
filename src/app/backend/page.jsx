@@ -1,7 +1,7 @@
 import { getTeamMembers } from "./team/actions";
 import { getPortfolioItems } from "./portfolio/actions";
 import { getServices } from "./services/actions";
-import { BarChart3, Users, Briefcase, ArrowUpRight, Image as ImageIcon } from "lucide-react";
+import {  Users, Briefcase, ArrowUpRight, Image as ImageIcon } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 

@@ -1,6 +1,7 @@
-import { ArrowRight, Laptop, MoveDown } from "lucide-react";
+import { ArrowRight, MoveDown } from "lucide-react";
 import Link from "next/link";
 import gridData from "../data/gridData";
+import Image from "next/image";
 
 const getGridClasses = (index) => {
   if (index === 1)
@@ -14,10 +15,11 @@ export default function BentoGrid() {
   return (
     <div className="relative py-12">
       <div className="hidden transalent absolute left-1/2 top-1/2 z-10 lg:flex size-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary shadow-lg">
-        <img
-          src="https://giftechies.com/frontend/assets/images/cup-man.gif"
+        <Image
+          src="/services2.svg"
           alt=""
-          className=""
+          fill
+          className="scale-[0.8]"
         />
       </div>
       <div className="section-container grid grid-cols-1 md:grid-cols-4 grid-rows-4 gap-4 lg:gap-6">

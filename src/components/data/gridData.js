@@ -1,4 +1,4 @@
-import { Laptop, Search, BarChart2, Code, ShoppingCart, PenTool, Smartphone, Shield, LifeBuoy } from 'lucide-react';
+import { Laptop, BarChart2, Code, ShoppingCart, PenTool, Smartphone, Shield, LifeBuoy } from 'lucide-react';
 
 const gridData = [
   {

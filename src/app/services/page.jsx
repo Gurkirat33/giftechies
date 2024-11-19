@@ -1,6 +1,5 @@
 import { getDbConnection } from "@/lib/auth";
 import serviceModel from "@/models/service.model";
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { SectionHeading } from "@/components/UI/SectionHeading";
@@ -32,6 +31,7 @@ async function getServices() {
 
 export default async function ServicesPage() {
   const services = await getServices();
+  console.log("Fetched services:", services);
 
   return (
     <div className="relative bg-primary py-28">
@@ -57,10 +57,11 @@ export default async function ServicesPage() {
               >
                 {/* Image Section */}
                 <div className="relative isolate aspect-[4/3] w-full overflow-hidden rounded-3xl bg-secondary/5">
-                  <Image
+                {console.log(service.imageUrl)}
+                  <img
                     src={service.imageUrl}
                     alt={service.heading}
-                    fill
+                    
                     className="object-cover transition-transform duration-500 hover:scale-105"
                   />
                 </div>

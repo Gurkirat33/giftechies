@@ -77,44 +77,24 @@ export const links1 = [
     name: "WordPress Development",
     href: "#",
   },
-  {
-    name: "E-Commerce Development",
-    href: "#",
-  },
-  {
-    name: "Print / Graphic Design",
-    href: "#",
-  },
-  {
-    name: "Logo Design",
-    href: "#",
-  },
-  {
-    name: "Branding",
-    href: "#",
-  },
 ];
 
 export const links2 = [
   {
-    name: "Home",
+    name: "E-Commerce Development",
     href: "/",
   },
   {
-    name: "Services",
+    name: "Print / Graphic Design",
     href: "/services",
   },
   {
-    name: "Portfolio",
+    name: "Logo Design",
     href: "/portfolio",
   },
   {
-    name: "About",
+    name: "Branding",
     href: "/about",
-  },
-  {
-    name: "Contact",
-    href: "/contact",
   },
 ];
 

@@ -1,6 +1,5 @@
 import Image from "next/image";
 import { getTeamMembers } from "@/app/backend/team/actions";
-import { SectionHeading } from "./SectionHeading";
 
 export default async function TeamSection() {
   const members = await getTeamMembers();

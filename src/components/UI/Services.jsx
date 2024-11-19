@@ -14,7 +14,7 @@ const services = [
     description:
       "Transform your business with our comprehensive digital strategy solutions. We help you navigate the digital landscape and achieve sustainable growth.",
     image:
-      "https://fastly.picsum.photos/id/11/1920/500.jpg?hmac=WpSUR9euCQSCs6Xx1Un4lEzpnCWEWM_Km4G0fp7zIGY",
+      "/banner1.png",
   },
   {
     id: 2,

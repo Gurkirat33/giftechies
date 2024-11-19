@@ -1,34 +1,13 @@
 import React from "react";
 import {
   ArrowRight,
-  Globe,
-  Search,
-  Smartphone,
-  Database,
-  LineChart,
-  ShoppingBag,
-  Shield,
-  Code,
-  Megaphone,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 
-const IconMap = {
-  Globe,
-  Search,
-  Smartphone,
-  Database,
-  LineChart,
-  ShoppingBag,
-  Shield,
-  Code,
-  Megaphone,
-};
-
 const IMAGE_CONFIG = {
   width: 1200,
-  height: 675, // 16:9 aspect ratio
+  height: 675,
   quality: 90,
   className: "object-cover w-full h-full",
 };
