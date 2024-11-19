@@ -24,7 +24,8 @@ export async function createHeroSection(formData) {
             heading: formData.get("heading"),
             description: formData.get("description"),
             buttonUrl: formData.get("buttonUrl"),
-            images: formData.getAll("images")
+            images: formData.getAll("images"),
+            outcome: formData.get("outcome") || "Pending"
         };
 
         const hero = await Hero.create(heroData);
@@ -45,7 +46,8 @@ export async function updateHeroSection(id, formData) {
             heading: formData.get("heading"),
             description: formData.get("description"),
             buttonUrl: formData.get("buttonUrl"),
-            images: formData.getAll("images")
+            images: formData.getAll("images"),
+            outcome: formData.get("outcome") || "Pending"
         };
 
         const hero = await Hero.findByIdAndUpdate(id, heroData, { new: true });

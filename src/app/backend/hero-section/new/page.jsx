@@ -101,6 +101,18 @@ export default function NewHeroSection() {
         </div>
 
         <div>
+          <label className="block text-sm font-medium mb-2">Outcome</label>
+          <input
+            type="text"
+            name="outcome"
+            required
+            defaultValue="Pending"
+            className="w-full rounded-lg border p-2"
+            placeholder="Enter outcome"
+          />
+        </div>
+
+        <div>
           <label className="block text-sm font-medium mb-2">Images (exactly 4 required)</label>
           <div className="mt-2">
             <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-50">
