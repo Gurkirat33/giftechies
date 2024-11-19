@@ -23,12 +23,10 @@ export default function PortfolioClient({ initialPortfolio }) {
       setDeletingId(id);
       const result = await deletePortfolio(id);
       
-      // Check if result exists and has success property
       if (result?.success) {
         setPortfolios((prev) =>
           prev.filter((portfolio) => portfolio.id !== id)
         );
-        // Refresh the page to ensure we get fresh data
         router.refresh();
       } else {
         console.error("Failed to delete portfolio:", result?.error || "Unknown error");
