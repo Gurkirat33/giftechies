@@ -8,9 +8,7 @@ export async function deletePortfolio(id) {
   try {
     await getDbConnection();
     await portfolioModel.findByIdAndDelete(id);
-    // Revalidate both the admin and frontend paths
     revalidatePath("/backend/portfolio");
-    // Use tag-based revalidation for more reliable cache invalidation
     revalidateTag('portfolio-items');
     return { success: true };
   } catch (error) {
@@ -80,6 +78,7 @@ export async function updatePortfolio(id, data) {
     };
     
     revalidatePath("/backend/portfolio");
+    revalidateTag('portfolio-items');
     return { success: true, data: plainPortfolio };
   } catch (error) {
     console.error("Error updating portfolio:", error);
@@ -104,6 +103,7 @@ export async function createPortfolio(data) {
     };
     
     revalidatePath("/backend/portfolio");
+    revalidateTag('portfolio-items');
     return { success: true, data: plainPortfolio };
   } catch (error) {
     console.error("Error creating portfolio:", error);
