@@ -70,11 +70,11 @@ const Navbar = () => {
         
         `}
       >
-        <div className={`mx-auto px-8 transition-all duration-300 ease-in-out`}>
-          <div className="flex items-center justify-between">
+        <div className={`mx-auto px-0 transition-all duration-300 ease-in-out bg-gray-100`}>
+          <div className="flex items-center justify-between ">
             <Link
               href="/"
-              className="py-4 text-lg font-medium text-secondary lg:py-0"
+              className="py-4 text-lg font-medium text-secondary lg:py-0 h-[72px] bg-white inline-flex items-center justify-center"
             >
               {isDarkMode ? (
                 <Image src={darkLogo} alt="" width={180} />
@@ -159,7 +159,7 @@ const Navbar = () => {
               />
               <Link
                 href="/start-project"
-                className="gradient-color hidden w-full rounded px-6 py-3 text-center text-tertiary-text lg:block"
+                className="gradient-color h-[72px] hidden w-full  text-center text-tertiary-text lg:inline-flex items-center px-6 justify-center"
               >
                 Start a project →
               </Link>

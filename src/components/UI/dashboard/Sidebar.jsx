@@ -5,6 +5,7 @@ import LogoutButton from "../LogoutButton";
 export default function Sidebar() {
   const menuItems = [
     { name: "Dashboard", icon: Home, path: "/backend" },
+    { name: "Hero Section", icon: BarChart2, path: "/backend/hero-section" },
     { name: "Services", icon: BarChart2, path: "/backend/services" },
     { name: "Portfolio", icon: Users, path: "/backend/portfolio" },
     { name: "Team Section", icon: Users, path: "/backend/team" },
