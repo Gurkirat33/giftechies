@@ -37,12 +37,12 @@ export default function PortfolioClient({ initialPortfolio }) {
   return (
     <div className="container mx-auto min-h-screen space-y-8 px-4 py-10">
       <div className="flex items-center justify-between">
-        <p className="text-3xl font-semibold">Portfolio Section</p>
+        <p className="text-3xl font-semibold text-secondary">Portfolio Section</p>
         <button
           onClick={() => router.push("/backend/portfolio/new")}
-          className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-blue-700"
+          className="inline-flex items-center gap-2 rounded-lg bg-secondary px-4 py-2.5 text-sm font-medium text-tertiary-text transition-colors hover:bg-secondary/90"
         >
-          <Plus className="h-4 w-4" />
+          <Plus className="size-4" />
           Add Project
         </button>
       </div>
@@ -51,63 +51,52 @@ export default function PortfolioClient({ initialPortfolio }) {
         {portfolios.map((portfolio) => (
           <div
             key={portfolio.id}
-            className="group flex items-center gap-6 rounded-xl border border-border bg-primary p-4 transition-all hover:border-blue-500/50 hover:shadow-lg"
+            className="group relative overflow-hidden rounded-xl bg-primary-light p-6 transition hover:shadow-lg"
           >
-            {/* Image Container - Left Side */}
-            <div className="relative h-32 w-48 flex-shrink-0 overflow-hidden rounded-lg">
-              <Image
-                src={portfolio.imageUrl}
-                alt={portfolio.title}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105"
-              />
-            </div>
-
-            {/* Content - Middle */}
-            <div className="flex-grow space-y-3">
-              <h3 className="text-lg font-medium text-secondary">
-                {portfolio.title}
-              </h3>
-              {portfolio.description && (
-                <p className="text-sm text-secondary-light">
-                  {portfolio.description}
-                </p>
-              )}
-              {portfolio.tags?.length > 0 && (
-                <div className="flex flex-wrap gap-2">
+            <div className="flex items-start gap-6">
+              <div className="relative aspect-video w-48 overflow-hidden rounded-lg">
+                <Image
+                  src={portfolio.imageUrl}
+                  alt={portfolio.title}
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex-1">
+                <h3 className="text-xl font-medium text-secondary">
+                  {portfolio.title}
+                </h3>
+                <p className="mt-2 text-secondary-light">{portfolio.description}</p>
+                <div className="mt-4 flex flex-wrap gap-2">
                   {portfolio.tags.map((tag, index) => (
                     <span
                       key={index}
-                      className="rounded-full bg-secondary/10 px-3 py-1 text-xs text-secondary"
+                      className="rounded-full bg-secondary/5 px-3 py-1 text-sm text-secondary"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-              )}
-            </div>
-
-            {/* Actions - Right Side */}
-            <div className="flex flex-shrink-0 items-center gap-3">
-              <button
-                onClick={() => handleEditPortfolio(portfolio.id)}
-                className="rounded-lg bg-secondary/10 p-2 text-secondary transition-colors hover:bg-secondary/20"
-                title="Edit Project"
-              >
-                <Pencil className="h-5 w-5" />
-              </button>
-              <button
-                onClick={() => handleDeletePortfolio(portfolio.id)}
-                disabled={deletingId === portfolio.id}
-                className="rounded-lg bg-red-500/10 p-2 text-red-500 transition-colors hover:bg-red-500/20 disabled:cursor-not-allowed disabled:opacity-50"
-                title="Delete Project"
-              >
-                {deletingId === portfolio.id ? (
-                  <Loader2 className="h-5 w-5 animate-spin" />
-                ) : (
-                  <Trash2 className="h-5 w-5" />
-                )}
-              </button>
+              </div>
+              <div className="flex gap-2">
+                <button
+                  onClick={() => handleEditPortfolio(portfolio.id)}
+                  className="rounded-lg bg-primary p-2 text-secondary transition-colors hover:bg-secondary hover:text-tertiary-text"
+                >
+                  <Pencil className="size-5" />
+                </button>
+                <button
+                  onClick={() => handleDeletePortfolio(portfolio.id)}
+                  disabled={deletingId === portfolio.id}
+                  className="rounded-lg bg-primary p-2 text-secondary transition-colors hover:bg-red-500 hover:text-white disabled:opacity-50"
+                >
+                  {deletingId === portfolio.id ? (
+                    <Loader2 className="size-5 animate-spin" />
+                  ) : (
+                    <Trash2 className="size-5" />
+                  )}
+                </button>
+              </div>
             </div>
           </div>
         ))}

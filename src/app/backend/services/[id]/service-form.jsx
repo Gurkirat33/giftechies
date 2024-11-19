@@ -131,7 +131,7 @@ export default function ServiceForm({ initialData, id }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mx-auto max-w-3xl space-y-8 p-6">
+    <form onSubmit={handleSubmit} className="max-w-3xl space-y-8 p-6">
       {formError && (
         <div className="rounded-lg bg-red-50 p-4">
           <p className="text-sm text-red-600">{formError}</p>
@@ -139,64 +139,7 @@ export default function ServiceForm({ initialData, id }) {
       )}
 
       <div className="space-y-4">
-        <label className="block text-sm font-medium text-secondary">
-          Service Image
-        </label>
-
-        <div className="flex items-start space-x-4">
-          <div className="relative h-40 w-40 flex-shrink-0">
-            {formData.imageUrl ? (
-              <div className="relative h-full w-full overflow-hidden rounded-lg border border-border">
-                <img
-                  src={formData.imageUrl}
-                  alt="Preview"
-                  className="h-full w-full object-cover"
-                />
-                <button
-                  type="button"
-                  onClick={handleRemoveImage}
-                  className="absolute right-1 top-1 rounded-full bg-secondary/80 p-1 text-white hover:bg-secondary"
-                >
-                  <X className="h-4 w-4" />
-                </button>
-              </div>
-            ) : (
-              <div className="flex h-full w-full items-center justify-center rounded-lg border border-dashed border-border bg-primary-light">
-                <div className="text-center">
-                  <Upload className="mx-auto h-8 w-8 text-secondary-light" />
-                  <span className="mt-2 block text-sm text-secondary-light">
-                    Upload Image
-                  </span>
-                </div>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="absolute inset-0 cursor-pointer opacity-0"
-                />
-              </div>
-            )}
-          </div>
-          {uploadStats && (
-            <div className="text-sm text-secondary-light">
-              <p>Original size: {uploadStats.originalSize}</p>
-              <p>Compressed size: {uploadStats.compressedSize}</p>
-              <p>Reduction: {uploadStats.compressionRatio}%</p>
-              {uploadStats.dimensions && (
-                <p>
-                  Dimensions: {uploadStats.dimensions.width}x
-                  {uploadStats.dimensions.height}
-                </p>
-              )}
-            </div>
-          )}
-        </div>
-        {imageError && (
-          <p className="mt-2 text-sm text-red-500">{imageError}</p>
-        )}
-      </div>
-
-      <div className="space-y-4">
+        {/* Service Title */}
         <div>
           <label className="block text-sm font-medium text-secondary">
             Service Title
@@ -211,9 +154,84 @@ export default function ServiceForm({ initialData, id }) {
           />
         </div>
 
+        {/* URL Slug */}
         <div>
           <label className="block text-sm font-medium text-secondary">
-            Description
+            URL Slug
+          </label>
+          <input
+            type="text"
+            name="slug"
+            value={formData.slug}
+            onChange={handleChange}
+            className="mt-1 block w-full rounded-lg border border-border bg-primary-light px-4 py-2 text-secondary focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
+            required
+          />
+        </div>
+
+        {/* Service Image */}
+        <div>
+          <label className="block text-sm font-medium text-secondary">
+            Service Image
+          </label>
+
+          <div className="flex items-start space-x-4">
+            <div className="relative h-40 w-40 flex-shrink-0">
+              {formData.imageUrl ? (
+                <div className="relative h-full w-full overflow-hidden rounded-lg border border-border">
+                  <img
+                    src={formData.imageUrl}
+                    alt="Preview"
+                    className="h-full w-full object-cover"
+                  />
+                  <button
+                    type="button"
+                    onClick={handleRemoveImage}
+                    className="absolute right-1 top-1 rounded-full bg-secondary/80 p-1 text-white hover:bg-secondary"
+                  >
+                    <X className="h-4 w-4" />
+                  </button>
+                </div>
+              ) : (
+                <div className="flex h-full w-full items-center justify-center rounded-lg border border-dashed border-border bg-primary-light">
+                  <div className="text-center">
+                    <Upload className="mx-auto h-8 w-8 text-secondary-light" />
+                    <span className="mt-2 block text-sm text-secondary-light">
+                      Upload Image
+                    </span>
+                  </div>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="absolute inset-0 cursor-pointer opacity-0"
+                  />
+                </div>
+              )}
+            </div>
+            {uploadStats && (
+              <div className="text-sm text-secondary-light">
+                <p>Original size: {uploadStats.originalSize}</p>
+                <p>Compressed size: {uploadStats.compressedSize}</p>
+                <p>Reduction: {uploadStats.compressionRatio}%</p>
+                {uploadStats.dimensions && (
+                  <p>
+                    Dimensions: {uploadStats.dimensions.width}x
+                    {uploadStats.dimensions.height}
+                  </p>
+                )}
+              </div>
+            )}
+          </div>
+          {imageError && (
+            <p className="mt-2 text-sm text-red-500">{imageError}</p>
+          )}
+        </div>
+
+        {/* Short Description */}
+        <div>
+          <label className="block text-sm font-medium text-secondary">
+            Short Description
           </label>
           <textarea
             name="description"
@@ -225,6 +243,7 @@ export default function ServiceForm({ initialData, id }) {
           />
         </div>
 
+        {/* Key Points */}
         <div>
           <label className="block text-sm font-medium text-secondary">
             Key Points (one per line)
@@ -236,20 +255,6 @@ export default function ServiceForm({ initialData, id }) {
             rows={4}
             className="mt-1 block w-full rounded-lg border border-border bg-primary-light px-4 py-2 text-secondary focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
             placeholder="Enter key points, one per line"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-secondary">
-            URL Slug
-          </label>
-          <input
-            type="text"
-            name="slug"
-            value={formData.slug}
-            onChange={handleChange}
-            className="mt-1 block w-full rounded-lg border border-border bg-primary-light px-4 py-2 text-secondary focus:border-accent focus:outline-none focus:ring-1 focus:ring-accent"
             required
           />
         </div>

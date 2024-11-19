@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { deleteService } from "./actions";
-import { Pencil, Trash2, Plus, MoreVertical, Eye } from "lucide-react";
+import { Pencil, Trash2, Plus } from "lucide-react";
 
 export default function ServicesClient({ initialServices }) {
   const [services, setServices] = useState(initialServices);
@@ -40,15 +40,15 @@ export default function ServicesClient({ initialServices }) {
           </div>
           <button
             onClick={() => router.push("/backend/services/new")}
-            className="gradient-color inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-tertiary-text transition-colors"
+            className="gradient-color inline-flex items-center gap-2 rounded-lg px-4 py-2.5 text-sm font-medium text-tertiary-text transition-colors hover:opacity-90"
           >
-            <Plus className="h-4 w-4" />
+            <Plus className="size-4" />
             Add Service
           </button>
         </div>
 
         <div className="overflow-hidden rounded-xl bg-primary-light shadow">
-          <div className="divide-y divide-border">
+          <div className="divide-y divide-secondary/10">
             {services.map((service) => (
               <div
                 key={service.id}
@@ -75,13 +75,13 @@ export default function ServicesClient({ initialServices }) {
                     {service.keyPoints.slice(0, 3).map((point, index) => (
                       <span
                         key={index}
-                        className="inline-flex items-center rounded-full bg-primary px-2.5 py-0.5 text-xs font-medium text-secondary"
+                        className="inline-flex items-center rounded-full bg-secondary/5 px-2.5 py-0.5 text-xs font-medium text-secondary"
                       >
                         {point}
                       </span>
                     ))}
                     {service.keyPoints.length > 3 && (
-                      <span className="inline-flex items-center rounded-full bg-primary px-2.5 py-0.5 text-xs font-medium text-secondary-light">
+                      <span className="inline-flex items-center rounded-full bg-secondary/5 px-2.5 py-0.5 text-xs font-medium text-secondary-light">
                         +{service.keyPoints.length - 3} more
                       </span>
                     )}
@@ -89,20 +89,20 @@ export default function ServicesClient({ initialServices }) {
                 </div>
 
                 {/* Actions */}
-                <div className="flex items-center gap-2 transition-opacity">
+                <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleEditService(service.id)}
-                    className="rounded-lg p-2 text-secondary-light transition-colors hover:bg-primary hover:text-secondary"
+                    className="rounded-lg p-2 text-secondary transition-colors hover:bg-primary hover:text-secondary"
                     title="Edit Service"
                   >
-                    <Pencil className="h-5 w-5" />
+                    <Pencil className="size-5" />
                   </button>
                   <button
                     onClick={() => handleDeleteService(service.id)}
-                    className="rounded-lg p-2 text-red-500 transition-colors hover:bg-red-50/10 hover:text-red-400"
+                    className="rounded-lg p-2 text-red-500 transition-colors hover:bg-red-500/10 hover:text-red-400"
                     title="Delete Service"
                   >
-                    <Trash2 className="h-5 w-5" />
+                    <Trash2 className="size-5" />
                   </button>
                 </div>
               </div>

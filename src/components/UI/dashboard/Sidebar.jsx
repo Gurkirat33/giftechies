@@ -13,7 +13,7 @@ export default function Sidebar() {
 
   return (
     <div
-      className={`fixed bottom-0 left-0 top-16 w-64 border-r border-gray-200 bg-white transition-transform duration-200 ease-in-out`}
+      className={`fixed bottom-0 left-0 top-16 w-64 border-r border-secondary/10 bg-primary-light transition-transform duration-200 ease-in-out`}
     >
       <nav className="flex h-full flex-col justify-between p-4">
         <ul className="space-y-2">
@@ -23,9 +23,9 @@ export default function Sidebar() {
               <li key={item.path}>
                 <Link
                   href={item.path}
-                  className={`flex items-center space-x-3 rounded-lg px-4 py-3 transition-colors ${"text-gray-700 hover:bg-gray-50"}`}
+                  className={`flex items-center space-x-3 rounded-lg px-4 py-3 text-secondary transition-colors hover:bg-primary`}
                 >
-                  <Icon size={20} />
+                  <Icon className="size-5" />
                   <span>{item.name}</span>
                 </Link>
               </li>
