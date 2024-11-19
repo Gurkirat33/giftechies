@@ -1,10 +1,16 @@
 import { getPortfolioItems } from "./actions";
 import PortfolioClient from "./portfolio-client";
 
-// Use ISR with 1 hour revalidation instead of force-dynamic
+// Keep ISR for general caching
 export const revalidate = 3600;
 
+// Add unstable_cache with tag for on-demand revalidation
+async function getPortfolioData() {
+  const data = await getPortfolioItems();
+  return data;
+}
+
 export default async function Page() {
-  const portfolioData = await getPortfolioItems();
+  const portfolioData = await getPortfolioData();
   return <PortfolioClient portfolioData={portfolioData} />;
 }

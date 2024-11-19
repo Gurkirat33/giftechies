@@ -2,14 +2,16 @@
 
 import { getDbConnection } from "@/lib/auth";
 import portfolioModel from "@/models/portfolio.model";
-import { revalidatePath } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function deletePortfolio(id) {
   try {
     await getDbConnection();
     await portfolioModel.findByIdAndDelete(id);
+    // Revalidate both the admin and frontend paths
     revalidatePath("/backend/portfolio");
-    revalidatePath("/portfolio");
+    // Use tag-based revalidation for more reliable cache invalidation
+    revalidateTag('portfolio-items');
     return { success: true };
   } catch (error) {
     console.error("Error deleting portfolio:", error);

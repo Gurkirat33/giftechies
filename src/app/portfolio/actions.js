@@ -2,7 +2,6 @@
 
 import { getDbConnection } from "@/lib/auth";
 import portfolioModel from "@/models/portfolio.model";
-import { revalidatePath } from "next/cache";
 import { unstable_cache } from 'next/cache';
 
 const serializePortfolio = (item) => {
@@ -15,7 +14,7 @@ const serializePortfolio = (item) => {
   };
 };
 
-// Cache the portfolio items for 1 hour
+// Cache the portfolio items with tag for on-demand revalidation
 export const getPortfolioItems = unstable_cache(
   async () => {
     try {
@@ -28,5 +27,8 @@ export const getPortfolioItems = unstable_cache(
     }
   },
   ['portfolio-items'],
-  { revalidate: 3600 }
+  {
+    revalidate: 3600,
+    tags: ['portfolio-items']
+  }
 );
