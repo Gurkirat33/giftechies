@@ -1,182 +1,255 @@
 "use client";
 
 import { useState } from "react";
-import { createHeroSection, updateHeroSection } from "./actions";
-import { useRouter } from "next/navigation";
-import { Upload } from "lucide-react";
 import { uploadToCloudinary } from "@/utils/uploadImage";
-import Image from "next/image";
+import { Upload } from "lucide-react";
+import { createHeroSection } from "./actions";
+import { useRouter } from "next/navigation";
 
-export default function HeroForm({ hero }) {
+export default function HeroForm() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [images, setImages] = useState(hero?.images || []);
-  const [files, setFiles] = useState([]);
+  const [images, setImages] = useState([null, null, null, null]);
+  const [uploadedUrls, setUploadedUrls] = useState([]);
+  const [formData, setFormData] = useState({
+    subHeading: "",
+    heading: "",
+    description: "",
+    serviceName: "",
+    serviceUrl: "",
+    browserHeading: "",
+    browserCatagory: "",
+    browserOutcome: ""
+  });
 
-  const handleImageChange = (e) => {
-    const selectedFiles = Array.from(e.target.files);
-    if (selectedFiles.length > 4) {
-      setError("You can only upload up to 4 images");
+  const handleImageSelect = (e) => {
+    const files = Array.from(e.target.files);
+    if (files.length !== 4) {
+      setError("Please select exactly 4 images");
       return;
     }
-    setFiles(selectedFiles);
-    
-    // Create preview URLs
-    const urls = selectedFiles.map(file => URL.createObjectURL(file));
-    setImages(urls);
+
+    // Basic validation
+    for (const file of files) {
+      if (!file.type.startsWith("image/")) {
+        setError("Please select only image files");
+        return;
+      }
+      if (file.size > 10 * 1024 * 1024) { // 10MB limit
+        setError("Each image must be less than 10MB");
+        return;
+      }
+    }
+
+    setImages(files);
+    setError("");
+  };
+
+  const handleUpload = async () => {
+    if (!images[0]) {
+      setError("Please select 4 images first");
+      return;
+    }
+
+    setLoading(true);
+    setError("");
+    try {
+      const urls = [];
+      for (let i = 0; i < 4; i++) {
+        const result = await uploadToCloudinary(images[i]);
+        if (!result?.url) {
+          throw new Error(`Failed to upload image ${i + 1}`);
+        }
+        urls.push(result.url);
+      }
+      setUploadedUrls(urls);
+      return urls;
+    } catch (err) {
+      setError(err.message || "Failed to upload images");
+      return null;
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
-    setError("");
+    if (loading) return;
 
     try {
-      if (files.length === 0 && !hero) {
-        throw new Error("Please select exactly 4 images");
+      setLoading(true);
+      setError("");
+
+      // First upload images
+      const imageUrls = await handleUpload();
+      if (!imageUrls) return;
+
+      // Validate required fields
+      const requiredFields = [
+        'subHeading',
+        'heading',
+        'description',
+        'serviceName',
+        'serviceUrl',
+        'browserHeading',
+        'browserCatagory'
+      ];
+
+      for (const field of requiredFields) {
+        if (!formData[field]?.trim()) {
+          throw new Error(`${field.charAt(0).toUpperCase() + field.slice(1)} is required`);
+        }
       }
 
-      if (files.length > 0 && files.length !== 4) {
-        throw new Error("Please select exactly 4 images");
+      // Submit data
+      const result = await createHeroSection({
+        ...formData,
+        images: imageUrls
+      });
+
+      if (!result?.success) {
+        throw new Error(result?.error || "Failed to save hero section");
       }
 
-      const formData = new FormData(e.target);
-      formData.delete("images");
-
-      // If new files are selected, upload them to Cloudinary
-      if (files.length > 0) {
-        const uploadPromises = files.map(file => uploadToCloudinary(file));
-        const uploadResults = await Promise.all(uploadPromises);
-        const imageUrls = uploadResults.map(result => result.url);
-        imageUrls.forEach(url => formData.append("images", url));
-      } else {
-        // Use existing images from hero
-        hero.images.forEach(img => formData.append("images", img));
-      }
-
-      if (hero) {
-        await updateHeroSection(hero._id, formData);
-      } else {
-        await createHeroSection(formData);
-      }
-      
       router.push("/backend/hero-section");
       router.refresh();
     } catch (err) {
-      console.error(err);
-      setError(err.message);
+      setError(err.message || "Failed to save hero section");
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6 max-w-2xl mx-auto p-4">
+    <form onSubmit={handleSubmit} className="max-w-2xl mx-auto p-6 space-y-6">
       {error && (
-        <div className="bg-red-50 text-red-500 p-3 rounded-md">{error}</div>
+        <div className="p-4 bg-red-50 text-red-500 rounded-lg">
+          {error}
+        </div>
       )}
 
-      <div>
-        <label htmlFor="subHeading" className="block text-sm font-medium text-gray-700">
-          Sub Heading
-        </label>
-        <input
-          type="text"
-          name="subHeading"
-          id="subHeading"
-          defaultValue={hero?.subHeading}
-          required
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-        />
-      </div>
+      <div className="space-y-4">
+        <div>
+          <label className="block text-sm font-medium mb-2">Sub Heading</label>
+          <input
+            type="text"
+            value={formData.subHeading}
+            onChange={(e) => setFormData(prev => ({...prev, subHeading: e.target.value}))}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
 
-      <div>
-        <label htmlFor="heading" className="block text-sm font-medium text-gray-700">
-          Heading
-        </label>
-        <input
-          type="text"
-          name="heading"
-          id="heading"
-          defaultValue={hero?.heading}
-          required
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Heading</label>
+          <input
+            type="text"
+            value={formData.heading}
+            onChange={(e) => setFormData(prev => ({...prev, heading: e.target.value}))}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
 
-      <div>
-        <label htmlFor="description" className="block text-sm font-medium text-gray-700">
-          Description
-        </label>
-        <textarea
-          name="description"
-          id="description"
-          defaultValue={hero?.description}
-          required
-          rows={4}
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Description</label>
+          <textarea
+            value={formData.description}
+            onChange={(e) => setFormData(prev => ({...prev, description: e.target.value}))}
+            className="w-full p-2 border rounded"
+            rows={4}
+            required
+          />
+        </div>
 
-      <div>
-        <label htmlFor="buttonUrl" className="block text-sm font-medium text-gray-700">
-          Button URL
-        </label>
-        <input
-          type="url"
-          name="buttonUrl"
-          id="buttonUrl"
-          defaultValue={hero?.buttonUrl}
-          required
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Service Name</label>
+          <input
+            type="text"
+            value={formData.serviceName}
+            onChange={(e) => setFormData(prev => ({...prev, serviceName: e.target.value}))}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
 
-      <div>
-        <label htmlFor="outcome" className="block text-sm font-medium text-gray-700">
-          Outcome
-        </label>
-        <input
-          type="text"
-          name="outcome"
-          id="outcome"
-          defaultValue={hero?.outcome || "Pending"}
-          required
-          className="mt-1 block w-full rounded-md border border-gray-300 px-3 py-2"
-        />
-      </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">Service URL</label>
+          <input
+            type="text"
+            value={formData.serviceUrl}
+            onChange={(e) => setFormData(prev => ({...prev, serviceUrl: e.target.value}))}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
 
-      <div>
-        <label className="block text-sm font-medium text-gray-700">
-          Images ({images.length}/4)
-        </label>
-        <div className="mt-2">
-          <label className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-50">
-            <div className="flex flex-col items-center justify-center pt-5 pb-6">
-              <Upload className="size-8 mb-2 text-gray-500" />
-              <p className="text-sm text-gray-500">Click to upload images</p>
-              {hero && <p className="text-xs text-gray-500">(Leave empty to keep existing images)</p>}
-            </div>
-            <input
-              type="file"
-              className="hidden"
-              multiple
-              accept="image/*"
-              onChange={handleImageChange}
-              required={!hero}
-            />
+        <div>
+          <label className="block text-sm font-medium mb-2">Browser Heading</label>
+          <input
+            type="text"
+            value={formData.browserHeading}
+            onChange={(e) => setFormData(prev => ({...prev, browserHeading: e.target.value}))}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2">Browser Category</label>
+          <input
+            type="text"
+            value={formData.browserCatagory}
+            onChange={(e) => setFormData(prev => ({...prev, browserCatagory: e.target.value}))}
+            className="w-full p-2 border rounded"
+            required
+          />
+        </div>
+
+        <div>
+          <label className="block text-sm font-medium mb-2">Browser Outcome (Optional)</label>
+          <input
+            type="text"
+            value={formData.browserOutcome}
+            onChange={(e) => setFormData(prev => ({...prev, browserOutcome: e.target.value}))}
+            className="w-full p-2 border rounded"
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-medium mb-2">
+            Select 4 Images (all at once)
+          </label>
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            onChange={handleImageSelect}
+            className="hidden"
+            id="images"
+            disabled={loading}
+          />
+          <label
+            htmlFor="images"
+            className="flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-lg cursor-pointer hover:border-gray-400"
+          >
+            <Upload className="w-8 h-8 mb-2 text-gray-400" />
+            <span className="text-sm text-gray-500">
+              {images[0] 
+                ? `Selected ${images.length} images` 
+                : "Click to select 4 images"}
+            </span>
           </label>
         </div>
-        {images.length > 0 && (
-          <div className="mt-4 grid grid-cols-2 gap-4">
-            {images.map((url, index) => (
-              <div key={index} className="relative aspect-[4/3]">
-                <Image
-                  src={url}
-                  alt={`Preview ${index + 1}`}
-                  fill
-                  className="object-cover rounded"
+
+        {images[0] && (
+          <div className="grid grid-cols-2 gap-4">
+            {images.map((img, idx) => (
+              <div key={idx} className="aspect-video bg-gray-100 rounded-lg overflow-hidden">
+                <img
+                  src={URL.createObjectURL(img)}
+                  alt={`Preview ${idx + 1}`}
+                  className="w-full h-full object-cover"
                 />
               </div>
             ))}
@@ -186,14 +259,14 @@ export default function HeroForm({ hero }) {
 
       <button
         type="submit"
-        disabled={loading || (!hero && files.length !== 4)}
-        className={`w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white ${
-          loading || (!hero && files.length !== 4)
+        disabled={loading || !images[0]}
+        className={`w-full p-3 text-white rounded-lg ${
+          loading || !images[0]
             ? "bg-gray-400 cursor-not-allowed"
-            : "bg-blue-600 hover:bg-blue-700"
+            : "bg-blue-500 hover:bg-blue-600"
         }`}
       >
-        {loading ? "Processing..." : hero ? "Update Hero Section" : "Create Hero Section"}
+        {loading ? "Saving..." : "Save Hero Section"}
       </button>
     </form>
   );

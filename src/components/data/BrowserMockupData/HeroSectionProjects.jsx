@@ -19,10 +19,16 @@ export const projectData2 = [
     heading: "Transform Your Online Presence with Our Expertise",
     description:
       "We craft stunning websites that convert visitors into customers. See how we can elevate your digital presence.",
-    serviceUrl: "/services",
-    keypoints: [
-      "User-Friendly Interface",
-      "Responsive Design",
-      "Seamless Checkout",]
+      serviceName:"UI/UX Design",
+    serviceUrl: "/ui",
+    browserHeading: "E-Commerce Redesign",
+    browserCatagory: "/ecommerce",
+    images: [
+      "",
+      "",
+      "",
+      "",
+    ],
+    browserOutcome:"",
   },
 ]
