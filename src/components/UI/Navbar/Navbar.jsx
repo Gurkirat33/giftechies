@@ -4,7 +4,6 @@ import React, { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
 import { ArrowRight, Menu, MoveRight } from "lucide-react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import DarkModeToggle from "../../DarkModeToggle";
 import { navData, navVariants } from "../../data/NavbarData";
 import MobileNav from "./MobileNav";
@@ -58,7 +57,7 @@ const Navbar = () => {
       variants={navVariants}
       animate={hidden ? "hidden" : "visible"}
       initial="visible"
-      className={`fixed left-0 right-0 top-0 z-50 flex justify-center transition-all duration-300 ease-in-out ${atTop ? "w-full" : "mt-0"}`}
+      className={`fixed left-0 right-0 top-0 z-50 flex justify-center transition-all duration-300 ease-in-out ${atTop ? "w-full" : "mt-0"} shadow-lg`}
     >
       {/*   ${
           atTop
@@ -70,11 +69,11 @@ const Navbar = () => {
         
         `}
       >
-        <div className={`mx-auto px-0 transition-all duration-300 ease-in-out bg-gray-100`}>
+        <div className={`mx-auto px-0 transition-all duration-300 ease-in-out bg-primary`}>
           <div className="flex items-center justify-between ">
             <Link
               href="/"
-              className="py-4 text-lg font-medium text-secondary lg:py-0 h-[72px] bg-white inline-flex items-center justify-center"
+              className="py-4 text-lg font-medium text-secondary lg:py-0 h-[72px] bg-primary-light inline-flex items-center justify-center"
             >
               {isDarkMode ? (
                 <Image src={darkLogo} alt="" width={180} className="p-3" />
