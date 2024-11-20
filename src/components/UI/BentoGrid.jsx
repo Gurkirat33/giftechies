@@ -14,14 +14,14 @@ const getGridClasses = (index) => {
 export default function BentoGrid() {
   return (
     <div className="relative py-12">
-      <div className="hidden transalent absolute left-1/2 top-1/2 z-10 lg:flex size-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary shadow-lg">
+      <Link href="/contact" className="hidden transalent absolute left-1/2 top-1/2 z-10 lg:flex size-80 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-primary shadow-lg">
         <Image
           src="/services2.svg"
           alt=""
           fill
           className="scale-[0.8]"
         />
-      </div>
+      </Link>
       <div className="section-container grid grid-cols-1 md:grid-cols-4 grid-rows-4 gap-4 lg:gap-6">
         {gridData.map((item, index) => {
           if (item.isSpecial) {

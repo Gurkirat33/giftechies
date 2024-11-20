@@ -145,4 +145,10 @@
   .slide-track-left {
     will-change: transform;
   }
+
+  
+
+  .light .svg-color-mode {
+    @apply [filter:brightness(0)_saturate(100%)];
+  }
 }

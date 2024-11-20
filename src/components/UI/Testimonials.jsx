@@ -49,8 +49,23 @@ const TestimonialsSection = () => {
     <div className="relative min-h-screen overflow-hidden py-20">
       <div className="relative z-10 mb-8 text-center">
         <div className="mb-4">
-          <h2 className="text-5xl mb-3 font-semibold">Loved by thousands</h2>
-          <p className="text-lg text-secondary-light">Here's what our amazing community has to say</p>
+          <div className="relative inline-block">
+            <span className="block mb-2 text-sm font-medium tracking-[0.3em] gradient-color-text uppercase">What People Think</span>
+            <div className="relative">
+              <h2 className="text-6xl font-bold mb-3 relative inline-block">
+                <span className="relative inline-block">
+                  Loved by
+                  <span className="relative gradient-color-text ml-3 inline-block">
+                    thousands
+                    <span className="absolute -bottom-2 left-0 w-full h-[2px] gradient-color"></span>
+                  </span>
+                </span>
+              </h2>
+            </div>
+            <p className="mt-6 text-xl text-secondary-light/90 max-w-2xl mx-auto">
+              Join our thriving community of satisfied users who have transformed their experience with us
+            </p>
+          </div>
         </div>
       </div>
 

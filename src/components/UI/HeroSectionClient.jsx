@@ -53,15 +53,15 @@ export default function HeroSectionClient({ heroData }) {
             {currentHero.description}
           </p>
           <div className="mb-12 space-y-4 sm:flex sm:space-x-4 sm:space-y-0">
-            <Link href={"/contact"} className="gradient-color w-full rounded px-4 py-3 md:px-8 md:py-4 font-bold text-tertiary-text sm:w-auto">
-              Get Free Consultation
-            </Link>
-            <a 
+            <Link 
               href={currentHero.serviceUrl}
-              className="block w-full rounded border border-border px-4 py-3 md:px-8 md:py-4 font-semibold sm:w-auto text-center"
+              className="gradient-color inline-flex items-center justify-center w-full rounded px-4 py-3 md:px-8 md:py-4 font-bold text-tertiary-text sm:w-auto"
             >
               {currentHero.serviceName}
-            </a>
+            </Link>
+            <Link href={"/contact"} className="block w-full rounded border border-border px-4 py-3 md:px-8 md:py-4 font-semibold sm:w-auto text-center">
+              Get Free Consultation
+            </Link>
           </div>
           <div className="flex flex-wrap gap-4 text-sm">
             <span className="flex items-center">

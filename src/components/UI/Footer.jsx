@@ -107,9 +107,9 @@ const Footer = () => {
           <div className="flex w-full flex-col gap-3 sm:flex-row sm:pl-14 lg:w-fit lg:gap-8 lg:pl-0">
             <div className="flex flex-1 flex-col items-center sm:items-start lg:gap-3 xl:flex-row xl:items-end xl:gap-5">
               <img
-                src="https://appinventiv.com/wp-content/themes/twentynineteen-child/new-images/hq-india.svg"
+                src="/footer1.svg"
                 alt="img"
-                className="size-36 lg:mx-0 lg:h-full lg:w-full"
+                className="size-36 lg:mx-0 lg:h-full lg:w-full svg-color-mode"
               />
               <p className="max-w-52 text-sm lg:text-base text-secondary-light">
                 PC Tower 2nd Floor, Gill Rd, Opposite GNE College, Ludhiana
@@ -118,9 +118,9 @@ const Footer = () => {
             </div>
             <div className="sm:item-start flex flex-1 flex-col items-center text-center lg:gap-3 xl:flex-row xl:items-end xl:gap-5 xl:text-start">
               <img
-                src="https://appinventiv.com/wp-content/themes/twentynineteen-child/new-images/hq-usa.svg"
+                src="/footer2.svg"
                 alt="img"
-                className="size-36 lg:mx-0 lg:h-full lg:w-full"
+                className="size-36 lg:mx-0 lg:h-full lg:w-full svg-color-mode"
               />
               <p className="max-w-52 text-sm lg:text-base text-secondary-light">
                 1111 Charlene Lane, Schaumburg, IL 60193, United States
