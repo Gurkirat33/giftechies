@@ -2,14 +2,12 @@
 
 import { getDbConnection } from "@/lib/auth";
 import Hero from "@/models/hero.model";
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 
 export async function getHeroSection() {
     try {
         await getDbConnection();
         const data = await Hero.find({}).lean();
-        
-        // Transform the data to include _id as string
         return data.map(hero => ({
             ...hero,
             _id: hero._id.toString()
@@ -24,7 +22,6 @@ export async function createHeroSection(data) {
     try {
         await getDbConnection();
         
-        // Validate images array
         if (!Array.isArray(data.images)) {
             return { success: false, error: "Images must be an array" };
         }
@@ -33,12 +30,10 @@ export async function createHeroSection(data) {
             return { success: false, error: "Exactly 4 images are required" };
         }
 
-        // Validate image URLs
         if (data.images.some(img => !img || typeof img !== 'string' || !img.startsWith('http'))) {
             return { success: false, error: "Invalid image URLs detected" };
         }
 
-        // Create hero data with exact fields from model
         const heroData = {
             subHeading: data.subHeading?.trim(),
             heading: data.heading?.trim(),
@@ -51,12 +46,12 @@ export async function createHeroSection(data) {
             images: data.images
         };
 
-        // Log the data being sent to MongoDB
-        console.log('Creating hero with data:', heroData);
-
         const hero = await Hero.create(heroData);
 
-        revalidateTag('hero');
+        // Revalidate both hero-data and homepage
+        revalidateTag('hero-data');
+        revalidatePath('/backend/hero-section');
+        revalidatePath('/');
         
         return {
             success: true,
@@ -112,7 +107,10 @@ export async function updateHeroSection(id, data) {
             return { success: false, error: "Hero section not found" };
         }
 
-        revalidateTag('hero');
+        // Revalidate both hero-data and homepage
+        revalidateTag('hero-data');
+        revalidatePath('/backend/hero-section');
+        revalidatePath('/');
         
         return {
             success: true,
@@ -137,7 +135,10 @@ export async function deleteHeroSection(id) {
             return { success: false, error: "Hero section not found" };
         }
 
-        revalidateTag('hero');
+        // Revalidate both hero-data and homepage
+        revalidateTag('hero-data');
+        revalidatePath('/backend/hero-section');
+        revalidatePath('/');
         
         return { success: true };
     } catch (error) {

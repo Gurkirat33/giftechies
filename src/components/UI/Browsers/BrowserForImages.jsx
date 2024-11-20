@@ -10,11 +10,15 @@ export default function BrowserForImages({ projectData }) {
   useEffect(() => {
     const timer = setInterval(() => {
       setCurrentIndex((prevIndex) =>
-        prevIndex === projectData.length - 1 ? 0 : prevIndex + 1,
+        prevIndex === projectData.length - 1 ? 0 : prevIndex + 1
       );
     }, 5000);
     return () => clearInterval(timer);
-  }, []);
+  }, [projectData.length]);
+
+  if (!projectData?.length) return null;
+
+  const currentProject = projectData[currentIndex];
 
   return (
     <div className="relative">
@@ -45,15 +49,13 @@ export default function BrowserForImages({ projectData }) {
                 <div className="mb-4 flex items-center justify-between">
                   <div>
                     <h3 className="text-xl font-bold text-gray-800">
-                      {projectData[currentIndex].title}
+                      {currentProject.browserHeading}
                     </h3>
                     <p className="text-sm text-gray-500">
-                      {projectData[currentIndex].category}
+                      {currentProject.browserCatagory}
                     </p>
                   </div>
-                  <div
-                    className={`rounded-full ${projectData[currentIndex].color} p-2 text-white`}
-                  >
+                  <div className="rounded-full bg-blue-500 p-2 text-white">
                     <Globe className="h-5 w-5" />
                   </div>
                 </div>
@@ -62,7 +64,7 @@ export default function BrowserForImages({ projectData }) {
                   <div className="absolute inset-0 grid grid-cols-2 gap-4">
                     <div className="space-y-4">
                       <motion.img
-                        src={projectData[currentIndex].images[0]}
+                        src={currentProject.images[0]}
                         alt="Project preview 1"
                         className="h-40 w-full rounded-lg object-cover shadow-md"
                         initial={{ opacity: 0 }}
@@ -70,7 +72,7 @@ export default function BrowserForImages({ projectData }) {
                         transition={{ delay: 0.2 }}
                       />
                       <motion.img
-                        src={projectData[currentIndex].images[1]}
+                        src={currentProject.images[1]}
                         alt="Project preview 2"
                         className="h-32 w-full rounded-lg object-cover shadow-md"
                         initial={{ opacity: 0 }}
@@ -80,7 +82,7 @@ export default function BrowserForImages({ projectData }) {
                     </div>
                     <div className="space-y-4">
                       <motion.img
-                        src={projectData[currentIndex].images[2]}
+                        src={currentProject.images[2]}
                         alt="Project preview 3"
                         className="h-32 w-full rounded-lg object-cover shadow-md"
                         initial={{ opacity: 0 }}
@@ -88,7 +90,7 @@ export default function BrowserForImages({ projectData }) {
                         transition={{ delay: 0.4 }}
                       />
                       <motion.img
-                        src={projectData[currentIndex].images[3]}
+                        src={currentProject.images[3]}
                         alt="Project preview 4"
                         className="h-40 w-full rounded-lg object-cover shadow-md"
                         initial={{ opacity: 0 }}
@@ -98,31 +100,32 @@ export default function BrowserForImages({ projectData }) {
                     </div>
                   </div>
 
-                  <div className="absolute bottom-0 left-0 right-0 rounded-lg bg-white/80 p-4 backdrop-blur-sm">
-                    <div className="flex items-center justify-between">
-                      <div className="text-sm font-medium text-gray-800">
-                        Project Outcome
-                      </div>
-                      <div
-                        className={`rounded-full ${projectData[currentIndex].color} px-3 py-1 text-sm font-bold text-white`}
-                      >
-                        {projectData[currentIndex].stats}
+                  {currentProject.browserOutcome && (
+                    <div className="absolute bottom-0 left-0 right-0 rounded-lg bg-white/80 p-4 backdrop-blur-sm">
+                      <div className="flex items-center justify-between">
+                        <div className="text-sm font-medium text-gray-800">
+                          Project Outcome
+                        </div>
+                        <div className="rounded-full bg-blue-500 px-3 py-1 text-sm font-bold text-white">
+                          {currentProject.browserOutcome}
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  )}
                 </div>
               </div>
             </motion.div>
           </AnimatePresence>
 
+          {/* Navigation Dots */}
           <div className="absolute bottom-4 left-1/2 flex -translate-x-1/2 space-x-2">
             {projectData.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setCurrentIndex(index)}
                 className={`h-2 w-2 rounded-full transition-all ${
-                  index === currentIndex
-                    ? `w-4 ${projectData[index].color}`
+                  currentIndex === index
+                    ? "bg-blue-500 w-4"
                     : "bg-gray-300"
                 }`}
               />
