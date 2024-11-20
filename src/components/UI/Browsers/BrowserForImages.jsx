@@ -2,10 +2,21 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Globe } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+
+const useIsFirstRender = () => {
+  const isFirst = useRef(true);
+
+  useEffect(() => {
+    isFirst.current = false;
+  }, []);
+
+  return isFirst.current;
+};
 
 export default function BrowserForImages({ projectData }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const isFirstRender = useIsFirstRender();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -39,9 +50,9 @@ export default function BrowserForImages({ projectData }) {
             <motion.div
               key={currentIndex}
               className="absolute inset-0 p-4"
-              initial={{ opacity: 0, x: 20 }}
+              initial={isFirstRender ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+              exit={!isFirstRender ? { opacity: 0, x: -20 } : undefined}
               transition={{ duration: 0.5 }}
             >
               <div className="flex h-full flex-col">

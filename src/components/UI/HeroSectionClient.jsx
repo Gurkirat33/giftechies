@@ -2,10 +2,21 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Zap, Star, Shield } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
+
+const useIsFirstRender = () => {
+  const isFirst = useRef(true);
+
+  useEffect(() => {
+    isFirst.current = false;
+  }, []);
+
+  return isFirst.current;
+};
 
 export default function HeroSectionClient({ heroData }) {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const isFirstRender = useIsFirstRender();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -25,9 +36,9 @@ export default function HeroSectionClient({ heroData }) {
       <AnimatePresence mode="wait">
         <motion.div
           key={currentIndex}
-          initial={{ opacity: 0, x: 20 }}
+          initial={isFirstRender ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
-          exit={{ opacity: 0, x: -20 }}
+          exit={!isFirstRender ? { opacity: 0, x: -20 } : undefined}
           transition={{ duration: 0.5 }}
           className="w-full"
         >
