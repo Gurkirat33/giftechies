@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useMotionValueEvent } from "framer-motion";
-import { Menu } from "lucide-react";
+import { ArrowRight, Menu, MoveRight } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import DarkModeToggle from "../../DarkModeToggle";
@@ -158,10 +158,10 @@ const Navbar = () => {
                 setIsDarkMode={setIsDarkMode}
               />
               <Link
-                href="/start-project"
-                className="gradient-color h-[72px] hidden w-full  text-center text-tertiary-text lg:inline-flex items-center px-6 justify-center"
+                href="/contact"
+                className="gradient-color h-[72px] hidden w-full  text-center text-[17px] text-tertiary-text lg:inline-flex items-center px-6 justify-center"
               >
-                Start a project →
+                Start a project <MoveRight className="ml-2 " size={20}/>
               </Link>
               <button
                 className="rounded-full p-2 text-secondary lg:hidden"

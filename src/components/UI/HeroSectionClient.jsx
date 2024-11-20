@@ -2,6 +2,7 @@
 
 import { motion, AnimatePresence } from "framer-motion";
 import { Zap, Star, Shield } from "lucide-react";
+import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 
 const useIsFirstRender = () => {
@@ -48,13 +49,13 @@ export default function HeroSectionClient({ heroData }) {
           <h1 className="mb-6 text-4xl font-semibold sm:text-5xl lg:text-6xl">
             {currentHero.heading}
           </h1>
-          <p className="mb-8 text-base text-secondary-light sm:text-xl">
+          <p className="mb-8 text-base text-secondary-light sm:text-lg">
             {currentHero.description}
           </p>
           <div className="mb-12 space-y-4 sm:flex sm:space-x-4 sm:space-y-0">
-            <button className="gradient-color w-full rounded px-4 py-3 md:px-8 md:py-4 font-bold text-tertiary-text sm:w-auto">
+            <Link href={"/contact"} className="gradient-color w-full rounded px-4 py-3 md:px-8 md:py-4 font-bold text-tertiary-text sm:w-auto">
               Get Free Consultation
-            </button>
+            </Link>
             <a 
               href={currentHero.serviceUrl}
               className="block w-full rounded border border-border px-4 py-3 md:px-8 md:py-4 font-semibold sm:w-auto text-center"
