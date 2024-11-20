@@ -57,7 +57,7 @@ export default function MobileNav({
         </div>
 
         <Link
-          href="/start-project"
+          href="/contact"
           className="gradient-color block w-full rounded-full px-6 py-3 text-center text-tertiary-text"
           onClick={() => setIsMobileMenuOpen(false)}
         >
