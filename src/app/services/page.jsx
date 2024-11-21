@@ -59,18 +59,17 @@ export default async function ServicesPage() {
                   index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
-                <div className="relative w-full overflow-hidden rounded-3xl bg-secondary/5">
+                <div className="relative h-[300px] md:h-[420px] w-full overflow-hidden rounded-3xl bg-secondary/5">
                   <img
                     src={service.imageUrl}
                     alt={service.heading}
-                    
-                    className="object-cover transition-transform duration-500 hover:scale-105"
+                    className="h-full w-full object-cover transition-transform duration-500 hover:scale-[1.03]"
                   />
                 </div>
 
                 {/* Content Section */}
                 <div className="relative">
-                  <div className="max-w-xl">
+                  <div className="">
                     <h3 className="mb-6 text-3xl font-semibold text-secondary lg:text-4xl">
                       {service.heading}
                     </h3>
