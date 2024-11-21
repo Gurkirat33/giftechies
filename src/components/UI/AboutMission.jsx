@@ -24,7 +24,7 @@ export default function AboutMission() {
                     <div className="flex items-center space-x-4">
                       <div className="flex size-16 items-center justify-center rounded-full bg-primary-light">
                         <span className="text-lg font-semibold text-secondary">
-                          250+
+                          300+
                         </span>
                       </div>
                       <p className="text-sm text-secondary-light">

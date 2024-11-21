@@ -36,10 +36,9 @@ const getServices = unstable_cache(
 
 export default async function ServicesPage() {
   const services = await getServices();
-  console.log("Fetched services:", services);
 
   return (
-    <div className="relative bg-primary py-28">
+    <div className="relative bg-primary py-20">
         <SectionHeading 
           title="Services that drive growth" 
           description="We deliver cutting-edge solutions that transform businesses. Our expertise spans across digital landscapes, ensuring your success in the modern market." 
@@ -60,7 +59,7 @@ export default async function ServicesPage() {
                   index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
-                <div className="relative isolate aspect-[4/3] w-full overflow-hidden rounded-3xl bg-secondary/5">
+                <div className="relative w-full overflow-hidden rounded-3xl bg-secondary/5">
                   <img
                     src={service.imageUrl}
                     alt={service.heading}
@@ -72,23 +71,23 @@ export default async function ServicesPage() {
                 {/* Content Section */}
                 <div className="relative">
                   <div className="max-w-xl">
-                    <h3 className="mb-6 text-3xl font-medium tracking-tight text-secondary lg:text-4xl">
+                    <h3 className="mb-6 text-3xl font-semibold text-secondary lg:text-4xl">
                       {service.heading}
                     </h3>
-                    <p className="mb-8 text-lg leading-relaxed text-secondary-light">
+                    <p className="mb-8 description-text leading-relaxed text-secondary-light">
                       {service.description}
                     </p>
-                    <div className="mb-8 space-y-4">
+                    <div className="mb-8 space-y-3">
                       {service.keyPoints.map((point, idx) => (
                         <div key={idx} className="flex items-start gap-4">
                           <ArrowUpRight className="mt-1 size-4 text-secondary" />
-                          <p className="flex-1 text-secondary-light">{point}</p>
+                          <p className="flex-1 description-text text-secondary-light">{point}</p>
                         </div>
                       ))}
                     </div>
                     <Link
                       href={`/services/${service.slug}`}
-                      className="group inline-flex items-center gap-2 rounded-lg bg-primary-light px-6 py-3 text-lg font-medium text-secondary transition-colors hover:bg-secondary hover:text-primary"
+                      className="group inline-flex items-center gap-2 gradient-color text-white bg-primary-light px-5 py-2.5 text-lg font-medium"
                     >
                       Learn more
                       <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />

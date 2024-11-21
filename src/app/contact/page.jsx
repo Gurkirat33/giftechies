@@ -91,7 +91,7 @@ const ContactPage = () => {
               />
             </div>
 
-            <button className="gradient-color mt-6 w-fit rounded-lg px-4 py-2 text-tertiary-text">
+            <button className="gradient-color mt-6 w-fit  px-4 py-2 text-tertiary-text">
               Submit
             </button>
           </form>

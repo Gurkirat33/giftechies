@@ -5,55 +5,61 @@ import { useState } from "react";
 import { ChevronUp, ChevronDown, MoveDown } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import Link from "next/link";
 
 const services = [
   {
     id: 1,
     name: "Meet",
-    tagline: "Transform Your Digital Presence",
+    tagline: "Understanding Your Vision",
     description:
       "We don’t just complete projects, we understand your business needs and offer result-oriented solutions that suit your online business and maximize your ROI.",
       buttonName:"Lets Meet",
+      buttonLink:"/contact",
     image:
       "/banner1.svg",
   },
   {
     id: 2,
     name: "Plan",
-    tagline: "Scale Without Limits",
+    tagline: "Strategizing for Success",
     description:
       "Whether it is website design, custom coding or development, we know the importance of planning and brainstorming to ensure you are given with the best.",
       buttonName:"Start Planning",
+      buttonLink:"/contact",
     image:
       "/banner2.svg",
   },
   {
     id: 3,
     name: "Design & Development",
-    tagline: "Intelligent Automation",
+    tagline: "Bringing Ideas to Life",
     description:
       "We expand on the plan to develop a unique, classy, and visually appealing website and revising the possibilities until a single, clear solution emerges.",
       buttonName:"Start Your Project",
+      buttonLink:"/contact",
     image:
       "/banner3.svg",
   },
   {
     id: 4,
     name: "Testing",
-    tagline: "Protect Your Digital Assets",
+    tagline: "Ensuring Perfection",
     description:
       "Our projects undergo stringent testing sessions to ensure the website works great on different screen sizes, like smartphones, tablets and laptops.",
       buttonName:"Start Your Project",
+      buttonLink:"/contact",
     image:
       "/banner4.svg",
   },
   {
     id: 5,
     name: "Launch",
-    tagline: "Streamline Development",
+    tagline: "Your Digital Success Starts Here",
     description:
       "Now that the solution has been clearly designed, we’ll take your site live to the world by doing all little things that need to be done to launch.",
       buttonName:"Start Your Project",
+      buttonLink:"/contact",
     image:
       "/banner5.svg",
   },
@@ -77,7 +83,7 @@ const ServicesTimeline = () => {
 
   return (
     <>
-          <div className="bg-primary relative inline-block text-center w-full p-12">
+          <div className="bg-extra-bg relative inline-block text-center w-full p-12">
             <span className="block mb-2 text-sm font-medium tracking-[0.3em] gradient-color-text uppercase">How We Work</span>
             <div className="relative">
               <h2 className="text-6xl font-bold mb-3 relative inline-block">
@@ -162,20 +168,21 @@ const ServicesTimeline = () => {
                 className="hidden md:block absolute inset-0 h-full w-full object-cover"
               />
 
-              <div className="absolute inset-0 z-20 flex top-[20%] md:top-[14%]">
+              <div className="absolute inset-0 z-20 flex items-center  md:top-[14%]">
                 <div className="md:w-[50%] pl-[5%] lg:pl-[3%] xl:pl-[10%] pr-8">
             
-                  <div className="space-y-6">
+                  <div className="space-y-5">
                     <h2 className="text-3xl xl:text-4xl font-semibold leading-tight text-white">
                       {service.name}
                     </h2>
-                    <p className="max-w-2xl text-lg  xl:text-xl leading-relaxed text-gray-200">
+                    {/* <p className="text-gray-200 font-medium text-sm  rounded-full w-fit">{service.tagline}</p> */}
+                    <p className="max-w-2xl  text-[15px] tracking-[1px] leading-relaxed text-gray-200">
                       {service.description}
                     </p>
 
-                    <button className="gradient-color font-semibold text-lg  rounded-lg px-6 py-3 text-tertiary-text">
+                    <Link href={service.buttonLink} className="w-fit block gradient-color font-medium    px-5 py-2.5 text-tertiary-text">
                       {service.buttonName}
-                    </button>
+                    </Link>
                   </div>
                 </div>
               </div>

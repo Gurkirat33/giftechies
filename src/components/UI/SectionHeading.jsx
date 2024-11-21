@@ -7,7 +7,7 @@ export const SectionHeading = ({
   className = ""
 }) => {
   return (
-    <div className={`relative mb-2 lg:mb-12 xl:mb-16 ${className}`}>
+    <div className={`relative mb-2 lg:mb-10 ${className}`}>
         {showBreadcrumb && <Breadcrumb />}
       <div className="section-container">
         

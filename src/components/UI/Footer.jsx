@@ -27,15 +27,26 @@ const Footer = () => {
         </div>
         <div className="z-1 absolute left-0 top-36 h-16 w-12 rounded-br-3xl bg-primary"></div>
 
-        <div className="grid grid-cols-12 gap-6 pr-1 sm:pl-14 sm:pr-8 lg:pl-20 lg:pr-12 xl:gap-8 xl:pl-20 xl:pr-16">
+        <div className="grid grid-cols-12 gap-12 pr-1 sm:pl-14 sm:pr-8 lg:pl-20 lg:pr-12 xl:gap-2
+         xl:pl-20 xl:pr-16">
           <div className="col-span-12 flex flex-col gap-6 pl-14 sm:pl-0 md:col-span-6 lg:order-1 lg:col-span-3">
             <img src="https://giftechies.com/frontend/assets/images/cup-man.gif" alt="" className="size-36"/>
-            <p className="text-3xl font-semibold lg:text-4xl">
+            {/* <p className="text-3xl font-semibold lg:text-4xl">
               Do you like <br /> what you see?
-            </p>
-            <button className="gradient-color w-fit rounded-lg px-4 py-2 text-tertiary-text">
+            </p> */}
+            <h4 className="text-2xl">Ready? Let’s Talk
+            </h4>
+            <p className="text-xs tracking-wide">Our clients love to work with us because we strive to first meet their requirements and then exceed their expectations.
+
+</p>
+            <div className="flex gap-4">
+            <button className="gradient-color w-fit  px-4 py-2 text-tertiary-text">
+           Best Work
+            </button>
+            <button className="w-fit border border-gray-300 bg-white  px-4 py-2 text-secondary">
               Start Project
             </button>
+            </div>
           </div>
           <div className="col-span-12 mb-12 bg-primary p-8 shadow-2xl md:col-span-6 md:-mt-32 lg:order-4 lg:col-span-4 relative">
           <div className="absolute w-full top-0 h-1 gradient-color left-0"></div>
@@ -77,7 +88,7 @@ const Footer = () => {
                 />
               </div>
 
-              <button className="gradient-color mt-6 w-fit rounded-lg px-4 py-2 text-tertiary-text">
+              <button className="gradient-color mt-6 w-fit px-4 py-2 text-tertiary-text">
                 Submit
               </button>
             </form>
@@ -94,7 +105,7 @@ const Footer = () => {
           </div>
 
           <div className="col-span-6 text-center sm:text-start lg:order-3 lg:col-span-2">
-            <h3 className="mb-3 text-base font-semibold">Quick Links</h3>
+            <h3 className="mb-3 text-base font-semibold">Services</h3>
             <ul className="space-y-2 text-secondary-light">
               {links2.map((link) => (
                 <li key={link.name}>
@@ -113,7 +124,7 @@ const Footer = () => {
                 alt="img"
                 className="size-36 lg:mx-0 lg:h-full lg:w-full svg-color-mode"
               />
-              <p className="max-w-52 text-sm lg:text-base text-secondary-light">
+              <p className="max-w-52 description-text">
                 PC Tower 2nd Floor, Gill Rd, Opposite GNE College, Ludhiana
                 141006 - INDIA
               </p>
@@ -124,7 +135,7 @@ const Footer = () => {
                 alt="img"
                 className="size-36 lg:mx-0 lg:h-full lg:w-full svg-color-mode"
               />
-              <p className="max-w-52 text-sm lg:text-base text-secondary-light">
+              <p className="max-w-52 description-text">
                 1111 Charlene Lane, Schaumburg, IL 60193, United States
               </p>
             </div>

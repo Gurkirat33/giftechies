@@ -18,11 +18,11 @@ export default function AboutPage() {
   ];
 
   return (
-    <div className="bg-primary text-secondary pt-28">
+    <div className="bg-primary text-secondary pt-20">
         <SectionHeading title={"Where Innovation Meets Excellence"} description={"We provide comprehensive digital solutions, from web design and development to marketing and branding, helping businesses thrive in the digital world."}/> 
       <div className="section-container">
 
-        <section className="w-full py-12">
+        <section className="w-full py-8">
           <div className="grid gap-12 lg:grid-cols-2">
             <div className="relative grid grid-cols-2 grid-rows-2 gap-4">
               <div className="absolute right-0 z-40 rounded-lg bg-primary-light p-6 text-center">
@@ -99,7 +99,6 @@ We understand the importance of portrayal of digital images and come up with som
           </div>
         </section>
         <AboutMission/>
-        {/* Team Section */}
         <TeamSection />
       </div>
     </div>

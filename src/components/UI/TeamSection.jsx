@@ -37,7 +37,7 @@ export default async function TeamSection() {
                 </div>
 
                 <div className="absolute -right-8 bottom-0 h-1/2">
-                  <p className="vertical-text h-full flex items-center text-lg font-bold tracking-[0.25em] gradient-color-text">
+                  <p className="vertical-text h-full flex  text-lg font-bold tracking-wider text-secondary">
                     {member.name}
                   </p>
                 </div>

@@ -1,4 +1,4 @@
-import { ArrowRight, MoveDown } from "lucide-react";
+import { ArrowRight, MoveDown, MoveRight, PhoneCall } from "lucide-react";
 import Link from "next/link";
 import gridData from "../data/gridData";
 import Image from "next/image";
@@ -34,10 +34,20 @@ export default function BentoGrid() {
                 <h3 className="text-center  text-2xl lg:text-4xl font-semibold tracking-wide">
                   {item.description}
                 </h3>
+                <p className="text-center text-sm tracking-wider">Our clients love to work with us because we strive to first meet their requirements and then exceed their expectations.
+
+</p>
                 <MoveDown className="animate-bounce" />
-                <Link href="/services" className="mt-2 lg:mt-4 rounded-lg border border-white px-4 py-2 lg:px-6 lg:py-3">
-                  View All Services
+                <div className="flex gap-4">
+                <Link href="/services" className="inline-flex items-center gap-2 mt-2 lg:mt-0  border border-white font-medium px-4 py-2 text-sm">
+                  View All Services 
+                  {/* <span><MoveRight/></span> */}
                 </Link>
+                <Link href="/services" className="inline-flex items-center gap-2 mt-2 lg:mt-0 bg-white text-black font-medium border border-white px-4 py-2 text-sm">
+                <span><PhoneCall size={15}/></span> Request a Call 
+
+                </Link>
+                </div>
               </div>
             );
           }
@@ -49,16 +59,15 @@ export default function BentoGrid() {
             >
               {item.icon && <item.icon size={26} className="text-red-500" />}
               <h3 className="my-3 text-xl font-medium">{item.title}</h3>
-              <p className="text-sm tracking-wider text-secondary-light">
+              <p className="description-text text-[14px]">
                 {item.description}
               </p>
-              <Link href={"/"} className="group mt-4 flex items-center gap-2">
+              <Link href={item.link} className="text-sm group mt-4 flex items-center gap-2">
                 <ArrowRight
-                  color="red"
-                  size={20}
+                  size={19}
                   className="-rotate-45 cursor-pointer transition-all duration-300 group-hover:rotate-0"
                 />
-                <span className="">View More</span>
+                <span>View More</span>
               </Link>
             </div>
           );

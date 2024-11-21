@@ -1,10 +1,11 @@
-import { Laptop, BarChart2, Code, ShoppingCart, PenTool, Smartphone, Shield, LifeBuoy } from 'lucide-react';
+import { Laptop, BarChart2, Code, ShoppingCart, PenTool, Smartphone, Shield, LifeBuoy, Globe } from 'lucide-react';
 
 const gridData = [
   {
     title: "Mobile Development",
-    description: "Transforming unique ideas into seamless and user-friendly mobile experiences.",
+    description: "Mobile platform represents both a unique opportunity and unique challenge in the business world.",
     icon: Smartphone,
+    link:"/mobile-dev",
   },
   {
     title: "GifTechies",
@@ -13,48 +14,57 @@ const gridData = [
   },
   {
     title: "UX/UI & Web Design",
-    description: "Crafting intuitive and engaging designs for web and mobile platforms.",
-    icon: BarChart2,
+    description: "Ensuring that the visual structure & presentation of information on a website are correlated with the users’ mental expectations.",
+    icon: PenTool ,
+    link:"/ux-ui"
   },
   {
     title: "Web Development",
-    description: "Creating scalable, dynamic, and feature-rich websites tailored to your needs.",
-    icon: Code,
+    description: "Quality web design is now affordable with Giftechies as we ensure our clients get the unique and inexpensive website.",
+    icon: Globe,
+    link:"/web-dev"
   },
   {
-    title: "E-commerce Solutions",
-    description: "Developing powerful online stores with seamless checkout and advanced features.",
-    icon: ShoppingCart,
-  },
-  {
-    title: "Custom App Development",
-    description: "Building innovative and user-centric mobile and web applications with excellence.",
+    title: "WordPress Development",
+    description: "WordPress is the largest Open Source content management platform used globally and holds the largest share..",
     icon: Laptop,
+    link:"/wordpress"
   },
   {
-    title: "Cybersecurity",
-    description: "Our cybersecurity services include comprehensive risk assessments, advanced threat detection, and proactive measures to secure your digital ecosystem. From implementing multi-layered defenses to ensuring compliance with industry standards, we safeguard your data and maintain your business's integrity.",
+    title: "Print / Graphic Design",
+    description: "In a way or other, graphic design is the part of almost everything we do at Giftechies. Delivering creative graphics and..",
+    icon: ShoppingCart,
+    link:"/front-end"
+  },
+  {
+    title: "E-Commerce Development",
+    description: "We build user-friendly and scalable e-commerce solutions that are easy-to- manage and designed to give your brand the very best online store presence possible. Our e-commerce development services ensure you get all the features required to run a successful online selling business.",
     icon: Shield,
+    link:"/e-commerce"
   },
   {
-    title: "Content Creation",
-    description: "Our content creation services include crafting high-quality blog posts, articles, social media campaigns, and multimedia content tailored to your brand's voice. Whether it's persuasive copywriting, engaging video scripts, or visually stunning graphics, we ensure your message resonates with your target audience.",
+    title: "Front End & Responsive HTML",
+    description: "A website is nothing without responsive frontend design as almost 90% of internet surfing is done though compact devices. Today, it makes sense to build a website that is fully responsive and interactive that stands apart from the usual templates.",
     icon: PenTool,
+    link:"/print"
   },
   {
-    title: "Tech Support",
-    description: "Offering reliable maintenance and expert support to ensure system efficiency.",
+    title: "Logo Design",
+    description: "A great logo is the first step towards building a great brand. As an expert logo design company with great experience..",
     icon: LifeBuoy,
+    link:"/logo"
   },
   {
-    title: "Code Audits",
-    description: "Enhancing your codebase with expert-level optimizations and improvements.",
+    title: "Branding",
+    description: "Your company’s branding should convey what makes it special. Branding can help set your business apart from competitors.",
     icon: Code,
+    link:"/branding"
   },
   {
-    title: "Digital Marketing",
+    title: "SEO",
     description: "Driving growth with tailored strategies for SEO, social media, and online advertising.",
     icon: BarChart2,
+    link:"/digital"
   }
   
 ];

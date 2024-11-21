@@ -5,7 +5,7 @@ import Image from "next/image";
 const TestimonialCard = ({ testimonial }) => (
   <div className="group relative w-full rounded-xl shadow-md  bg-primary-light p-6 md:p-8">
 
-    <p className="relative z-10 mb-8 text-base leading-relaxed text-text-secondary-light md:text-lg">
+    <p className="relative z-10 mb-8  leading-relaxed description-text">
       {testimonial.content}
     </p>
 
@@ -15,10 +15,10 @@ const TestimonialCard = ({ testimonial }) => (
         alt={testimonial.name}
         width={100}
         height={100}
-        className="h-12 w-12 rounded-full object-cover"
+        className="h-12 w-12 rounded-full object-cover border-2 border-[#d92662]"
       />
       <div className="flex-1">
-        <h4 className="text-base font-medium text-secondary md:text-lg">
+        <h4 className="text-base font-medium text-secondary">
           {testimonial.name}
         </h4>
         <p className="mb-1 text-sm text-secondary-light">{testimonial.role}</p>

@@ -1,20 +1,20 @@
 export const storyContent = [
     {
-      title: "Our Story",
+      title: "Planning & Strategy",
       description:
-        "From humble beginnings to industry leadership, our journey has been defined by passion and innovation. We've spent over a decade perfecting our craft and building lasting relationships with clients worldwide.",
+        "We require your briefing and content. Your website is incomplete without you.",
       image: "/story.jpg",
     },
     {
-      title: "Our Mission",
+      title: "Design & Develop",
       description:
-        "We're dedicated to transforming businesses through cutting-edge digital solutions. Our mission is to empower organizations with technology that drives growth and creates meaningful impact.",
+        "Once your entire content is with us, Your website will be built in almost no time.",
       image: "/mission.jpeg",
     },
     {
-      title: "Our Vision",
+      title: "Test & Deliver",
       description:
-        "We envision a world where digital experiences transcend the ordinary, where every interaction leaves an indelible mark on the user's journey.",
+        "You can check your website. If there are any changes, we do deliver to you.",
       image: "/vision.jpeg",
     },
   ];

@@ -49,17 +49,17 @@ export default function HeroSectionClient({ heroData }) {
           <h1 className="mb-6 text-4xl font-semibold sm:text-5xl lg:text-6xl">
             {currentHero.heading}
           </h1>
-          <p className="mb-8 text-base text-secondary-light sm:text-lg">
+          <p className="mb-8 description-text text-base">
             {currentHero.description}
           </p>
           <div className="mb-12 space-y-4 sm:flex sm:space-x-4 sm:space-y-0">
             <Link 
               href={currentHero.serviceUrl}
-              className="gradient-color inline-flex items-center justify-center w-full rounded px-4 py-3 md:px-8 md:py-4 font-bold text-tertiary-text sm:w-auto"
+              className="gradient-color inline-flex items-center justify-center w-full  px-4 py-3 md:px-8 md:py-4 font-bold text-tertiary-text sm:w-auto"
             >
               {currentHero.serviceName}
             </Link>
-            <Link href={"/contact"} className="block w-full rounded border border-border px-4 py-3 md:px-8 md:py-4 font-semibold sm:w-auto text-center">
+            <Link href={"/contact"} className="block w-full  border border-border px-4 py-3 md:px-8 md:py-4 font-semibold sm:w-auto text-center">
               Get Free Consultation
             </Link>
           </div>

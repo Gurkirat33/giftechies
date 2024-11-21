@@ -49,7 +49,7 @@ export const Card = ({ card }) => {
         <h3 className="mb-2 text-2xl font-semibold text-white [text-wrap:balance]">
           {card.title}
         </h3>
-        <p className="mb-4 line-clamp-2 text-sm text-gray-200">
+        <p className="mb-4 text-sm text-gray-200  tracking-[0.5px]">
           {card.description}
         </p>
         <button className="inline-flex items-center text-sm font-medium text-white transition-colors hover:text-indigo-200">
