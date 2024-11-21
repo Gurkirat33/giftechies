@@ -10,9 +10,11 @@ import MobileNav from "./MobileNav";
 import Logo from "@/images/Giftechies-Logo-light-mode.svg";
 import darkLogo from "@/images/Giftechies-Logo-dark-mode.svg";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 const Navbar = () => {
   const { scrollY } = useScroll();
+  const pathname = usePathname();
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [hidden, setHidden] = useState(false);
   const [atTop, setAtTop] = useState(true);
@@ -86,11 +88,18 @@ const Navbar = () => {
               {navData.map((item) => (
                 <div
                   key={item.name}
-                  className={`group relative pr-6 text-secondary-light transition-colors hover:text-secondary ${
+                  className={`group relative pr-6 transition-colors ${
                     atTop ? "py-6" : "py-4"
                   }`}
                 >
-                  <Link href={item.href} className="flex items-center">
+                  <Link 
+                    href={item.href} 
+                    className={`flex items-center ${
+                      pathname === item.href 
+                        ? "text-pink-500 underline decoration-pink-500  underline-offset-[30px]" 
+                        : "text-secondary-light hover:text-secondary"
+                    }`}
+                  >
                     {item.name}
                     {item.submenu && (
                       <svg
@@ -151,7 +160,7 @@ const Navbar = () => {
               ))}
             </div>
 
-            <div className="flex items-center space-x-4">
+            <div className="flex items-center h-[72px]">
               <DarkModeToggle
                 isDarkMode={isDarkMode}
                 setIsDarkMode={setIsDarkMode}

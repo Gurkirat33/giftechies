@@ -28,7 +28,8 @@ const Footer = () => {
         <div className="z-1 absolute left-0 top-36 h-16 w-12 rounded-br-3xl bg-primary"></div>
 
         <div className="grid grid-cols-12 gap-6 pr-1 sm:pl-14 sm:pr-8 lg:pl-20 lg:pr-12 xl:gap-8 xl:pl-20 xl:pr-16">
-          <div className="col-span-12 flex flex-col gap-6 pl-14 sm:pl-0 md:col-span-6 lg:order-1 lg:col-span-4">
+          <div className="col-span-12 flex flex-col gap-6 pl-14 sm:pl-0 md:col-span-6 lg:order-1 lg:col-span-3">
+            <img src="https://giftechies.com/frontend/assets/images/cup-man.gif" alt="" className="size-36"/>
             <p className="text-3xl font-semibold lg:text-4xl">
               Do you like <br /> what you see?
             </p>
@@ -36,7 +37,8 @@ const Footer = () => {
               Start Project
             </button>
           </div>
-          <div className="col-span-12 mb-12 bg-primary p-8 shadow-2xl md:col-span-6 md:-mt-32 lg:order-4 lg:col-span-4">
+          <div className="col-span-12 mb-12 bg-primary p-8 shadow-2xl md:col-span-6 md:-mt-32 lg:order-4 lg:col-span-4 relative">
+          <div className="absolute w-full top-0 h-1 gradient-color left-0"></div>
             <form>
               <h3 className="mb-3 text-2xl font-semibold lg:text-3xl">
                 Get in touch
@@ -80,7 +82,7 @@ const Footer = () => {
               </button>
             </form>
           </div>
-          <div className="col-span-6 text-center sm:text-start lg:order-2 lg:col-span-2">
+          <div className="col-span-6 text-center sm:text-start lg:order-2 lg:col-span-3">
             <h3 className="mb-3 text-base font-semibold">Services</h3>
             <ul className="space-y-2 text-secondary-light">
               {links1.map((link) => (
@@ -140,11 +142,11 @@ const Footer = () => {
             </div>
             <div className="flex flex-1 flex-col items-center gap-4 sm:items-start">
               <div className="flex items-center gap-3">
-                <Mail />
+                <Mail className="text-[#d92662]" size={20}/>
                 <p> info@giftechies.com</p>
               </div>
               <div className="flex gap-2">
-                <PhoneCall />
+                <PhoneCall className="text-[#d92662]" size={20}/>
                 <p>skype.com</p>
               </div>
             </div>

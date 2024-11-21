@@ -40,11 +40,11 @@ export default async function ServicesPage() {
 
   return (
     <div className="relative bg-primary py-28">
-      <div className="section-container">
         <SectionHeading 
           title="Services that drive growth" 
           description="We deliver cutting-edge solutions that transform businesses. Our expertise spans across digital landscapes, ensuring your success in the modern market." 
         />
+      <div className="section-container">
       </div>
 
       {/* Services Section */}
@@ -60,9 +60,7 @@ export default async function ServicesPage() {
                   index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
-                {/* Image Section */}
                 <div className="relative isolate aspect-[4/3] w-full overflow-hidden rounded-3xl bg-secondary/5">
-                {console.log(service.imageUrl)}
                   <img
                     src={service.imageUrl}
                     alt={service.heading}

@@ -7,22 +7,20 @@ import Image from "next/image";
 export default function AboutPage() {
   const stats = [
     { number: "150+", label: "Projects Delivered" },
-    { number: "200+", label: "Happy Clients" },
-    { number: "50+", label: "Expert Team" },
+    { number: "100+", label: "Industries Served" },
+    { number: "98%", label: "Client Satisfaction" },
   ];
 
   const features = [
-    { title: "Creative Solutions" },
-    { title: "Quality Code" },
-    { title: "24/7 Support" },
+    { title: "Innovative Ideas" },
+    { title: "Robust Development" },
+    { title: "Dedicated Support" },
   ];
 
-
-
   return (
-    <div className="bg-primary text-secondary">
-      <div className="section-container pt-28">
-        <SectionHeading title={"Where Innovation Meets Excellence"} description={"Transforming visions into exceptional digital experiences with precision and creativity."}/> 
+    <div className="bg-primary text-secondary pt-28">
+        <SectionHeading title={"Where Innovation Meets Excellence"} description={"We provide comprehensive digital solutions, from web design and development to marketing and branding, helping businesses thrive in the digital world."}/> 
+      <div className="section-container">
 
         <section className="w-full py-12">
           <div className="grid gap-12 lg:grid-cols-2">
@@ -61,7 +59,7 @@ export default function AboutPage() {
 
             <div className="space-y-10">
               <div>
-                <h4 className="mb-3 text-sm font-semibold text-secondary">
+                <h4 className="mb-3 text-sm lg:text-base font-semibold gradient-color-text">
                   Why Choose Us
                 </h4>
                 <h2 className="mb-8 text-4xl font-semibold text-secondary">
@@ -71,7 +69,7 @@ export default function AboutPage() {
                 <div className="mb-8 grid grid-cols-3 gap-6">
                   {stats.map((stat, index) => (
                     <div key={index} className="rounded-xl pr-4">
-                      <h3 className="mb-1 text-3xl font-bold text-secondary">
+                      <h3 className="mb-1 text-2xl lg:text-3xl font-semibold lg:font-bold text-secondary">
                         {stat.number}
                       </h3>
                       <p className="text-sm font-medium text-secondary-light">
@@ -82,24 +80,18 @@ export default function AboutPage() {
                 </div>
 
                 <p className="mb-8 leading-relaxed text-secondary-light">
-                  Integer purus odio, placerat nec rhoncus in, ullamcorper nec
-                  dolor. Class onlin aptent taciti sociosqu ad litora torquent
-                  per conubia nostra, per inceptos only himenaeos. Praesent nec
-                  neque at dolor venenatis consectetur eu quis ex. the Donec
-                  lacinia placerat felis non aliquam.Mauris nec justo vitae ante
-                  auctor tol euismod sit amet non ipsum. Praesent commodo at
-                  massa eget suscipit. Utani vitae enim velit. Ut ut posuere
-                  orci, id dapibus odio.
+                Giftechies is a next-generation, dynamic company, solely dedicated at providing you turn-key solutions in the area of web development & designing. Our team of experts delivers digital solutions that actually work & exceed your expectations.
+We understand the importance of portrayal of digital images and come up with something amazing and each piece of web solution design for your requirements is done keeping in mind your business model, ethics, beliefs and image. Our strong belief in on-time delivery and cost-efficiency has inspired us to offer state-of- the-art web design & development services to global clients.
                 </p>
 
                 <div className="flex flex-wrap gap-4">
                   {features.map((feature, index) => (
-                    <button
+                    <p
                       key={index}
-                      className="rounded-lg border border-border bg-primary-light px-6 py-3 text-secondary"
+                      className="rounded-lg font-medium bg-primary-light px-6 py-3 text-secondary"
                     >
                       {feature.title}
-                    </button>
+                    </p>
                   ))}
                 </div>
               </div>

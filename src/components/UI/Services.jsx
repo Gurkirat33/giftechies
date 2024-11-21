@@ -2,55 +2,60 @@
 
 import React from "react";
 import { useState } from "react";
-import { ChevronUp, ChevronDown } from "lucide-react";
+import { ChevronUp, ChevronDown, MoveDown } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 
 const services = [
   {
     id: 1,
-    name: "Digital Strategy",
+    name: "Meet",
     tagline: "Transform Your Digital Presence",
     description:
-      "Transform your business with our comprehensive digital strategy solutions. We help you navigate the digital landscape and achieve sustainable growth.",
+      "We don’t just complete projects, we understand your business needs and offer result-oriented solutions that suit your online business and maximize your ROI.",
+      buttonName:"Lets Meet",
     image:
-      "/banner3.jpg",
+      "/banner1.svg",
   },
   {
     id: 2,
-    name: "Cloud Solutions",
+    name: "Plan",
     tagline: "Scale Without Limits",
     description:
-      "Leverage the power of cloud computing to scale your business. Our cloud solutions provide flexibility, security, and reliability.",
+      "Whether it is website design, custom coding or development, we know the importance of planning and brainstorming to ensure you are given with the best.",
+      buttonName:"Start Planning",
     image:
-      "https://fastly.picsum.photos/id/11/1920/500.jpg?hmac=WpSUR9euCQSCs6Xx1Un4lEzpnCWEWM_Km4G0fp7zIGY",
+      "/banner2.svg",
   },
   {
     id: 3,
-    name: "AI Integration",
+    name: "Design & Development",
     tagline: "Intelligent Automation",
     description:
-      "Enhance your operations with cutting-edge AI solutions. We help you implement intelligent automation and data-driven decision making.",
+      "We expand on the plan to develop a unique, classy, and visually appealing website and revising the possibilities until a single, clear solution emerges.",
+      buttonName:"Start Your Project",
     image:
-      "https://fastly.picsum.photos/id/11/1920/500.jpg?hmac=WpSUR9euCQSCs6Xx1Un4lEzpnCWEWM_Km4G0fp7zIGY",
+      "/banner3.svg",
   },
   {
     id: 4,
-    name: "Cyber Security",
+    name: "Testing",
     tagline: "Protect Your Digital Assets",
     description:
-      "Protect your digital assets with our advanced cybersecurity services. We provide comprehensive security solutions for peace of mind.",
+      "Our projects undergo stringent testing sessions to ensure the website works great on different screen sizes, like smartphones, tablets and laptops.",
+      buttonName:"Start Your Project",
     image:
-      "https://fastly.picsum.photos/id/11/1920/500.jpg?hmac=WpSUR9euCQSCs6Xx1Un4lEzpnCWEWM_Km4G0fp7zIGY",
+      "/banner4.svg",
   },
   {
     id: 5,
-    name: "DevOps Services",
+    name: "Launch",
     tagline: "Streamline Development",
     description:
-      "Streamline your development and operations with our DevOps solutions. We help you build, test, and deploy faster and more efficiently.",
+      "Now that the solution has been clearly designed, we’ll take your site live to the world by doing all little things that need to be done to launch.",
+      buttonName:"Start Your Project",
     image:
-      "https://fastly.picsum.photos/id/11/1920/500.jpg?hmac=WpSUR9euCQSCs6Xx1Un4lEzpnCWEWM_Km4G0fp7zIGY",
+      "/banner5.svg",
   },
 ];
 
@@ -71,13 +76,28 @@ const ServicesTimeline = () => {
   };
 
   return (
-    <div className="relative h-[90vh] w-full overflow-hidden">
+    <>
+          <div className="bg-primary relative inline-block text-center w-full p-12">
+            <span className="block mb-2 text-sm font-medium tracking-[0.3em] gradient-color-text uppercase">How We Work</span>
+            <div className="relative">
+              <h2 className="text-6xl font-bold mb-3 relative inline-block">
+                <span className="relative inline-block">
+                The Momentum
+                  <span className="relative gradient-color-text ml-3 inline-block">Process
+                    <span className="absolute -bottom-2 left-0 w-full h-[2px] gradient-color"></span>
+                  </span>
+                </span>
+              </h2>
+            </div>
+              <MoveDown size={40} className="animate-bounce mx-auto mt-4 text-[#d92662]"/>
+          </div>
+    <div className="relative h-[85vh] w-full overflow-hidden">
       {/* Right Navigation Section */}
-      <div className="absolute bottom-0 right-[10%] top-0 z-20 flex flex-col items-center justify-center">
+      <div className="absolute bottom-0 right-[3%] xl:right-[9%] top-0 z-20 flex flex-col items-center justify-center">
         <div className="absolute left-0 h-full w-px bg-white/30" />
         <button
           onClick={goPrev}
-          className={`absolute top-8 rounded-full p-2 transition-all duration-300 hover:bg-white/10 ${
+          className={`absolute top-8 left-10 rounded-full p-2 transition-all duration-300 hover:bg-white/10 ${
             activeIndex === 0 ? "text-gray-500" : "text-white"
           }`}
           disabled={activeIndex === 0}
@@ -85,7 +105,7 @@ const ServicesTimeline = () => {
           <ChevronUp size={24} />
         </button>
 
-        <div className="flex flex-col items-center gap-14 py-20">
+        <div className="flex top-4 md:flex-col absolute md:relative right-12  lg:right-0 gap-4 md:gap-14 md:py-20">
           {services.map((service, index) => (
             <div
               key={service.id}
@@ -93,16 +113,16 @@ const ServicesTimeline = () => {
               onClick={() => swiper?.slideTo(index)}
             >
               <div
-                className={`absolute -left-[8px] top-1/2 h-3 w-3 -translate-y-1/2 rounded-full transition-all duration-300 ${
+                className={`hidden md:block absolute -left-[4px] top-1/2 h-3 w-3 -translate-y-1/2 rounded-full transition-all duration-300 ${
                   index === activeIndex
-                    ? "scale-125 bg-yellow-400"
+                    ? "scale-125 gradient-color"
                     : "bg-white/50 group-hover:bg-white"
                 } ${index < activeIndex ? "bg-white" : ""}`}
               />
               <div
-                className={`pl-8 text-lg font-bold transition-all duration-300 ${
+                className={`pl-8  font-medium md:text-lg md:font-bold transition-all duration-300 ${
                   index === activeIndex
-                    ? "translate-x-2 text-yellow-400"
+                    ? "translate-x-2 gradient-color-text"
                     : "text-white/70 group-hover:text-white"
                 }`}
               >
@@ -113,7 +133,7 @@ const ServicesTimeline = () => {
         </div>
         <button
           onClick={goNext}
-          className={`absolute bottom-8 rounded-full p-2 transition-all duration-300 hover:bg-white/10 ${
+          className={`absolute bottom-8 left-10 rounded-full p-2 transition-all duration-300 hover:bg-white/10 ${
             activeIndex === services.length - 1 ? "text-gray-500" : "text-white"
           }`}
           disabled={activeIndex === services.length - 1}
@@ -134,35 +154,27 @@ const ServicesTimeline = () => {
         {services.map((service) => (
           <SwiperSlide key={service.id}>
             <div className="relative h-full w-full">
-              <div className="absolute inset-0 z-10 bg-gradient-to-r from-black/60 via-black/40 to-black/60" />
+              <div className="absolute bg-black md:bg-transparent inset-0 z-10 md:bg-gradient-to-r md:from-black/60 md:via-black/10 md:to-black/60" />
 
               <img
                 src={service.image}
                 alt={service.name}
-                className="absolute inset-0 h-full w-full object-cover"
+                className="hidden md:block absolute inset-0 h-full w-full object-cover"
               />
 
-              <div className="absolute inset-0 z-20 flex items-center">
-                <div className="w-[50%] pl-[10%] pr-8">
+              <div className="absolute inset-0 z-20 flex top-[20%] md:top-[14%]">
+                <div className="md:w-[50%] pl-[5%] lg:pl-[3%] xl:pl-[10%] pr-8">
+            
                   <div className="space-y-6">
-                    <div className="inline-block rounded-lg bg-yellow-400/20 px-4 py-2 backdrop-blur-sm">
-                      <span className="font-semibold text-yellow-400">
-                        {service.tagline}
-                      </span>
-                    </div>
-
-                    <h2 className="text-6xl font-bold leading-tight text-white">
+                    <h2 className="text-3xl xl:text-4xl font-semibold leading-tight text-white">
                       {service.name}
                     </h2>
-
-                    <div className="h-px w-24 bg-yellow-400" />
-
-                    <p className="max-w-2xl text-xl leading-relaxed text-gray-200">
+                    <p className="max-w-2xl text-lg  xl:text-xl leading-relaxed text-gray-200">
                       {service.description}
                     </p>
 
-                    <button className="mt-8 rounded-lg bg-yellow-400 px-8 py-3 font-semibold text-black transition-colors duration-300 hover:bg-yellow-300">
-                      Learn More
+                    <button className="gradient-color font-semibold text-lg  rounded-lg px-6 py-3 text-tertiary-text">
+                      {service.buttonName}
                     </button>
                   </div>
                 </div>
@@ -172,6 +184,7 @@ const ServicesTimeline = () => {
         ))}
       </Swiper>
     </div>
+    </>
   );
 };
 

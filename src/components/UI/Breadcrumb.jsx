@@ -9,7 +9,8 @@ const Breadcrumb = () => {
   const paths = pathname.split("/").filter((path) => path);
 
   return (
-    <div className="mb-6 flex items-center gap-2 text-secondary-light bg-primary-light py-1">
+    <div className="bg-primary-light">
+    <div className="section-container lg:mb-6 flex items-center gap-2 text-secondary-light  py-1 ">
       <div>
         <Link
           href="/"
@@ -46,6 +47,7 @@ const Breadcrumb = () => {
           </div>
         );
       })}
+    </div>
     </div>
   );
 };

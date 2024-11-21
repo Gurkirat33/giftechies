@@ -13,7 +13,7 @@
 
 .light {
   --primary: 250, 250, 250;
-  --primary-light: 245, 245, 245;
+  --primary-light: 238, 238, 238;
   --secondary: 5, 5, 5;
   --secondary-light: 90, 90, 90;
   --tertiary-text: 250, 250, 250;
@@ -146,7 +146,10 @@
     will-change: transform;
   }
 
-  
+  .vertical-text {
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+  }
 
   .light .svg-color-mode {
     @apply [filter:brightness(0)_saturate(100%)];

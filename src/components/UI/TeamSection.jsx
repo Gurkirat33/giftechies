@@ -16,7 +16,7 @@ export default async function TeamSection() {
 
         <div className="mt-16 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {members.map((member) => (
-            <div key={member.id} className="group">
+            <div key={member.id} className="group relative">
               <div className="relative mb-4 aspect-[3/4]">
                 <div className="absolute inset-3 border border-border/10" />
                 <Image
@@ -25,20 +25,25 @@ export default async function TeamSection() {
                   fill
                   className="object-cover"
                 />
-                <div className="absolute left-0 top-0 h-3 w-3 border-l-2 border-t-2 border-border/60" />
-                <div className="absolute right-0 top-0 h-3 w-3 border-r-2 border-t-2 border-border/60" />
-                <div className="absolute bottom-0 left-0 h-3 w-3 border-b-2 border-l-2 border-border/60" />
-                <div className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-border/60" />
+                <div className="absolute left-0 top-0 h-3 w-3 border-l-2 border-t-2 border-[#d92662]" />
+                <div className="absolute right-0 top-0 h-3 w-3 border-r-2 border-t-2 border-[#d92662]" />
+                <div className="absolute bottom-0 left-0 h-3 w-3 border-b-2 border-l-2 border-[#d92662]" />
+                <div className="absolute bottom-0 right-0 h-3 w-3 border-b-2 border-r-2 border-[#d92662]" />
+
+                <div className="absolute inset-0 bg-black/20 flex items-end opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <p className="text-white p-4 text-sm font-medium">
+                    {member.role}
+                  </p>
+                </div>
+
+                <div className="absolute -right-8 bottom-0 h-1/2">
+                  <p className="vertical-text h-full flex items-center text-lg font-bold tracking-[0.25em] gradient-color-text">
+                    {member.name}
+                  </p>
+                </div>
               </div>
 
-              <div className="group px-2 text-center">
-                <h3 className="mb-1 text-lg font-bold text-secondary">
-                  {member.name}
-                </h3>
-                <p className="mb-2 text-sm text-secondary-light">
-                  {member.role}
-                </p>
-              </div>
+            
             </div>
           ))}
         </div>

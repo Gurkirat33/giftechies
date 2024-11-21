@@ -66,13 +66,13 @@ const DarkModeToggle = ({ isDarkMode, setIsDarkMode }) => {
       </Script>
       <button
         onClick={toggleTheme}
-        className="dark:bg-primary-500 relative inline-flex h-9 w-9 items-center justify-center rounded-lg bg-primary-light focus:outline-none"
+        className="dark:bg-primary-500 relative inline-flex h-[72px] items-center justify-center px-4 bg-primary-light focus:outline-none"
         aria-label={isDarkMode ? "Switch to light mode" : "Switch to dark mode"}
       >
         {isDarkMode ? (
-          <Moon className="h-[1.2rem] w-[1.2rem] text-slate-400 transition-all duration-200" />
+          <Moon className="h-[1.4rem] w-[1.4rem] text-slate-400 transition-all duration-200" />
         ) : (
-          <Sun className="h-[1.2rem] w-[1.2rem] text-slate-500 transition-all duration-200" />
+          <Sun className="h-[1.4rem] w-[1.4rem] text-slate-500 transition-all duration-200" />
         )}
       </button>
     </>

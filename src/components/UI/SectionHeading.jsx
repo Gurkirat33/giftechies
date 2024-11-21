@@ -7,13 +7,13 @@ export const SectionHeading = ({
   className = ""
 }) => {
   return (
-    <div className={`relative mb-16 ${className}`}>
-      <div className="section-container">
+    <div className={`relative mb-2 lg:mb-12 xl:mb-16 ${className}`}>
         {showBreadcrumb && <Breadcrumb />}
+      <div className="section-container">
         
-        <div className="relative mt-8 grid gap-8 md:grid-cols-[1fr,1fr] lg:gap-16">
+        <div className="relative mt-4 lg:mt-6 grid gap-6  md:grid-cols-[1fr,1fr] lg:gap-16">
           <div className="relative">
-            <h2 className="relative text-left text-5xl font-medium leading-[1.2] tracking-tight text-secondary md:text-6xl lg:text-7xl">
+            <h2 className="relative text-left text-5xl font-medium lg:leading-[1.1] tracking-tight text-secondary md:text-6xl lg:text-7xl">
               {title}
             </h2>
           </div>

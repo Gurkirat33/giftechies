@@ -45,7 +45,7 @@ export default function BentoGrid() {
           return (
             <div
               key={index}
-              className={`${getGridClasses(index)} relative rounded-lg bg-primary-light px-8 py-7 shadow-xl`}
+              className={`${getGridClasses(index)} relative rounded-lg bg-primary px-8 py-7 shadow-xl`}
             >
               {item.icon && <item.icon size={26} className="text-red-500" />}
               <h3 className="my-3 text-xl font-medium">{item.title}</h3>
