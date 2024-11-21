@@ -55,7 +55,7 @@ export default async function ServicesPage() {
           >
             <div className="section-container">
               <div
-                className={`group grid items-center gap-12 lg:grid-cols-2 ${
+                className={`grid items-center gap-12 lg:grid-cols-2 ${
                   index % 2 === 1 ? "lg:[&>*:first-child]:order-2" : ""
                 }`}
               >
@@ -87,10 +87,10 @@ export default async function ServicesPage() {
                     </div>
                     <Link
                       href={`/services/${service.slug}`}
-                      className="group inline-flex items-center gap-2 gradient-color text-white bg-primary-light px-5 py-2.5 text-lg font-medium"
+                      className="inline-flex items-center gap-2 gradient-color text-white bg-primary-light px-5 py-2.5 text-sm tracking-wider font-medium"
                     >
-                      Learn more
-                      <ArrowUpRight className="transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
+                      Know More
+                      <ArrowUpRight size={19} />
                     </Link>
                   </div>
                 </div>
