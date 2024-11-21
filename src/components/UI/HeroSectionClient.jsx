@@ -60,7 +60,7 @@ export default function HeroSectionClient({ heroData }) {
               {currentHero.serviceName}
             </Link>
             <Link href={"/contact"} className="block w-full  border border-border px-4 py-3 md:px-8 md:py-4 font-semibold sm:w-auto text-center">
-              Get Free Consultation
+              Book Appointment
             </Link>
           </div>
           <div className="flex flex-wrap gap-4 text-sm">

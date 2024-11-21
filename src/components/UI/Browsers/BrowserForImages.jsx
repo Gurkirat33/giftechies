@@ -56,68 +56,24 @@ export default function BrowserForImages({ projectData }) {
               transition={{ duration: 0.5 }}
             >
               <div className="flex h-full flex-col">
-                {/* Project Header */}
-                <div className="mb-4 flex items-center justify-between">
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-800">
-                      {currentProject.browserHeading}
-                    </h3>
-                    <p className="text-sm text-gray-500">
-                      {currentProject.browserCatagory}
-                    </p>
-                  </div>
-                  <div className="rounded-full bg-blue-500 p-2 text-white">
-                    <Globe className="h-5 w-5" />
-                  </div>
-                </div>
-
                 <div className="relative flex-grow">
-                  <div className="absolute inset-0 grid grid-cols-2 gap-4">
+                  <div className="absolute inset-0 grid grid-cols-1 gap-4">
                     <div className="space-y-4">
                       <motion.img
                         src={currentProject.images[0]}
                         alt="Project preview 1"
-                        className="h-40 w-full rounded-lg object-cover shadow-md"
+                        className="h-full w-full rounded-lg object-cover shadow-md"
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 0.2 }}
-                      />
-                      <motion.img
-                        src={currentProject.images[1]}
-                        alt="Project preview 2"
-                        className="h-32 w-full rounded-lg object-cover shadow-md"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.3 }}
-                      />
-                    </div>
-                    <div className="space-y-4">
-                      <motion.img
-                        src={currentProject.images[2]}
-                        alt="Project preview 3"
-                        className="h-32 w-full rounded-lg object-cover shadow-md"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.4 }}
-                      />
-                      <motion.img
-                        src={currentProject.images[3]}
-                        alt="Project preview 4"
-                        className="h-40 w-full rounded-lg object-cover shadow-md"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        transition={{ delay: 0.5 }}
                       />
                     </div>
                   </div>
 
                   {currentProject.browserOutcome && (
-                    <div className="absolute bottom-0 left-0 right-0 rounded-lg bg-white/80 p-4 backdrop-blur-sm">
+                    <div className="absolute bottom-0 right-0 rounded-lg bg-white/80 px-2 py-2 backdrop-blur-sm">
                       <div className="flex items-center justify-between">
-                        <div className="text-sm font-medium text-gray-800">
-                          Project Outcome
-                        </div>
-                        <div className="rounded-full bg-blue-500 px-3 py-1 text-sm font-bold text-white">
+                        <div className="px-3 text-sm font-bold text-black">
                           {currentProject.browserOutcome}
                         </div>
                       </div>

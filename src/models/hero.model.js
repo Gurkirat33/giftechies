@@ -26,14 +26,14 @@ const heroSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  browserHeading: {
-    type: String,
-    required: true,
-  },
-  browserCatagory: {
-    type: String,
-    required: true,
-  },
+  // browserHeading: {
+  //   type: String,
+  //   required: true,
+  // },
+  // browserCatagory: {
+  //   type: String,
+  //   required: true,
+  // },
   browserOutcome: {
     type: String,
     default: "",
@@ -44,9 +44,9 @@ const heroSchema = new mongoose.Schema({
     validate: [
       {
         validator(array) {
-          return array.length === 4;
+          return array.length === 1;
         },
-        message: "Images array must contain exactly 4 images"
+        message: "Images array must contain exactly 1 images"
       }
     ]
   }

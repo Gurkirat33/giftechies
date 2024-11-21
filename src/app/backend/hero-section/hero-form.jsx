@@ -18,19 +18,12 @@ export default function HeroForm() {
     description: "",
     serviceName: "",
     serviceUrl: "",
-    browserHeading: "",
-    browserCatagory: "",
     browserOutcome: ""
   });
 
   const handleImageSelect = (e) => {
     const files = Array.from(e.target.files);
-    if (files.length !== 4) {
-      setError("Please select exactly 4 images");
-      return;
-    }
 
-    // Basic validation
     for (const file of files) {
       if (!file.type.startsWith("image/")) {
         setError("Please select only image files");
@@ -56,7 +49,7 @@ export default function HeroForm() {
     setError("");
     try {
       const urls = [];
-      for (let i = 0; i < 4; i++) {
+      for (let i = 0; i < 1; i++) {
         const result = await uploadToCloudinary(images[i]);
         if (!result?.url) {
           throw new Error(`Failed to upload image ${i + 1}`);
@@ -81,19 +74,15 @@ export default function HeroForm() {
       setLoading(true);
       setError("");
 
-      // First upload images
       const imageUrls = await handleUpload();
       if (!imageUrls) return;
 
-      // Validate required fields
       const requiredFields = [
         'subHeading',
         'heading',
         'description',
         'serviceName',
         'serviceUrl',
-        'browserHeading',
-        'browserCatagory'
       ];
 
       for (const field of requiredFields) {
@@ -102,7 +91,6 @@ export default function HeroForm() {
         }
       }
 
-      // Submit data
       const result = await createHeroSection({
         ...formData,
         images: imageUrls
@@ -185,30 +173,11 @@ export default function HeroForm() {
           />
         </div>
 
-        <div>
-          <label className="block text-sm font-medium mb-2">Browser Heading</label>
-          <input
-            type="text"
-            value={formData.browserHeading}
-            onChange={(e) => setFormData(prev => ({...prev, browserHeading: e.target.value}))}
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
+
+       
 
         <div>
-          <label className="block text-sm font-medium mb-2">Browser Category</label>
-          <input
-            type="text"
-            value={formData.browserCatagory}
-            onChange={(e) => setFormData(prev => ({...prev, browserCatagory: e.target.value}))}
-            className="w-full p-2 border rounded"
-            required
-          />
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium mb-2">Browser Outcome (Optional)</label>
+          <label className="block text-sm font-medium mb-2">Browser Outcome</label>
           <input
             type="text"
             value={formData.browserOutcome}
@@ -217,13 +186,11 @@ export default function HeroForm() {
           />
         </div>
         <div>
-          <label className="block text-sm font-medium mb-2">
-            Select 4 Images (all at once)
-          </label>
+          
           <input
             type="file"
             accept="image/*"
-            multiple
+            
             onChange={handleImageSelect}
             className="hidden"
             id="images"
@@ -236,8 +203,8 @@ export default function HeroForm() {
             <Upload className="w-8 h-8 mb-2 text-gray-400" />
             <span className="text-sm text-gray-500">
               {images[0] 
-                ? `Selected ${images.length} images` 
-                : "Click to select 4 images"}
+                ? `Selected ${images.length} image` 
+                : "Click to select 1 image"}
             </span>
           </label>
         </div>

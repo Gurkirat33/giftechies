@@ -22,14 +22,6 @@ export async function createHeroSection(data) {
     try {
         await getDbConnection();
         
-        if (!Array.isArray(data.images)) {
-            return { success: false, error: "Images must be an array" };
-        }
-
-        if (data.images.length !== 4) {
-            return { success: false, error: "Exactly 4 images are required" };
-        }
-
         if (data.images.some(img => !img || typeof img !== 'string' || !img.startsWith('http'))) {
             return { success: false, error: "Invalid image URLs detected" };
         }
@@ -40,15 +32,12 @@ export async function createHeroSection(data) {
             description: data.description?.trim(),
             serviceName: data.serviceName?.trim(),
             serviceUrl: data.serviceUrl?.trim(),
-            browserHeading: data.browserHeading?.trim(),
-            browserCatagory: data.browserCatagory?.trim(),
             browserOutcome: data.browserOutcome?.trim() || "",
             images: data.images
         };
 
         const hero = await Hero.create(heroData);
 
-        // Revalidate both hero-data and homepage
         revalidateTag('hero-data');
         revalidatePath('/backend/hero-section');
         revalidatePath('/');
@@ -76,8 +65,6 @@ export async function updateHeroSection(id, data) {
             description: data.description?.trim(),
             serviceName: data.serviceName?.trim(),
             serviceUrl: data.serviceUrl?.trim(),
-            browserHeading: data.browserHeading?.trim(),
-            browserCatagory: data.browserCatagory?.trim(),
             browserOutcome: data.browserOutcome?.trim() || ""
         };
 
@@ -135,7 +122,6 @@ export async function deleteHeroSection(id) {
             return { success: false, error: "Hero section not found" };
         }
 
-        // Revalidate both hero-data and homepage
         revalidateTag('hero-data');
         revalidatePath('/backend/hero-section');
         revalidatePath('/');
