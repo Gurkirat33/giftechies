@@ -69,6 +69,7 @@ export async function deleteService(id) {
     }
     revalidatePath("/backend/services");
     revalidateTag('services-data');
+    revalidateTag('service-detail');
     return { success: true };
   } catch (error) {
     console.error("Error deleting service:", error);
@@ -126,6 +127,7 @@ export async function updateService(id, data) {
 
     revalidatePath("/backend/services");
     revalidateTag('services-data');
+    revalidateTag('service-detail');
     
     const serializedService = serializeService(service);
     console.log("Returning serialized service:", serializedService);
@@ -163,6 +165,8 @@ export async function createService(data) {
     const service = await serviceModel.create(createData);
     revalidatePath("/backend/services");
     revalidateTag('services-data');
+    revalidateTag('service-detail');
+    
     return { success: true, service: serializeService(service.toObject()) };
   } catch (error) {
     console.error("Error creating service:", error);
