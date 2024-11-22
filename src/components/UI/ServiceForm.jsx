@@ -6,19 +6,25 @@ import { useState } from "react";
 export default function ServiceForm() {
     const [formData, setFormData] = useState({
         name: "",
+        email: "",
         phone: "",
         message: ""
     });
 
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        console.log("Form submitted:", formData);
-        setFormData({ name: "", phone: "", message: "" });
+        console.log(formData);
+        setFormData({ name: "", email: "", phone: "", message: "" });
     };
 
     return (
         <div className="bg-primary-light rounded-xl p-6">
-            <h3 className="text-xl font-bold mb-6">Get Started Today</h3>
+            <h3 className="text-lg font-semibold mb-4 relative"><span className="absolute left-0 -bottom-1 h-0.5 w-12 bg-secondary"></span>Get Started Today</h3>
             <form onSubmit={handleSubmit} className="space-y-5">
                 <div>
                     <label className="block text-sm font-medium text-secondary-light mb-2">
@@ -26,42 +32,59 @@ export default function ServiceForm() {
                     </label>
                     <input
                         type="text"
-                        required
+                        name="name"
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                        className="w-full px-4 py-3 bg-primary border border-border/10 rounded-lg focus:outline-none focus:border-[#e62332] transition-colors"
-                        placeholder="Enter your name"
+                        onChange={handleChange}
+                        className="w-full px-4 py-2.5 rounded-lg bg-secondary/5 focus:bg-secondary/10 transition-colors"
+                        required
                     />
                 </div>
+
+                <div>
+                    <label className="block text-sm font-medium text-secondary-light mb-2">
+                        Email Address
+                    </label>
+                    <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        className="w-full px-4 py-2.5 rounded-lg bg-secondary/5 focus:bg-secondary/10 transition-colors"
+                        required
+                    />
+                </div>
+
                 <div>
                     <label className="block text-sm font-medium text-secondary-light mb-2">
                         Phone Number
                     </label>
                     <input
                         type="tel"
-                        required
+                        name="phone"
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        className="w-full px-4 py-3 bg-primary border border-border/10 rounded-lg focus:outline-none focus:border-[#e62332] transition-colors"
-                        placeholder="Enter your phone number"
+                        onChange={handleChange}
+                        className="w-full px-4 py-2.5 rounded-lg bg-secondary/5 focus:bg-secondary/10 transition-colors"
+                        required
                     />
                 </div>
+
                 <div>
                     <label className="block text-sm font-medium text-secondary-light mb-2">
                         Message
                     </label>
                     <textarea
-                        required
+                        name="message"
                         value={formData.message}
-                        onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                        className="w-full px-4 py-3 bg-primary border border-border/10 rounded-lg focus:outline-none focus:border-[#e62332] transition-colors resize-none"
-                        placeholder="Tell us about your project..."
-                        rows={4}
-                    />
+                        onChange={handleChange}
+                        rows="4"
+                        className="w-full px-4 py-2.5 rounded-lg bg-secondary/5 focus:bg-secondary/10 transition-colors resize-none"
+                        required
+                    ></textarea>
                 </div>
+
                 <button
                     type="submit"
-                    className="w-full gradient-color text-white py-3 px-6 rounded-lg hover:opacity-90 transition-opacity flex items-center justify-center gap-2"
+                    className="w-full gradient-color text-white py-2.5 rounded-lg hover:opacity-95 transition-opacity flex items-center justify-center gap-2"
                 >
                     Send Message
                     <Send className="h-5 w-5" />
