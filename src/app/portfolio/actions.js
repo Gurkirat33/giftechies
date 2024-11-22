@@ -14,7 +14,6 @@ const serializePortfolio = (item) => {
   };
 };
 
-// Cache the portfolio items with tag for on-demand revalidation
 export const getPortfolioItems = unstable_cache(
   async () => {
     try {

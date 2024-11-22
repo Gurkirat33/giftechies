@@ -32,7 +32,6 @@ export default function DashboardLayout({ children }) {
         </div>
       </div>
 
-      {/* Sidebar */}
       <Sidebar />
 
       <div className={`pl-64 pt-16 transition-all duration-200`}>

@@ -1,7 +1,9 @@
+
 import { ArrowRight, MoveDown, MoveRight, PhoneCall } from "lucide-react";
 import Link from "next/link";
 import gridData from "../data/gridData";
 import Image from "next/image";
+import { CallButton } from "./CallButton";
 
 const getGridClasses = (index) => {
   if (index === 1)
@@ -10,6 +12,7 @@ const getGridClasses = (index) => {
     return "row-span-1 col-span-2 lg:col-span-1 lg:row-span-2 flex flex-col justify-end gap-2";
   return "col-span-2 lg:col-span-1 row-span-1 max-lg:order-1";
 };
+
 
 export default function BentoGrid() {
   return (
@@ -41,12 +44,9 @@ export default function BentoGrid() {
                 <div className="flex gap-4">
                 <Link href="/services" className="inline-flex items-center gap-2 mt-2 lg:mt-0  border border-white font-medium px-4 py-2 text-sm">
                   View All Services 
-                  {/* <span><MoveRight/></span> */}
                 </Link>
-                <Link href="/services" className="inline-flex items-center gap-2 mt-2 lg:mt-0 bg-white text-black font-medium border border-white px-4 py-2 text-sm">
-                <span><PhoneCall size={15}/></span> Request a Call 
-
-                </Link>
+                <CallButton/>
+                
                 </div>
               </div>
             );

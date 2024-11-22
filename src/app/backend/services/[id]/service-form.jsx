@@ -57,7 +57,6 @@ export default function ServiceForm({ initialData, id }) {
     const file = e.target.files[0];
     if (!file) return;
 
-    // Add file validation
     if (!file.type.startsWith("image/")) {
       setImageError("Please upload an image file");
       return;
@@ -157,7 +156,6 @@ export default function ServiceForm({ initialData, id }) {
       )}
 
       <div className="space-y-4">
-        {/* Service Title */}
         <div>
           <label className="block text-sm font-medium text-secondary">
             Service Title
@@ -172,7 +170,6 @@ export default function ServiceForm({ initialData, id }) {
           />
         </div>
 
-        {/* URL Slug */}
         <div>
           <label className="block text-sm font-medium text-secondary">
             URL Slug
@@ -187,7 +184,6 @@ export default function ServiceForm({ initialData, id }) {
           />
         </div>
 
-        {/* Service Image */}
         <div>
           <label className="block text-sm font-medium text-secondary">
             Service Image
@@ -246,7 +242,6 @@ export default function ServiceForm({ initialData, id }) {
           )}
         </div>
 
-        {/* Short Description */}
         <div>
           <label className="block text-sm font-medium text-secondary">
             Short Description
@@ -262,7 +257,6 @@ export default function ServiceForm({ initialData, id }) {
           />
         </div>
 
-        {/* Long Description Editor */}
         <div>
           <label className="block text-sm font-medium text-secondary mb-2">
             Long Description
@@ -292,7 +286,6 @@ export default function ServiceForm({ initialData, id }) {
           </div>
         </div>
 
-        {/* Key Points */}
         <div>
           <label className="block text-sm font-medium text-secondary">
             Key Points (one per line)

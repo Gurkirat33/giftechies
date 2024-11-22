@@ -5,7 +5,6 @@ import { useState } from "react";
 import { Pencil, Trash2, Plus, Loader2 } from "lucide-react";
 import { deletePortfolio } from "./actions";
 import Image from "next/image";
-import { SectionHeading } from "@/components/UI/SectionHeading";
 
 export default function PortfolioClient({ initialPortfolio }) {
   const [portfolios, setPortfolios] = useState(initialPortfolio);

@@ -52,7 +52,7 @@ const TestimonialsSection = () => {
           <div className="relative inline-block">
             <span className="block mb-2 text-sm font-medium tracking-[0.3em] gradient-color-text uppercase">What People Think</span>
             <div className="relative">
-              <h2 className="text-6xl font-bold mb-3 relative inline-block">
+              <h2 className="text-3xl md:text-6xl font-bold mb-3 relative inline-block">
                 <span className="relative inline-block">
                   Loved by
                   <span className="relative gradient-color-text ml-3 inline-block">
@@ -62,7 +62,7 @@ const TestimonialsSection = () => {
                 </span>
               </h2>
             </div>
-            <p className="mt-6 text-xl text-secondary-light/90 max-w-2xl mx-auto">
+            <p className="mt-6 md:text-xl text-secondary-light/90 max-w-2xl mx-auto">
               Join our thriving community of satisfied users who have transformed their experience with us
             </p>
           </div>

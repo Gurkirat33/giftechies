@@ -3,7 +3,6 @@ import serviceModel from "@/models/service.model";
 import ServicesClient from "./services-client";
 import { unstable_cache } from 'next/cache';
 
-// Use ISR instead of force-dynamic
 export const revalidate = 3600;
 
 const serializeService = (service) => ({
@@ -15,7 +14,6 @@ const serializeService = (service) => ({
   slug: service.slug || "",
 });
 
-// Cache the services data with tag-based invalidation
 const getServices = unstable_cache(
   async () => {
     try {

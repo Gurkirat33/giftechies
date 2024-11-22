@@ -94,7 +94,6 @@ export async function updateHeroSection(id, data) {
             return { success: false, error: "Hero section not found" };
         }
 
-        // Revalidate both hero-data and homepage
         revalidateTag('hero-data');
         revalidatePath('/backend/hero-section');
         revalidatePath('/');

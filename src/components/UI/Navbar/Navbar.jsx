@@ -75,12 +75,12 @@ const Navbar = () => {
           <div className="flex items-center justify-between ">
             <Link
               href="/"
-              className="py-4 text-lg font-medium text-secondary lg:py-0 h-[72px] bg-primary-light inline-flex items-center justify-center"
+              className="py-4 text-lg font-medium text-secondary lg:py-0 h-[72px] pl-2 sm:bg-primary-light inline-flex items-center justify-center"
             >
               {isDarkMode ? (
-                <Image src={darkLogo} alt="" width={180} className="p-3" />
+                <Image src={darkLogo} alt="" width={210} className="p-3" />
               ) : (
-                <Image src={Logo} alt="" width={180} className="p-3" />
+                <Image src={Logo} alt="" width={210} className="p-3" />
               )}
             </Link>
 
@@ -172,10 +172,10 @@ const Navbar = () => {
                 Start a project <MoveRight className="ml-2 " size={20}/>
               </Link>
               <button
-                className="rounded-full p-2 text-secondary lg:hidden"
+                className="gradient-color  p-2 text-secondary lg:hidden  px-6 sm:pl-0 sm:pr-0 h-full"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               >
-                <Menu size={20} />
+                <Menu size={21} className="text-white"/>
               </button>
             </div>
           </div>

@@ -25,7 +25,6 @@ export default function PortfolioForm({ initialData }) {
     setError("");
 
     try {
-      // Process tags
       const processedTags = formData.tags
         .split(",")
         .map(tag => tag.trim())
@@ -64,14 +63,12 @@ export default function PortfolioForm({ initialData }) {
     const file = e.target.files?.[0];
     if (!file) return;
 
-    // Validate file type
     if (!file.type.startsWith("image/")) {
       setError("Please upload an image file");
       return;
     }
 
-    // Validate file size (max 10MB)
-    const maxSize = 10 * 1024 * 1024; // 10MB in bytes
+    const maxSize = 10 * 1024 * 1024; 
     if (file.size > maxSize) {
       setError("Image size must be less than 10MB");
       return;
@@ -112,7 +109,6 @@ export default function PortfolioForm({ initialData }) {
       )}
 
       <div className="space-y-6">
-        {/* Title Input */}
         <div>
           <label className="block text-sm font-medium text-secondary">
             Project Title
@@ -128,7 +124,6 @@ export default function PortfolioForm({ initialData }) {
           />
         </div>
 
-        {/* Image Upload */}
         <div>
           <label className="block text-sm font-medium text-secondary">
             Project Image
@@ -187,7 +182,6 @@ export default function PortfolioForm({ initialData }) {
           </div>
         </div>
 
-        {/* Tags Input */}
         <div>
           <label className="block text-sm font-medium text-secondary">
             Tags
@@ -207,7 +201,6 @@ export default function PortfolioForm({ initialData }) {
         </div>
       </div>
 
-      {/* Submit Button */}
       <div className="flex justify-end">
         <button
           type="submit"

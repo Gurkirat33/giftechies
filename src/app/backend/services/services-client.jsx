@@ -54,7 +54,6 @@ export default function ServicesClient({ initialServices }) {
                 key={service.id}
                 className="flex items-center gap-6 p-6 transition-colors hover:bg-primary"
               >
-                {/* Image */}
                 <div className="relative h-24 w-40 flex-shrink-0 overflow-hidden rounded-lg">
                   <img
                     src={service.imageUrl}
@@ -63,7 +62,6 @@ export default function ServicesClient({ initialServices }) {
                   />
                 </div>
 
-                {/* Content */}
                 <div className="flex-1 space-y-1">
                   <h3 className="text-lg font-medium text-secondary">
                     {service.heading}
@@ -88,7 +86,6 @@ export default function ServicesClient({ initialServices }) {
                   </div>
                 </div>
 
-                {/* Actions */}
                 <div className="flex items-center gap-2">
                   <button
                     onClick={() => handleEditService(service.id)}

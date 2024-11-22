@@ -43,9 +43,9 @@ export const Card = ({ card }) => {
       <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent" />
 
       <div className="absolute bottom-0 z-10 p-6">
-        <span className="mb-2 block text-sm font-medium text-indigo-300">
+        {/* <span className="mb-2 block text-sm font-medium text-indigo-300">
           {card.category}
-        </span>
+        </span> */}
         <h3 className="mb-2 text-2xl font-semibold text-white [text-wrap:balance]">
           {card.title}
         </h3>

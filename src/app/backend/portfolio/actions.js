@@ -81,7 +81,6 @@ export async function updatePortfolio(id, data) {
     Object.assign(portfolio, data);
     await portfolio.save();
     
-    // Convert to plain object before returning
     const plainPortfolio = {
       id: portfolio._id.toString(),
       title: portfolio.title || '',
@@ -106,7 +105,6 @@ export async function createPortfolio(data) {
     const portfolio = new portfolioModel(data);
     await portfolio.save();
     
-    // Convert to plain object before returning
     const plainPortfolio = {
       id: portfolio._id.toString(),
       title: portfolio.title || '',

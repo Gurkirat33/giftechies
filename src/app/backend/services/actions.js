@@ -88,7 +88,6 @@ export async function updateService(id, data) {
 
     await getDbConnection();
     
-    // Check if slug is already taken by another service
     const existingService = await serviceModel.findOne({ 
       slug: data.slug,
       _id: { $ne: id }
@@ -98,7 +97,6 @@ export async function updateService(id, data) {
       throw new Error("URL slug is already taken");
     }
 
-    // Prepare the update data
     const updateData = {
       $set: {
         heading: data.heading,
@@ -148,13 +146,11 @@ export async function createService(data) {
 
     await getDbConnection();
     
-    // Check if slug is already taken
     const existingService = await serviceModel.findOne({ slug: data.slug });
     if (existingService) {
       throw new Error("URL slug is already taken");
     }
 
-    // Prepare the create data
     const createData = {
       heading: data.heading,
       description: data.description,

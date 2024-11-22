@@ -13,9 +13,9 @@ export const SectionHeading = ({
         
         <div className="relative mt-4 lg:mt-6 grid gap-6  md:grid-cols-[1fr,1fr] lg:gap-16">
           <div className="relative">
-            <h2 className="relative text-left text-5xl font-medium lg:leading-[1.1] tracking-tight text-secondary md:text-6xl lg:text-7xl">
+            <h1 className="relative text-left text-5xl font-medium lg:leading-[1.1] tracking-tight text-secondary md:text-6xl lg:text-7xl">
               {title}
-            </h2>
+            </h1>
           </div>
 
           <div className="relative flex items-center justify-center">

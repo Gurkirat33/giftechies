@@ -40,7 +40,6 @@ export const ServiceCard = ({
           <p className="text-secondary-light">{description}</p>
         </div>
 
-        {/* Tags */}
         <div className="mb-3 flex flex-wrap gap-2">
           {keyPoints.map((point, index) => (
             <span
@@ -53,7 +52,6 @@ export const ServiceCard = ({
           ))}
         </div>
 
-        {/* Action Link */}
         <div className="mt-auto pt-6">
           <Link
             href=""

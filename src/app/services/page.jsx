@@ -46,7 +46,6 @@ export default async function ServicesPage() {
       <div className="section-container">
       </div>
 
-      {/* Services Section */}
       <div className="relative mt-10">
         {services.map((service, index) => (
           <div
@@ -67,7 +66,6 @@ export default async function ServicesPage() {
                   />
                 </div>
 
-                {/* Content Section */}
                 <div className="relative">
                   <div className="">
                     <h3 className="mb-6 text-3xl font-semibold text-secondary lg:text-4xl">

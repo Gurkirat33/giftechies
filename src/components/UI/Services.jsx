@@ -86,7 +86,7 @@ const ServicesTimeline = () => {
           <div className="bg-extra-bg relative inline-block text-center w-full p-12">
             <span className="block mb-2 text-sm font-medium tracking-[0.3em] gradient-color-text uppercase">How We Work</span>
             <div className="relative">
-              <h2 className="text-6xl font-bold mb-3 relative inline-block">
+              <h2 className="text-3xl md:text-6xl font-bold mb-3 relative inline-block">
                 <span className="relative inline-block">
                 The Momentum
                   <span className="relative gradient-color-text ml-3 inline-block">Process
@@ -126,7 +126,7 @@ const ServicesTimeline = () => {
                 } ${index < activeIndex ? "bg-white" : ""}`}
               />
               <div
-                className={`pl-8  font-medium md:text-lg md:font-bold transition-all duration-300 ${
+                className={`md:pl-8  text-sm md:text-basefont-medium md:text-lg md:font-bold transition-all duration-300 ${
                   index === activeIndex
                     ? "translate-x-2 gradient-color-text"
                     : "text-white/70 group-hover:text-white"

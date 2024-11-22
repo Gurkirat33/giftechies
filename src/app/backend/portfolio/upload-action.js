@@ -14,7 +14,6 @@ export async function uploadImage({ file }) {
       throw new Error("No file provided");
     }
 
-    // Upload to Cloudinary with optimization settings
     const result = await cloudinary.uploader.upload(file, {
       folder: "portfolio",
       transformation: [

@@ -12,7 +12,7 @@ import { Heart, Mail, PhoneCall } from "lucide-react";
 const Footer = () => {
   const date = new Date().getFullYear();
   return (
-    <footer className="relative bg-primary px-4 pb-8 pt-28 text-secondary sm:px-8">
+    <footer className="overflow-x-hidden relative bg-primary px-4 pb-8 pt-28 text-secondary sm:px-8">
       <div className="section-container relative rounded-2xl bg-primary-light pb-12 pt-16">
         <div className="absolute left-0 top-0 z-50 flex flex-col gap-1 bg-primary pb-4 pr-4">
           {socialLinks.map((social, index) => (
@@ -36,9 +36,9 @@ const Footer = () => {
             </p> */}
             <h4 className="text-2xl">Ready? Let’s Talk
             </h4>
-            <p className="text-xs tracking-wide">Our clients love to work with us because we strive to first meet their requirements and then exceed their expectations.
+            {/* <p className="text-xs tracking-wide">Our clients love to work with us because we strive to first meet their requirements and then exceed their expectations.
 
-</p>
+</p> */}
             <div className="flex gap-4">
             <button className="gradient-color w-fit  px-4 py-2 text-tertiary-text">
            Best Work
@@ -48,8 +48,8 @@ const Footer = () => {
             </button>
             </div>
           </div>
-          <div className="col-span-12 mb-12 bg-primary p-8 shadow-2xl md:col-span-6 md:-mt-32 lg:order-4 lg:col-span-4 relative">
-          <div className="absolute w-full top-0 h-1 gradient-color left-0"></div>
+          <div className="col-span-8 mb-12 bg-primary p-8 shadow-2xl md:col-span-6 md:-mt-32 lg:order-4 lg:col-span-4 relative">
+          {/* <div className="absolute w-full top-0 h-1 gradient-color left-0"></div> */}
             <form>
               <h3 className="mb-3 text-2xl font-semibold lg:text-3xl">
                 Get in touch
@@ -93,7 +93,7 @@ const Footer = () => {
               </button>
             </form>
           </div>
-          <div className="col-span-6 text-center sm:text-start lg:order-2 lg:col-span-3">
+          <div className="col-span-12 md:col-span-6 sm:text-start lg:order-2 lg:col-span-3">
             <h3 className="mb-3 text-base font-semibold">Services</h3>
             <ul className="space-y-2 text-secondary-light">
               {links1.map((link) => (
@@ -104,7 +104,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div className="col-span-6 text-center sm:text-start lg:order-3 lg:col-span-2">
+          <div className="col-span-12 md:col-span-6 sm:text-start lg:order-3 lg:col-span-2">
             <h3 className="mb-3 text-base font-semibold">Services</h3>
             <ul className="space-y-2 text-secondary-light">
               {links2.map((link) => (
@@ -118,7 +118,7 @@ const Footer = () => {
 
         <div className="flex flex-col items-center justify-between pb-8 lg:flex-row lg:px-12 xl:pt-6">
           <div className="flex w-full flex-col gap-3 sm:flex-row sm:pl-14 lg:w-fit lg:gap-8 lg:pl-0">
-            <div className="flex flex-1 flex-col items-center sm:items-start lg:gap-3 xl:flex-row xl:items-end xl:gap-5">
+            <div className="flex flex-1 flex-col md:items-start sm:items-start lg:gap-3 xl:flex-row xl:items-end xl:gap-5">
               <img
                 src="/footer1.svg"
                 alt="img"
@@ -129,7 +129,7 @@ const Footer = () => {
                 141006 - INDIA
               </p>
             </div>
-            <div className="sm:item-start flex flex-1 flex-col items-center text-center lg:gap-3 xl:flex-row xl:items-end xl:gap-5 xl:text-start">
+            <div className="sm:item-start flex flex-1 flex-col  text-center lg:gap-3 xl:flex-row xl:items-end xl:gap-5 xl:text-start">
               <img
                 src="/footer2.svg"
                 alt="img"
